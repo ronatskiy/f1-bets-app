@@ -2,14 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Col, Container, Row, Table } from "reactstrap";
 import { inject, observer } from "mobx-react/index";
+import { User } from "../../../storage";
 
 @inject(stores => ({
 	nextRace: stores.rootStore.racesStore.nextRace,
+	currentUser: stores.rootStore.sessionStore.currentUser,
 }))
 @observer
 class ResultsPage extends React.Component {
 	render() {
-		const { nextRace } = this.props;
+		const { nextRace, currentUser } = this.props;
 
 		return (
 			<Container>
@@ -21,7 +23,7 @@ class ResultsPage extends React.Component {
 				{nextRace && (
 					<Row>
 						<Col>
-							<BetsResultsTable nextRaceBets={nextRace.bets} />
+							<BetsResultsTable nextRaceBets={nextRace.bets} currentUser={currentUser} />
 						</Col>
 					</Row>
 				)}
@@ -33,10 +35,12 @@ class ResultsPage extends React.Component {
 class BetsResultsTable extends React.Component {
 	static propTypes = {
 		nextRaceBets: PropTypes.array,
+		currentUser: PropTypes.instanceOf(User),
 	};
 
 	static defaultProps = {
 		nextRaceBets: [],
+		currentUser: null,
 	};
 
 	renderBets(betsMap, id) {
@@ -44,17 +48,17 @@ class BetsResultsTable extends React.Component {
 			.fill(1)
 			.map((_, index) => (
 				<td key={id + index} className="text-center">
-					{betsMap[index]}
+					{betsMap[index + 1]}
 				</td>
 			));
 	}
 
 	render() {
-		const { nextRaceBets } = this.props;
+		const { nextRaceBets, currentUser } = this.props;
 
 		return (
 			<Table>
-				<thead>
+				<thead className="thead-light">
 					<tr>
 						<th>Пользователь</th>
 						<th className="text-center">1</th>
@@ -73,7 +77,10 @@ class BetsResultsTable extends React.Component {
 					{nextRaceBets.map(bet => {
 						const { userInfo, betsMap } = bet;
 						return (
-							<tr key={userInfo.id}>
+							<tr
+								key={userInfo.id}
+								className={currentUser !== null && currentUser.id === userInfo.id ? "table-info" : ""}
+							>
 								<td>{userInfo.name}</td>
 								{this.renderBets(betsMap, userInfo.id)}
 							</tr>

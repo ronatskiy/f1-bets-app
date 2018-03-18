@@ -21,7 +21,7 @@ class RacersList extends React.Component {
 					<Col>
 						<h1 className="page-title">Список пилотов сезона 2018</h1>
 						<Table>
-							<thead>
+							<thead className="thead-light">
 								<tr>
 									<th>First Name</th>
 									<th>Last Name</th>

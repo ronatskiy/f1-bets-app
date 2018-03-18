@@ -22,7 +22,7 @@ class TeamsList extends React.Component {
 					<Col>
 						<h1 className="page-title">Список команд сезона 2018</h1>
 						<Table>
-							<thead>
+							<thead className="thead-light">
 								<tr>
 									<th>Название</th>
 									<th>Мотор</th>

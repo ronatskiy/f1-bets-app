@@ -22,7 +22,7 @@ class CalendarPage extends React.Component {
 				<Row>
 					<Col>
 						<Table size="sm">
-							<thead>
+							<thead className="thead-light">
 								<tr>
 									<th>Grand Prix</th>
 									<th>Date</th>
