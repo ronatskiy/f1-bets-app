@@ -1,0 +1,14 @@
+.awesome-countdown-timer {
+	display: flex;
+	justify-content: space-between;
+}
+
+.awesome-countdown-timer-section {}
+.awesome-countdown-timer-section__time {
+	text-align: center;
+}
+
+.awesome-countdown-timer-section__label {
+	text-align: center;
+	font-size: 0.5rem;
+}

@@ -1,0 +1,7 @@
+.countdown-timer {
+	justify-content: flex-end;
+}
+
+.countdown-timer .awesome-countdown-timer__splitter {
+	margin: 0 5px;
+}

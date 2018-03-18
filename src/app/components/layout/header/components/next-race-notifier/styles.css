@@ -1,0 +1,28 @@
+.header__more-info-link {
+
+}
+
+
+.next-race-notifier {
+	min-height: 60px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.next-race-notifier__pseudo-link {
+	border-bottom: 1px dotted;
+}
+
+.next-race-notifier__race-info-tooltip {
+	min-width: 300px;
+}
+
+@media (max-width: 575.98px) {
+	.next-race-notifier__countdown-title {
+		text-align: center;
+	}
+
+	.next-race-notifier__countdown-timer {
+		justify-content: space-around;
+	}
+}

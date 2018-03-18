@@ -1,0 +1,38 @@
+.footer {
+	padding: 10px 0;
+}
+
+.footer__social-media-links {
+	height: 40px;
+	line-height: 40px;
+}
+
+.footer__copyright {
+	font-size: 0.75rem;
+	min-height: 40px;
+}
+
+.footer__link,
+.footer__link:visited,
+.footer__link:hover {
+	color: #ddd;
+}
+
+
+.social-media-links {
+	text-align: center;
+}
+
+.social-media-links__telegram-box {
+	border-bottom: 2px solid #419fd9;
+	padding: 0;
+}
+
+.social-media-links__telegram-box:hover {
+	background: #36ade1;
+	border-bottom-color: #ddd;
+}
+
+.social-media-links__link {
+	display: block;
+}

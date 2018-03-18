@@ -1,0 +1,41 @@
+{
+  "name": "f1-bets",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome": "^1.1.4",
+    "@fortawesome/fontawesome-free-brands": "^5.0.8",
+    "@fortawesome/react-fontawesome": "^0.0.17",
+    "axios": "^0.18.0",
+    "bootstrap": "^4.0.0",
+    "lodash.capitalize": "^4.2.1",
+    "lodash.isequal": "^4.5.0",
+    "lodash.kebabcase": "^4.1.1",
+    "lodash.words": "^4.2.0",
+    "mobx": "^4.1.0",
+    "mobx-react": "^5.0.0",
+    "moment": "^2.21.0",
+    "react": "^16.2.0",
+    "react-app-rewire-mobx": "^1.0.7",
+    "react-dom": "^16.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.1",
+    "react-select": "^1.2.1",
+    "reactstrap": "^5.0.0-beta.2",
+    "uniqid": "^4.1.1"
+  },
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-decorators": "^6.24.1",
+    "eslint-plugin-babel": "^4.1.2",
+    "eslint-plugin-prettier": "^2.6.0",
+    "prettier": "^1.11.1",
+    "prop-types": "^15.6.1",
+    "react-app-rewired": "^1.5.0"
+  }
+}
