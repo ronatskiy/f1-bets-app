@@ -65,7 +65,7 @@ class BetsResultsTable extends React.Component {
 			.fill(1)
 			.map((_, index) => (
 				<td key={id + index} className="text-center">
-					{betsMap[index]}
+					{betsMap[index + 1]}
 				</td>
 			));
 	}
@@ -75,7 +75,7 @@ class BetsResultsTable extends React.Component {
 
 		return (
 			<Table size="sm">
-				<thead>
+				<thead className="thead-light">
 					<tr>
 						<th className="text-center">1</th>
 						<th className="text-center">2</th>

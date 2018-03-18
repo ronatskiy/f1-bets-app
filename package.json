@@ -2,7 +2,7 @@
   "name": "f1-bets",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ronatskiy.github.io/f1-bets-app/",
+  "homepage": "http://f1bets.tk/",
   "repository": "github:ronatskiy/f1-bets-app",
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.4",
