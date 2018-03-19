@@ -3,6 +3,7 @@ import RacesStore from "./races-store";
 import SessionStore from "./session-store";
 import RacerStore from "./racer-store";
 import TeamsStore from "./teams-store";
+import ResultsPageSrore from "./results-page-store";
 
 class RootStore {
 	constructor() {
@@ -11,6 +12,7 @@ class RootStore {
 		this.racesStore = new RacesStore(this);
 		this.racerStore = new RacerStore(this);
 		this.teamsStore = new TeamsStore(this);
+		this.resultsPageSrore = new ResultsPageSrore(this);
 	}
 }
 

@@ -10,6 +10,7 @@ import { inject, observer } from "mobx-react";
 class UsersSection extends Component {
 	state = {
 		isUserFormVisible: false,
+		userForEdit: null,
 	};
 
 	_toggleForm(visible) {
@@ -23,7 +24,17 @@ class UsersSection extends Component {
 		this.props.fetchUsers();
 	};
 
-	handleAddNewRace = () => {};
+	handleAddNewUser = () => {
+		this._toggleForm(true);
+	};
+
+	handleEditUser = id => {
+		const user = this.props.users.find(user => user.id === id) || null;
+		this.setState({
+			userForEdit: user,
+		});
+		this._toggleForm(true);
+	};
 
 	handleUserFormSubmit = async user => {
 		await UserRepository.addOrUpdate(user);
@@ -36,7 +47,7 @@ class UsersSection extends Component {
 		const { users } = this.props;
 		return (
 			<section style={{ marginTop: "10px" }}>
-				{isUserFormVisible && <UserForm onSubmit={this.handleUserFormSubmit} />}
+				{isUserFormVisible && <UserForm onSubmit={this.handleUserFormSubmit} user={this.state.userForEdit} />}
 
 				<Row>
 					<Col className="command-buttons-container">
@@ -48,7 +59,7 @@ class UsersSection extends Component {
 						>
 							Init User's Col
 						</Button>
-						<Button size="sm" color="info" className="command-button" onClick={this.handleAddNewRace}>
+						<Button size="sm" color="info" className="command-button" onClick={this.handleAddNewUser}>
 							Add New User
 						</Button>
 					</Col>
@@ -62,6 +73,7 @@ class UsersSection extends Component {
 									<th>User Name</th>
 									<th>Login</th>
 									<th>Password</th>
+									<th>Action</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -73,6 +85,16 @@ class UsersSection extends Component {
 											<td title={id}>{name}</td>
 											<td>{login}</td>
 											<td>{password}</td>
+											<td>
+												<Button onClick={() => this.handleEditUser(id)}>edit</Button>
+												<Button
+													onClick={async () => {
+														await this.handleDelete(id);
+													}}
+												>
+													delete
+												</Button>
+											</td>
 										</tr>
 									);
 								})}
@@ -91,23 +113,44 @@ class UsersSection extends Component {
 			</section>
 		);
 	}
+
+	async handleDelete(id) {
+		// if (confirm("Вы точно хотите удалить пользователя?")) {
+		await UserRepository.delete(id);
+		this.forceUpdate();
+		// }
+	}
 }
 
 class UserForm extends Component {
 	static propTypes = {
 		onSubmit: PropTypes.func.isRequired,
+		user: PropTypes.instanceOf(User),
 	};
 
 	handleOkClick = () => {
-		const user = new User({
+		const { user } = this.props;
+
+		const newUser = new User({
+			id: (user && user.id) || undefined,
 			login: this._userLoginInput.value,
 			name: this._userNameInput.value,
 			password: this._userPasswordInput.value,
 			isAdmin: this._userIsAdminInput.checked,
 		});
 
-		this.props.onSubmit(user);
+		this.props.onSubmit(newUser);
 	};
+
+	componentWillReceiveProps({ user }) {
+		if (user) {
+			const { login, name, password, isAdmin } = user;
+			this._userLoginInput.value = login;
+			this._userNameInput.value = name;
+			this._userPasswordInput.value = password;
+			this._userIsAdminInput.checked = isAdmin;
+		}
+	}
 
 	render() {
 		return (
@@ -115,7 +158,7 @@ class UserForm extends Component {
 				<Col>
 					<Form tag="div" className="user-form">
 						<FormGroup>
-							<Label for="name" className="user-form__label">
+							<Label for="login" className="user-form__label">
 								Login
 							</Label>
 							<Input

@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js run deploy
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js deploy
 
 PATH: 
-  C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;%USERPROFILE%\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\130\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\130\Tools\Binn\ManagementStudio\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\130\DTS\Binn\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files (x86)\LINQPad5;C:\Program Files\OpenVPN\bin;C:\Program Files (x86)\WinMerge;C:\Program Files (x86)\Skype\Phone\;C:\Program Files\dotnet\;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs\;C:\Program Files\TortoiseGit\bin;C:\Program Files\TortoiseHg\;C:\Program Files (x86)\Yarn\bin\;C:\Users\roman.onatsky\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Heroku\bin;C:\Users\roman.onatsky\AppData\Local\atom\bin;C:\Program Files\Microsoft VS Code\bin;C:\Users\roman.onatsky\AppData\Roaming\npm;C:\Users\roman.onatsky\AppData\Local\Microsoft\WindowsApps;C:\Users\roman.onatsky\AppData\Local\Programs\Fiddler;C:\Users\roman.onatsky\AppData\Local\Yarn\bin
+  C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\system32\config\systemprofile\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\130\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\130\Tools\Binn\ManagementStudio\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\130\DTS\Binn\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files (x86)\LINQPad5;C:\Program Files\OpenVPN\bin;C:\Program Files (x86)\WinMerge;C:\Program Files (x86)\Skype\Phone\;C:\Program Files\dotnet\;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs\;C:\Program Files\TortoiseGit\bin;C:\Program Files\TortoiseHg\;C:\Program Files (x86)\Yarn\bin\;C:\Users\roman.onatsky\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Heroku\bin;C:\Users\roman.onatsky\AppData\Local\atom\bin;C:\Program Files\Microsoft VS Code\bin;C:\Users\roman.onatsky\AppData\Roaming\npm;C:\Users\roman.onatsky\AppData\Local\Microsoft\WindowsApps;C:\Users\roman.onatsky\AppData\Local\Programs\Fiddler;C:\Users\roman.onatsky\AppData\Local\Yarn\bin;C:\Users\roman.onatsky\AppData\Local\GitHubDesktop\bin
 
 Yarn version: 
   1.5.1
@@ -18,7 +18,8 @@ npm manifest:
     "name": "f1-bets",
     "version": "0.1.0",
     "private": true,
-    "homepage": "https://ronatskiy.github.io/f1-bets-app/",
+    "homepage": "http://f1bets.tk/",
+    "repository": "github:ronatskiy/f1-bets-app",
     "dependencies": {
       "@fortawesome/fontawesome": "^1.1.4",
       "@fortawesome/fontawesome-free-brands": "^5.0.8",

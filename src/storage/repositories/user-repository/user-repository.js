@@ -43,6 +43,14 @@ const UserRepository = {
 
 		return updateCollection(users);
 	},
+
+	async delete(id) {
+		if (!id) {
+			return;
+		}
+		const users = await this.getAll();
+		return updateCollection(users.filter(user => user.id !== id));
+	},
 };
 
 export default UserRepository;

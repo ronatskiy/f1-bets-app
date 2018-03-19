@@ -5,28 +5,27 @@ import { inject, observer } from "mobx-react/index";
 import { User } from "../../../storage";
 
 @inject(stores => ({
-	nextRace: stores.rootStore.racesStore.nextRace,
-	currentUser: stores.rootStore.sessionStore.currentUser,
+	nextRaceTitle: stores.rootStore.resultsPageSrore.nextRaceTitle,
+	currentUser: stores.rootStore.resultsPageSrore.currentUser,
+	bets: stores.rootStore.resultsPageSrore.bets,
 }))
 @observer
 class ResultsPage extends React.Component {
 	render() {
-		const { nextRace, currentUser } = this.props;
+		const { nextRaceTitle, currentUser, bets } = this.props;
 
 		return (
 			<Container>
 				<Row>
 					<Col>
-						{nextRace && <h1 className="page-title">Таблица всех прогнозов на {nextRace.prettyTitle}</h1>}
+						{nextRaceTitle && <h1 className="page-title">Таблица всех прогнозов на {nextRaceTitle}</h1>}
 					</Col>
 				</Row>
-				{nextRace && (
-					<Row>
-						<Col>
-							<BetsResultsTable nextRaceBets={nextRace.bets} currentUser={currentUser} />
-						</Col>
-					</Row>
-				)}
+				<Row>
+					<Col>
+						<BetsResultsTable nextRaceBets={bets} currentUser={currentUser} />
+					</Col>
+				</Row>
 			</Container>
 		);
 	}

@@ -11,24 +11,25 @@ import Footer from "./components/layout/footer";
 import { Race, User } from "../storage";
 import AppRoutesConfig, { Route } from "./routes/routes";
 
-@inject(({ rootStore }) => {
-	const { sessionStore, racesStore } = rootStore;
+@inject(stores => {
+	const { sessionStore, racesStore } = stores.rootStore;
 	return {
 		nextRace: racesStore.nextRace,
 		isAuthenticated: sessionStore.isAuthenticated,
+		isCurrentUserAdmin: sessionStore.isCurrentUserAdmin,
 	};
 })
 @withRouter
 @observer
 class App extends Component {
 	static propTypes = {
-		currentUser: PropTypes.instanceOf(User),
 		nextRace: PropTypes.instanceOf(Race),
 		isAuthenticated: PropTypes.bool.isRequired,
+		isCurrentUserAdmin: PropTypes.bool.isRequired,
 	};
 
 	render() {
-		const { isAuthenticated, nextRace } = this.props;
+		const { isAuthenticated, nextRace, isCurrentUserAdmin } = this.props;
 
 		return (
 			<div className="layout">
@@ -37,7 +38,12 @@ class App extends Component {
 				</header>
 				<main className="layout__main">
 					{AppRoutesConfig.map(route => (
-						<Route key={route.id} isAuthenticated={isAuthenticated} {...route} />
+						<Route
+							key={route.id}
+							isAuthenticated={isAuthenticated}
+							isCurrentUserAdmin={isCurrentUserAdmin}
+							{...route}
+						/>
 					))}
 				</main>
 				<div className="layout__footer">

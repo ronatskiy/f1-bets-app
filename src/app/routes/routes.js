@@ -66,6 +66,7 @@ const AppRoutesConfig = [
 	},
 	{
 		isPrivate: true,
+		onlyForAdmins: true,
 		path: pathNames.ADMIN,
 		component: AdminPage,
 		id: generateId(),

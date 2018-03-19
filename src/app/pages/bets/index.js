@@ -24,6 +24,6 @@ export default inject(stores => ({
 	racers: stores.rootStore.racerStore.racers,
 	currentUser: stores.rootStore.sessionStore.currentUser,
 	onBetsSubmit: async bets => {
-		await stores.rootStore.racesStore.addNewBets(bets);
+		await stores.rootStore.racesStore.addNewBet(bets);
 	},
 }))(observer(BetsPage));

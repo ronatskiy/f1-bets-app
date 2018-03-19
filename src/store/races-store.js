@@ -4,6 +4,10 @@ import { RaceRepository } from "../storage";
 import isEqual from "lodash.isequal";
 
 class RacesStore {
+	constructor(rootStore) {
+		this.rootStore = rootStore;
+		this.fetchRaces();
+	}
 	@observable races = [];
 
 	@computed({
@@ -16,11 +20,6 @@ class RacesStore {
 		return nextRace;
 	}
 
-	constructor(rootStore) {
-		this.rootStore = rootStore;
-		this.fetchRaces();
-	}
-
 	@action
 	async fetchRaces() {
 		try {
@@ -31,7 +30,7 @@ class RacesStore {
 	}
 
 	@action
-	async addNewBets(bet) {
+	async addNewBet(bet) {
 		try {
 			await RaceRepository.addOrUpdateBet(bet, this.nextRace.id);
 		} catch (error) {

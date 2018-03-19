@@ -114,7 +114,7 @@ class BetsForm extends Component {
 	}
 
 	redirectToResults() {
-		this.props.history.replace(pathNames.RESULTS);
+		this.props.history.push(pathNames.RESULTS);
 	}
 }
 
