@@ -13,7 +13,7 @@ class RacerStore {
 		try {
 			this.racers = await RacerRepository.getAll();
 		} catch (error) {
-			console.error("Can't load 'racers' in 'RacerStore'", error);
+			console.log("Can't load 'racers' in 'RacerStore'!!\n", error);
 		}
 	}
 }

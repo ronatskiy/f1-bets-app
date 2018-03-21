@@ -1,4 +1,4 @@
-import { USER_STORE_URL } from "../../config";
+import { USER_STORE_URL } from "../../../config/config";
 import { fetchData, updateData } from "../../web-api";
 import initialUserData from "./initial-data";
 import generateId from "../../generate-id";

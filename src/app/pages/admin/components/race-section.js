@@ -20,6 +20,7 @@ class RaceSection extends Component {
 
 	render() {
 		const { races } = this.props;
+
 		return (
 			<section style={{ marginTop: "10px" }}>
 				<Row>

@@ -4,8 +4,6 @@ import { observer, inject } from "mobx-react";
 import { withRouter, Redirect } from "react-router-dom";
 import { Container, Row, Col, Button } from "reactstrap";
 
-import { User } from "../../../storage";
-
 import LoginForm from "./components/login-form";
 import RegisterNewAccountForm from "./components/register-new-form";
 
@@ -25,44 +23,14 @@ class LoginPage extends React.Component {
 		isAuthenticated: PropTypes.bool.isRequired,
 	};
 
-	state = {
-		isRegisterNew: false,
+	static defaultProps = {
+		login() {},
+		signIn() {},
+		isAuthenticated: false,
 	};
 
-	handleSubmit = async () => {
-		// TODO: refactor me!!!!
-		if (this.state.isRegisterNew) {
-			if (!this._nameRef.value || !this._loginRef.value || !this._passwordRef.value) {
-				this.showAlert("Не все необходимые данные введены! Попробуйте еще разок.");
-				return;
-			}
-			const user = new User({
-				login: this._loginRef.value,
-				name: this._nameRef.value,
-				password: this._passwordRef.value,
-			});
-			const result = await this.props.signIn(user);
-			if (result !== true) {
-				this.showAlert(result);
-				return;
-			}
-		} else {
-			if (!this._loginRef.value || !this._passwordRef.value) {
-				this.showAlert("Не все необходимые данные введены! Попробуйте еще разок.");
-				return;
-			}
-			const user = new User({
-				login: this._loginRef.value,
-				password: this._passwordRef.value,
-			});
-
-			const result = this.props.login(user);
-			if (result !== true) {
-				this.showAlert(result);
-				return;
-			}
-		}
-		this.props.history.push(this._redirectPath);
+	state = {
+		isRegisterNew: false,
 	};
 
 	handleRegisterNew = () => {

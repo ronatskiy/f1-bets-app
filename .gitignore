@@ -1,4 +1,5 @@
 node_modules
 .idea
-build
-yarn-error.log
+/build
+/.env.local
+/yarn-error.log

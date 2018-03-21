@@ -3,6 +3,11 @@ import { UserRepository } from "../storage";
 import isEqual from "lodash.isequal";
 
 class UserStore {
+	constructor(rootStore) {
+		this.rootStore = rootStore;
+		this._loadUsers();
+	}
+
 	@observable users = [];
 
 	@computed
@@ -18,7 +23,7 @@ class UserStore {
 
 		const { nextRace } = this.rootStore.racesStore;
 
-		return nextRace.bets.some(bet => bet.userInfo.id === this.currentUser.id);
+		return nextRace && nextRace.bets.some(bet => bet.userInfo.id === this.currentUser.id);
 	}
 
 	@computed.equals(isEqual)
@@ -45,16 +50,11 @@ class UserStore {
 		return resultBets;
 	}
 
-	constructor(rootStore) {
-		this.rootStore = rootStore;
-		this._loadUsers();
-	}
-
 	async _loadUsers() {
 		try {
 			this.users = await UserRepository.getAll();
 		} catch (error) {
-			console.error("Can't load 'users'", error);
+			console.log("Can't load 'users' in UserStore!!\n", error);
 		}
 	}
 

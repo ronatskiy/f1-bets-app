@@ -23,7 +23,7 @@ class RacesStore {
 		try {
 			this.races = await RaceRepository.getAll();
 		} catch (error) {
-			console.error("Can't load 'races' in 'RacesStore'", error);
+			console.log("Can't load 'races' in 'RacesStore'!!\n", error);
 		}
 	}
 

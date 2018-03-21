@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import kebabCase from "lodash.kebabcase";
-import { inject, observer } from "mobx-react/index";
+import { inject, observer, PropTypes as MobxPropTypes } from "mobx-react/index";
 import { Col, Container, Row, Table } from "reactstrap";
 
 import { Team } from "../../../storage";
@@ -12,7 +12,7 @@ import { Team } from "../../../storage";
 @observer
 class TeamsList extends React.Component {
 	static propTypes = {
-		racers: PropTypes.arrayOf(PropTypes.instanceOf(Team)).isRequired,
+		teams: MobxPropTypes.observableArrayOf(PropTypes.instanceOf(Team)).isRequired,
 	};
 
 	render() {

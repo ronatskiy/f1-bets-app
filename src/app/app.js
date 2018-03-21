@@ -27,6 +27,11 @@ class App extends Component {
 		isAuthenticated: PropTypes.bool.isRequired,
 		isCurrentUserAdmin: PropTypes.bool.isRequired,
 	};
+	static defaultProps = {
+		nextRace: null,
+		isAuthenticated: false,
+		isCurrentUserAdmin: false,
+	};
 
 	render() {
 		const { isAuthenticated, nextRace, isCurrentUserAdmin } = this.props;

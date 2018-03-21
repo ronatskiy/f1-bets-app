@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { inject, observer } from "mobx-react";
 import { Col, Container, Row, Table } from "reactstrap";
 import { Racer } from "../../../storage";
+import { PropTypes as MobxPropTypes } from "mobx-react/index";
 
 @inject(stores => ({
 	racers: stores.rootStore.racerStore.racers,
@@ -10,7 +11,7 @@ import { Racer } from "../../../storage";
 @observer
 class RacersList extends React.Component {
 	static propTypes = {
-		racers: PropTypes.arrayOf(PropTypes.instanceOf(Racer)).isRequired,
+		racers: MobxPropTypes.observableArrayOf(PropTypes.instanceOf(Racer)).isRequired,
 	};
 	render() {
 		const { racers } = this.props;

@@ -15,14 +15,15 @@ export default [
 			},
 		},
 		bets: [
-			{
+			/* {
 				userInfo: { name: "John Doe", id: "jepvk5gn-26bf-11e8-jepvk6gn" },
 				betsMap: {
-					"1": "HEM",
-					"2": "VET",
-					"8": "GRO",
+					"1": RacerId.HAM,
+					"2": RacerId.VET,
+					"8": RacerId.GRO,
 				},
 			},
+			*/
 		],
 	}),
 	new Race({

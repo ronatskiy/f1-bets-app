@@ -1,4 +1,4 @@
-import { RACE_STORE_URL } from "../../config";
+import { RACE_STORE_URL } from "../../../config/config";
 import { fetchData, updateData } from "../../web-api";
 import initialData from "./initial-data";
 import Race from "../../types/race";

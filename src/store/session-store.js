@@ -1,17 +1,16 @@
 import { computed, observable, action } from "mobx";
 import { User, UserRepository } from "../storage";
+import bcrypt from "bcryptjs";
 
 export const LOCAL_STORAGE_USER_KEY = "f1betsappuserid";
 
 function encodePassword(password) {
-	// TODO: Add encoding
-	return password;
+	return bcrypt.hashSync(password, 8);
 }
 
-// function decodePassword(encodedPassword) {
-// 	// TODO: Add decode
-// 	return encodedPassword;
-// }
+function isPasswordValid(password, hash) {
+	return bcrypt.compareSync(password, hash);
+}
 
 class SessionStore {
 	constructor(rootStore) {
@@ -93,7 +92,7 @@ class SessionStore {
 		}
 
 		const dbUser = this.rootStore.userStore.users.find(
-			dbUser => dbUser.login === login && dbUser.password === encodePassword(password),
+			dbUser => dbUser.login === login && isPasswordValid(password, dbUser.password),
 		);
 
 		if (dbUser) {
