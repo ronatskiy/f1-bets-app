@@ -8,7 +8,7 @@ import "./components/layout/layout.css";
 import Header from "./components/layout/header";
 import Footer from "./components/layout/footer";
 
-import { Race, User } from "../storage";
+import { Race } from "../storage";
 import AppRoutesConfig, { Route } from "./routes/routes";
 
 @inject(stores => {

@@ -2,9 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import { observer, inject } from "mobx-react";
 import { withRouter, Redirect } from "react-router-dom";
-import { Alert, Button, Col, Container, Form, FormGroup, FormText, Input, Label, Row } from "reactstrap";
+import { Container, Row, Col, Button } from "reactstrap";
 
 import { User } from "../../../storage";
+
+import LoginForm from "./components/login-form";
+import RegisterNewAccountForm from "./components/register-new-form";
+
+import "./styles.css";
 
 @inject(({ rootStore: { sessionStore } }) => ({
 	isAuthenticated: sessionStore.isAuthenticated,
@@ -22,33 +27,7 @@ class LoginPage extends React.Component {
 
 	state = {
 		isRegisterNew: false,
-		alertMessage: "",
 	};
-
-	constructor(props) {
-		super(props);
-		this.setNameRef = this.setNameRef.bind(this);
-		this.setLoginRef = this.setLoginRef.bind(this);
-		this.setPasswordRef = this.setPasswordRef.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
-	}
-
-	setNameRef = node => {
-		this._nameRef = node;
-	};
-	setLoginRef = node => {
-		this._loginRef = node;
-	};
-
-	setPasswordRef = node => {
-		this._passwordRef = node;
-	};
-
-	showAlert(alertMessage) {
-		this.setState({
-			alertMessage,
-		});
-	}
 
 	handleSubmit = async () => {
 		// TODO: refactor me!!!!
@@ -87,80 +66,39 @@ class LoginPage extends React.Component {
 	};
 
 	handleRegisterNew = () => {
-		this.setState({
-			isRegisterNew: true,
-		});
+		this.setState(state => ({
+			isRegisterNew: !state.isRegisterNew,
+		}));
 	};
 
 	get _redirectPath() {
-		const { from } = this.props.location.state || { from: { pathname: "/" } };
+		const { from } = this.props.location.state || { from: { pathname: "/", isRegisterNew: false } };
 		return from;
 	}
 	render() {
-		const { alertMessage, isRegisterNew } = this.state;
+		const { isRegisterNew } = this.state;
 
 		return this.props.isAuthenticated ? (
 			<Redirect to={this._redirectPath} />
 		) : (
 			<Container>
 				<Row>
-					<Col md={3} />
-					<Col md={6}>
-						<Form tag="div">
-							{isRegisterNew && (
-								<FormGroup className="user-view">
-									<Label for="name">Ваше имя</Label>
-									<Input
-										className="login-form__name"
-										name="name"
-										placeholder="John Doe"
-										innerRef={this.setNameRef}
-									/>
-								</FormGroup>
-							)}
-							<FormGroup className="user-view">
-								<Label for="login">Login</Label>
-								<Input
-									className="login-form__login"
-									name="login"
-									placeholder="superman"
-									innerRef={this.setLoginRef}
-								/>
-							</FormGroup>
-							<FormGroup className="user-view">
-								<Label for="password">Пароль</Label>
-								<Input
-									className="login-form__password"
-									type="password"
-									name="password"
-									placeholder="Не '12345' :)"
-									innerRef={this.setPasswordRef}
-								/>
-								{isRegisterNew && (
-									<FormText color="muted">
-										ВАЖНО! Не используйте тут Ваши пароли от банковких и других важных акаунтов.{" "}
-										<br />
-										Этот пароль не будет как-то особо шифроваться и его могут получить
-										злоумышленники.
-									</FormText>
-								)}
-							</FormGroup>
-							{alertMessage && (
-								<Alert color="danger">
-									<span>{alertMessage}</span>
-								</Alert>
-							)}
-							<Button color="primary" type="button" onClick={this.handleSubmit}>
-								{!isRegisterNew ? "Вход" : "Зарегистрироваться"}
-							</Button>
-							{!isRegisterNew && (
-								<Button type="button" onClick={this.handleRegisterNew}>
-									Зарегистрироваться
-								</Button>
-							)}
-						</Form>
+					<Col lg={{ size: 6, offset: 3 }} md={{ size: 8, offset: 2 }}>
+						<Row>
+							<Col>
+								<h1>{!isRegisterNew ? "Вход в F1 Bets App" : "Создать аккаунт"}</h1>
+								<div className="text-muted">
+									или
+									<Button color="link" onClick={this.handleRegisterNew}>
+										{isRegisterNew ? " войти в Ваш аккаунт" : " создать аккаунт"}
+									</Button>
+								</div>
+							</Col>
+						</Row>
+						<Row className="login-form-container">
+							<Col>{isRegisterNew ? <RegisterNewAccountForm /> : <LoginForm />}</Col>
+						</Row>
 					</Col>
-					<Col md={3} />
 				</Row>
 			</Container>
 		);

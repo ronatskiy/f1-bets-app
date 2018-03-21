@@ -10,9 +10,7 @@ class UserStore {
 		return this.rootStore.sessionStore.currentUser;
 	}
 
-	@computed({
-		equals: isEqual,
-	})
+	@computed.equals(isEqual)
 	get isCurrentUserAlreadyBet() {
 		if (!this.currentUser) {
 			return false;
@@ -23,9 +21,7 @@ class UserStore {
 		return nextRace.bets.some(bet => bet.userInfo.id === this.currentUser.id);
 	}
 
-	@computed({
-		equals: isEqual,
-	})
+	@computed.equals(isEqual)
 	get currentUserBets() {
 		const resultBets = [];
 		if (!this.currentUser) {

@@ -10,9 +10,7 @@ class RacesStore {
 	}
 	@observable races = [];
 
-	@computed({
-		equals: isEqual,
-	})
+	@computed.equals(isEqual)
 	get nextRace() {
 		const currentDate = moment();
 		const [nextRace] = this.races.filter(r => moment(r.raceStartTime).isAfter(currentDate));
