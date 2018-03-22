@@ -29,6 +29,6 @@ export const registerNewAccountFormSettings = {
 		name: RegisterNewAccountFormFields.NAME,
 		label: "Ваше имя",
 		placeholder: "Например, John Doe",
-		rules: "required|string|between:3,15",
+		rules: "required|string|between:3,25",
 	},
 };
