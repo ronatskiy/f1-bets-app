@@ -6,9 +6,11 @@ import TeamsStore from "./teams-store";
 import ResultsPageSrore from "./results-page-store";
 import LoginFormStore from "./login-form-store";
 import { loginFormSettings, registerNewAccountFormSettings } from "./settings/login-form";
+import AppStore from "./app-store";
 
 class RootStore {
 	constructor() {
+		this.appStore = new AppStore(this);
 		this.sessionStore = new SessionStore(this);
 		this.userStore = new UserStore(this);
 		this.racesStore = new RacesStore(this);

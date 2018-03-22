@@ -1,5 +1,5 @@
 {
-  "name": "f1-bets",
+  "name": "f1-bets-app",
   "version": "0.1.0",
   "private": true,
   "homepage": "http://f1bets.tk/",
@@ -11,8 +11,6 @@
     "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^4.0.0",
-    "dotenv": "^5.0.1",
-    "gh-pages": "^1.1.0",
     "lodash.capitalize": "^4.2.1",
     "lodash.isequal": "^4.5.0",
     "lodash.kebabcase": "^4.1.1",
@@ -22,7 +20,6 @@
     "mobx-react-form": "1.32.0",
     "moment": "^2.21.0",
     "react": "^16.2.0",
-    "react-app-rewire-mobx": "^1.0.7",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.1",
@@ -45,6 +42,9 @@
     "eslint-plugin-prettier": "^2.6.0",
     "prettier": "^1.11.1",
     "prop-types": "^15.6.1",
-    "react-app-rewired": "^1.5.0"
+    "react-app-rewired": "^1.5.0",
+    "react-app-rewire-mobx": "^1.0.7",
+    "dotenv": "^5.0.1",
+    "gh-pages": "^1.1.0"
   }
 }

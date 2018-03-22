@@ -10,8 +10,6 @@ import "./index.css";
 
 import RootStore from "./store/root-store";
 import App from "./app/app";
-import dotenv from "dotenv";
-dotenv.config();
 
 const stores = {
 	rootStore: new RootStore(),
