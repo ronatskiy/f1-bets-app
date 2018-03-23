@@ -75,6 +75,7 @@ class BetsResultsTable extends React.Component {
 				<tbody>
 					{nextRaceBets.map(bet => {
 						const { userInfo, betsMap } = bet;
+
 						return (
 							<tr
 								key={userInfo.id}

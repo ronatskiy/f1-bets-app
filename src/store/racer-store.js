@@ -11,8 +11,11 @@ class RacerStore {
 
 	async _loadRacers() {
 		try {
+			this.rootStore.pendingTasksCount++;
 			this.racers = await RacerRepository.getAll();
+			this.rootStore.pendingTasksCount--;
 		} catch (error) {
+			this.rootStore.pendingTasksCount--;
 			console.log("Can't load 'racers' in 'RacerStore'!!\n", error);
 		}
 	}

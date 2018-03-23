@@ -33,7 +33,9 @@ class SessionStore {
 	async _tryToFindUser() {
 		const userId = window.localStorage.getItem(LOCAL_STORAGE_USER_KEY) || null;
 		if (userId) {
+			this.rootStore.pendingTasksCount++;
 			const currentUser = await UserRepository.getById(userId);
+			this.rootStore.pendingTasksCount--;
 			if (currentUser) {
 				this._authenticate(currentUser);
 			}
@@ -71,12 +73,17 @@ class SessionStore {
 		}
 
 		try {
+			this.rootStore.pendingTasksCount++;
 			await UserRepository.addOrUpdate(newUser);
+			this.rootStore.pendingTasksCount--;
 		} catch (error) {
+			this.rootStore.pendingTasksCount--;
 			return "Server Error";
 		}
 
+		this.rootStore.pendingTasksCount++;
 		await this.rootStore.userStore.fetchUsers();
+		this.rootStore.pendingTasksCount--;
 
 		return this._authenticate(newUser);
 	}
@@ -86,7 +93,13 @@ class SessionStore {
 	}
 
 	@action
-	login({ login, password }) {
+	async login({ login, password }) {
+		this.rootStore.pendingTasksCount++;
+
+		await this.rootStore.userStore.fetchUsers();
+
+		this.rootStore.pendingTasksCount--;
+
 		if (!this._findUser({ login })) {
 			return "Пользователя с таким логином или паролем нет в системе.";
 		}

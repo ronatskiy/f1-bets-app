@@ -8,6 +8,7 @@ class RacesStore {
 		this.rootStore = rootStore;
 		this.fetchRaces();
 	}
+
 	@observable races = [];
 
 	@computed.equals(isEqual)
@@ -21,8 +22,11 @@ class RacesStore {
 	@action
 	async fetchRaces() {
 		try {
+			this.rootStore.pendingTasksCount++;
 			this.races = await RaceRepository.getAll();
+			this.rootStore.pendingTasksCount--;
 		} catch (error) {
+			this.rootStore.pendingTasksCount--;
 			console.log("Can't load 'races' in 'RacesStore'!!\n", error);
 		}
 	}
@@ -30,11 +34,14 @@ class RacesStore {
 	@action
 	async addNewBet(bet) {
 		try {
+			this.rootStore.pendingTasksCount++;
 			await RaceRepository.addOrUpdateBet(bet, this.nextRace.id);
+			await this.fetchRaces();
+			this.rootStore.pendingTasksCount--;
 		} catch (error) {
+			this.rootStore.pendingTasksCount--;
 			console.error("Can't update Bet in 'RacesStore'", error);
 		}
-		await this.fetchRaces();
 	}
 }
 

@@ -26,8 +26,9 @@ const RaceRepository = {
 		const allRaces = await fetchData(RACE_STORE_URL);
 		const races = allRaces.map(race => {
 			if (race.id === raceId) {
-				if (race.bets.some(bet => bet.userInfo.id === betInfo.userInfo.id)) {
-					race.bets = [...race.bets.filter(bet => bet.userInfo.id !== betInfo.userInfo.id), betInfo];
+				const index = race.bets.findIndex(bet => bet.userInfo.id === betInfo.userInfo.id);
+				if (index > -1) {
+					race.bets[index] = betInfo;
 				} else {
 					race.bets.push(betInfo);
 				}
@@ -35,7 +36,7 @@ const RaceRepository = {
 			return race;
 		});
 
-		updateCollection(races);
+		return updateCollection(races);
 	},
 };
 

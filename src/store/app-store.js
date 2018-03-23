@@ -1,3 +1,4 @@
+import { computed } from "mobx";
 import { IS_PRODUCTION_MODE } from "../config/config";
 
 class AppStore {
@@ -8,6 +9,11 @@ class AppStore {
 
 	get isProduction() {
 		return this._isProductionMode;
+	}
+
+	@computed
+	get hasPendingTasks() {
+		return this.rootStore.pendingTasksCount > 0;
 	}
 }
 

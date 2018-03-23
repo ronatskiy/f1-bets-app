@@ -11,6 +11,7 @@ import Footer from "./components/layout/footer";
 import { Race } from "../storage";
 import AppRoutesConfig, { Route } from "./routes/routes";
 import { Col, Row } from "reactstrap";
+import Loader from "./components/loader/loader";
 
 @inject(stores => {
 	const { sessionStore, racesStore, appStore } = stores.rootStore;
@@ -19,6 +20,8 @@ import { Col, Row } from "reactstrap";
 		isAuthenticated: sessionStore.isAuthenticated,
 		isCurrentUserAdmin: sessionStore.isCurrentUserAdmin,
 		isProduction: appStore.isProduction,
+		hasPendingTasks: appStore.hasPendingTasks,
+		pendingTasksCount: stores.rootStore.pendingTasksCount,
 	};
 })
 @withRouter
@@ -29,6 +32,8 @@ class App extends Component {
 		isAuthenticated: PropTypes.bool,
 		isCurrentUserAdmin: PropTypes.bool,
 		isProduction: PropTypes.bool,
+		hasPendingTasks: PropTypes.bool,
+		pendingTasksCount: PropTypes.number,
 	};
 
 	static defaultProps = {
@@ -36,21 +41,32 @@ class App extends Component {
 		isAuthenticated: false,
 		isCurrentUserAdmin: false,
 		isProduction: true,
+		hasPendingTasks: false,
 	};
 
 	render() {
-		const { isAuthenticated, nextRace, isCurrentUserAdmin, isProduction } = this.props;
+		const {
+			isAuthenticated,
+			nextRace,
+			isCurrentUserAdmin,
+			isProduction,
+			hasPendingTasks,
+			pendingTasksCount,
+		} = this.props;
 
 		return (
 			<div className="layout">
+				{hasPendingTasks && <Loader />}
 				<header className="layout__header">
 					<Header nextRace={nextRace} />
 				</header>
 				{!isProduction && (
 					<Row className="text-center bg-danger">
 						<Col>DEVELOPMENT MODE ON!!!</Col>
+						<Col>{pendingTasksCount}</Col>
 					</Row>
 				)}
+
 				<main className="layout__main">
 					{AppRoutesConfig.map(route => (
 						<Route

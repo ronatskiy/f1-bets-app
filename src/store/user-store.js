@@ -39,6 +39,7 @@ class UserStore {
 		races.forEach(({ bets, prettyTitle, id }) => {
 			if (bets.some(bet => bet.userInfo.id === currentUserId)) {
 				const bet = bets[bets.findIndex(bet => bet.userInfo.id === currentUserId)];
+
 				resultBets.push({
 					raceId: id,
 					title: prettyTitle,
@@ -52,15 +53,18 @@ class UserStore {
 
 	async _loadUsers() {
 		try {
+			this.rootStore.pendingTasksCount++;
 			this.users = await UserRepository.getAll();
+			this.rootStore.pendingTasksCount--;
 		} catch (error) {
+			this.rootStore.pendingTasksCount--;
 			console.log("Can't load 'users' in UserStore!!\n", error);
 		}
 	}
 
 	@action
 	fetchUsers() {
-		this._loadUsers();
+		return this._loadUsers();
 	}
 }
 

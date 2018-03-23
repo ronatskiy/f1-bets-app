@@ -1,3 +1,5 @@
+import { observable } from "mobx";
+
 import UserStore from "./user-store";
 import RacesStore from "./races-store";
 import SessionStore from "./session-store";
@@ -10,15 +12,14 @@ import AppStore from "./app-store";
 
 class RootStore {
 	constructor() {
-		this.appStore = new AppStore(this);
 		this.sessionStore = new SessionStore(this);
 		this.userStore = new UserStore(this);
 		this.racesStore = new RacesStore(this);
 		this.racerStore = new RacerStore(this);
 		this.teamsStore = new TeamsStore(this);
 		this.resultsPageSrore = new ResultsPageSrore(this);
-		this.loginFormStore = new LoginFormStore(this, loginFormSettings, form => {
-			const result = this.sessionStore.login(form.values());
+		this.loginFormStore = new LoginFormStore(this, loginFormSettings, async form => {
+			const result = await this.sessionStore.login(form.values());
 
 			if (result !== true) {
 				alert(result);
@@ -34,7 +35,10 @@ class RootStore {
 			}
 			form.clear();
 		});
+		this.appStore = new AppStore(this);
 	}
+
+	@observable pendingTasksCount = 0;
 }
 
 export default RootStore;
