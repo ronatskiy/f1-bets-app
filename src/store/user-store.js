@@ -23,7 +23,11 @@ class UserStore {
 
 		const { nextRace } = this.rootStore.racesStore;
 
-		return nextRace && nextRace.bets.some(bet => bet.userInfo.id === this.currentUser.id);
+		if (nextRace) {
+			return nextRace.bets.some(bet => bet.userInfo.id === this.currentUser.id);
+		}
+
+		return false;
 	}
 
 	@computed.equals(isEqual)

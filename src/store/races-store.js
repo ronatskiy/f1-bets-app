@@ -1,5 +1,6 @@
 import moment from "moment";
 import { computed, observable, action } from "mobx";
+
 import { RaceRepository } from "../storage";
 import isEqual from "lodash.isequal";
 
@@ -11,6 +12,9 @@ class RacesStore {
 
 	@observable races = [];
 
+	/**
+	 * @return {Race | null}
+	 */
 	@computed.equals(isEqual)
 	get nextRace() {
 		const currentDate = moment();

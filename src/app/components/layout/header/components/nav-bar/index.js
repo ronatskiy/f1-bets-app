@@ -23,6 +23,7 @@ import { User } from "../../../../../../storage";
 @inject(stores => ({
 	isAuthenticated: stores.rootStore.sessionStore.isAuthenticated,
 	currentUser: stores.rootStore.sessionStore.currentUser,
+	isBetsAllowed: stores.rootStore.appStore.isBetsAllowed,
 }))
 @observer
 class NavigationBar extends React.Component {
@@ -43,7 +44,7 @@ class NavigationBar extends React.Component {
 
 	render() {
 		const { isOpen } = this.state;
-		const { isAuthenticated, currentUser } = this.props;
+		const { isAuthenticated, currentUser, isBetsAllowed } = this.props;
 
 		return (
 			<Navbar color="dark" dark expand="md" fixed="top">
@@ -63,7 +64,7 @@ class NavigationBar extends React.Component {
 								<DropdownToggle nav caret>
 									Статистика
 								</DropdownToggle>
-								<DropdownMenu className="nav-bar-drop-down-menu">
+								<DropdownMenu className="nav-bar-drop-down-menu" right>
 									<DropdownItem>
 										<Link to={pathNames.RESULTS} className="nav-bar-drop-down-menu__link">
 											Результаты голосования
@@ -88,7 +89,7 @@ class NavigationBar extends React.Component {
 									</Link>
 								</NavItem>
 							) : (
-								currentUser && <ProfileDropdown user={currentUser} />
+								currentUser && <ProfileDropdown user={currentUser} isBetsAllowed={isBetsAllowed} />
 							)}
 						</Nav>
 					</Collapse>

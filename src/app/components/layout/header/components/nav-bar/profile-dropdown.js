@@ -5,14 +5,14 @@ import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from
 import { User } from "../../../../../../storage";
 import { Link } from "react-router-dom";
 
-const ProfileDropdown = ({ user }) => {
+const ProfileDropdown = ({ user, isBetsAllowed }) => {
 	const { isAdmin, name } = user;
 	return (
 		<UncontrolledDropdown nav inNavbar>
 			<DropdownToggle nav caret>
 				Профиль
 			</DropdownToggle>
-			<DropdownMenu className="nav-bar-drop-down-menu">
+			<DropdownMenu className="nav-bar-drop-down-menu" right>
 				<DropdownItem header>{name}</DropdownItem>
 				{isAdmin && (
 					<DropdownItem>
@@ -21,10 +21,14 @@ const ProfileDropdown = ({ user }) => {
 						</Link>
 					</DropdownItem>
 				)}
-				<DropdownItem>
-					<Link to={pathNames.BETS} className="nav-bar-drop-down-menu__link">
-						Голосование
-					</Link>
+				<DropdownItem disabled={!isBetsAllowed}>
+					{isBetsAllowed ? (
+						<Link to={pathNames.BETS} className="nav-bar-drop-down-menu__link">
+							Голосование
+						</Link>
+					) : (
+						"Голосование"
+					)}
 				</DropdownItem>
 				<DropdownItem>
 					<Link to={pathNames.BETS_HISTORY} className="nav-bar-drop-down-menu__link">
@@ -44,6 +48,7 @@ const ProfileDropdown = ({ user }) => {
 
 ProfileDropdown.propTypes = {
 	user: PropTypes.instanceOf(User).isRequired,
+	isBetsAllowed: PropTypes.bool.isRequired,
 };
 
 export default ProfileDropdown;
