@@ -1,5 +1,5 @@
 import moment from "moment";
-import { computed, observable, action } from "mobx";
+import { computed, observable, action, when } from "mobx";
 
 import { RaceRepository } from "../storage";
 import isEqual from "lodash.isequal";
@@ -8,6 +8,14 @@ class RacesStore {
 	constructor(rootStore) {
 		this.rootStore = rootStore;
 		this.fetchRaces();
+
+		// Load next race info if current race is started.
+		when(
+			() => this.nextRace && this.rootStore.appStore.currentTime.isAfter(moment(this.nextRace.raceStartTime)),
+			() => {
+				this.fetchRaces();
+			},
+		);
 	}
 
 	@observable races = [];
