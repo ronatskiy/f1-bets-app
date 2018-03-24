@@ -70,6 +70,11 @@ class UserStore {
 	fetchUsers() {
 		return this._loadUsers();
 	}
+
+	async deleteUser(id) {
+		await UserRepository.delete(id);
+		await this._loadUsers();
+	}
 }
 
 export default UserStore;

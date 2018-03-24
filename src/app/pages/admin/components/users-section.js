@@ -5,7 +5,13 @@ import { Button, Col, Form, FormGroup, Input, Label, Row, Table } from "reactstr
 import { UserRepository, User } from "../../../../storage";
 import { inject, observer } from "mobx-react";
 
-@inject(({ rootStore: { userStore } }) => ({ users: userStore.users, fetchUsers: () => userStore.fetchUsers() }))
+@inject(stores => {
+	return {
+		users: stores.rootStore.userStore.users,
+		fetchUsers: () => stores.rootStore.userStore.fetchUsers(),
+		deleteUser: id => stores.rootStore.adminPageStore.deleteUser(id),
+	};
+})
 @observer
 class UsersSection extends Component {
 	state = {
@@ -44,7 +50,7 @@ class UsersSection extends Component {
 
 	render() {
 		const { isUserFormVisible } = this.state;
-		const { users } = this.props;
+		const { users, deleteUser } = this.props;
 		return (
 			<section style={{ marginTop: "10px" }}>
 				{isUserFormVisible && <UserForm onSubmit={this.handleUserFormSubmit} user={this.state.userForEdit} />}
@@ -55,6 +61,7 @@ class UsersSection extends Component {
 							size="sm"
 							color="info"
 							className="command-button"
+							disabled
 							onClick={this.handleInitUsersCollection}
 						>
 							Init User's Col
@@ -72,24 +79,32 @@ class UsersSection extends Component {
 								<tr>
 									<th>User Name</th>
 									<th>Login</th>
-									<th>Password</th>
+									<th>isAdmin</th>
+									<th>isTesting</th>
 									<th>Action</th>
 								</tr>
 							</thead>
 							<tbody>
 								{users.map(user => {
-									const { id, name, password, login } = user;
+									const { id, name, login, isAdmin, isTesting } = user;
 
 									return (
 										<tr key={id}>
 											<td title={id}>{name}</td>
 											<td>{login}</td>
-											<td>{password}</td>
+											<td>
+												<div>
+													<input type="checkbox" checked={isAdmin} readOnly />
+												</div>
+											</td>
+											<td>
+												<input type="checkbox" checked={isTesting} readOnly />
+											</td>
 											<td>
 												<Button onClick={() => this.handleEditUser(id)}>edit</Button>
 												<Button
-													onClick={async () => {
-														await this.handleDelete(id);
+													onClick={() => {
+														deleteUser(id);
 													}}
 												>
 													delete
@@ -112,13 +127,6 @@ class UsersSection extends Component {
 				</Row>
 			</section>
 		);
-	}
-
-	async handleDelete(id) {
-		// if (confirm("Вы точно хотите удалить пользователя?")) {
-		await UserRepository.delete(id);
-		this.forceUpdate();
-		// }
 	}
 }
 

@@ -29,6 +29,7 @@ class RaceSection extends Component {
 							size="sm"
 							color="info"
 							className="command-button"
+							disabled
 							onClick={this.handleInitRacesCollection}
 						>
 							Init Races

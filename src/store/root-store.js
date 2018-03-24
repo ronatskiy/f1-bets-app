@@ -9,6 +9,7 @@ import ResultsPageSrore from "./results-page-store";
 import LoginFormStore from "./login-form-store";
 import { loginFormSettings, registerNewAccountFormSettings } from "./settings/login-form";
 import AppStore from "./app-store";
+import AdminPageStore from "../app/pages/admin/stores/admin-page-store";
 
 class RootStore {
 	constructor() {
@@ -36,6 +37,7 @@ class RootStore {
 			form.clear();
 		});
 		this.appStore = new AppStore(this);
+		this.adminPageStore = new AdminPageStore(this);
 	}
 
 	@observable pendingTasksCount = 0;

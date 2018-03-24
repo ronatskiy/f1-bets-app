@@ -38,13 +38,13 @@
   },
   "devDependencies": {
     "babel-plugin-transform-decorators": "^6.24.1",
+    "dotenv": "^5.0.1",
     "eslint-plugin-babel": "^4.1.2",
     "eslint-plugin-prettier": "^2.6.0",
+    "gh-pages": "^1.1.0",
     "prettier": "^1.11.1",
     "prop-types": "^15.6.1",
-    "react-app-rewired": "^1.5.0",
     "react-app-rewire-mobx": "^1.0.7",
-    "dotenv": "^5.0.1",
-    "gh-pages": "^1.1.0"
+    "react-app-rewired": "^1.5.0"
   }
 }
