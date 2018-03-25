@@ -33,7 +33,7 @@ class AppStore {
 	}
 
 	startTimeWatcher() {
-		this._interval = setInterval(this._tick, 1000 * 15);
+		this._interval = setInterval(this._tick, 1000 * 5);
 		this._tick();
 	}
 

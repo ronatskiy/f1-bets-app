@@ -6,11 +6,12 @@ import { inject, observer } from "mobx-react";
 @inject(stores => ({
 	races: stores.rootStore.racesStore.races,
 	nextRace: stores.rootStore.racesStore.nextRace,
+	isRaceWeekend: !stores.rootStore.appStore.isBetsAllowed,
 }))
 @observer
 class CalendarPage extends React.Component {
 	render() {
-		const { races, nextRace } = this.props;
+		const { races, nextRace, isRaceWeekend } = this.props;
 
 		return races ? (
 			<Container tag="section" style={{ marginTop: "1rem", marginBottom: "1rem" }}>
@@ -36,7 +37,9 @@ class CalendarPage extends React.Component {
 										<tr key={id}>
 											<td>
 												{title}, {location}{" "}
-												{id === nextRace.id && <Badge color="info">Next</Badge>}
+												{id === nextRace.id && (
+													<Badge color="info">{isRaceWeekend ? "Now" : "Next"}</Badge>
+												)}
 											</td>
 											<td>
 												<div>Qual: {prettifyDate(qualifyingStartTime)}</div>

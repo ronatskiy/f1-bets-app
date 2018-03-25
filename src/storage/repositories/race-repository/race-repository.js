@@ -38,6 +38,20 @@ const RaceRepository = {
 
 		return updateCollection(races);
 	},
+
+	async addOrUpdateRaceResult(raceId, js) {
+		const allRaces = await fetchData(RACE_STORE_URL);
+		const index = allRaces.findIndex(r => r.id === raceId);
+
+		if (index > -1) {
+			allRaces[index].officialData = {
+				...allRaces[index].officialData,
+				results: js,
+			};
+		}
+
+		return updateCollection(allRaces);
+	},
 };
 
 export default RaceRepository;

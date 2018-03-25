@@ -1,6 +1,9 @@
+import RaceSectionStore from "./race-section-store";
+
 class AdminPageStore {
 	constructor(rootStore) {
 		this.rootStore = rootStore;
+		this.raceSectionStore = new RaceSectionStore(rootStore);
 	}
 
 	async deleteUser(id) {

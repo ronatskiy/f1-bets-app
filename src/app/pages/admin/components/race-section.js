@@ -1,25 +1,35 @@
 import React, { Component } from "react";
-import { inject, observer } from "mobx-react/index";
+import { inject, observer } from "mobx-react";
 import { Button, Col, Row, Table } from "reactstrap";
 
-import { RaceRepository } from "../../../../storage";
 import { prettifyDate } from "../../../utilities";
+import GridSelector from "../../../components/grid-selector";
+import RaceSelect from "./race-select";
 
 @inject(stores => ({
-	races: stores.rootStore.racesStore.races,
-	fetchRaces: () => stores.rootStore.racesStore.fetchRaces(),
+	raceSectionStore: stores.rootStore.adminPageStore.raceSectionStore,
 }))
 @observer
 class RaceSection extends Component {
-	handleInitRacesCollection = async () => {
-		await RaceRepository.init();
-		await this.props.fetchRaces();
+	handleAddNewRace = () => {};
+	handleAddRaceResults = () => {
+		this.props.raceSectionStore.showRaceResultsPanel();
 	};
 
-	handleAddNewRace = () => {};
+	handleInitRacesCollection = () => {
+		this.props.raceSectionStore.initRacesCollection();
+	};
+
+	handleGridSelectorSave = gridInfo => {
+		this.props.raceSectionStore.addOrUpdateRaceResults(gridInfo);
+	};
+
+	handleRaceSelect = race => {
+		this.props.raceSectionStore.selectedRace = race;
+	};
 
 	render() {
-		const { races } = this.props;
+		const { raceStoreUrl, isRaceResultsPanelVisible, rootStore, selectedRace } = this.props.raceSectionStore;
 
 		return (
 			<section style={{ marginTop: "10px" }}>
@@ -37,8 +47,28 @@ class RaceSection extends Component {
 						<Button size="sm" color="info" className="command-button" onClick={this.handleAddNewRace}>
 							Add New Race
 						</Button>
+						<Button size="sm" color="info" className="command-button" onClick={this.handleAddRaceResults}>
+							Add Race Results
+						</Button>
 					</Col>
 				</Row>
+				{isRaceResultsPanelVisible && [
+					<Row key={"11"}>
+						<Col md={2}>Выберите гонку:</Col>
+						<Col>
+							<RaceSelect
+								value={selectedRace}
+								onSelect={this.handleRaceSelect}
+								raceList={rootStore.racesStore.races.slice()}
+							/>
+						</Col>
+					</Row>,
+					<Row key={"22"}>
+						<Col>
+							<GridSelector racers={rootStore.racerStore.racers} onSave={this.handleGridSelectorSave} />
+						</Col>
+					</Row>,
+				]}
 				<Row>
 					<Col>
 						<Table bordered size="sm">
@@ -51,7 +81,7 @@ class RaceSection extends Component {
 								</tr>
 							</thead>
 							<tbody>
-								{races.map((race, index) => {
+								{rootStore.racesStore.races.map((race, index) => {
 									const { title, raceStartTime, qualifyingStartTime, bets } = race;
 
 									return (
@@ -73,8 +103,8 @@ class RaceSection extends Component {
 				<Row>
 					<Col>
 						Details:{" "}
-						<a target="_blank" href={RaceRepository.DATA_STORE_URL}>
-							{RaceRepository.DATA_STORE_URL}
+						<a target="_blank" href={raceStoreUrl}>
+							{raceStoreUrl}
 						</a>
 					</Col>
 				</Row>

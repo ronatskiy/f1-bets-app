@@ -11,6 +11,7 @@
     "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^4.0.0",
+    "classnames": "^2.2.5",
     "lodash.capitalize": "^4.2.1",
     "lodash.isequal": "^4.5.0",
     "lodash.kebabcase": "^4.1.1",
