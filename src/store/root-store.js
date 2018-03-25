@@ -10,6 +10,8 @@ import LoginFormStore from "./login-form-store";
 import { loginFormSettings, registerNewAccountFormSettings } from "./settings/login-form";
 import AppStore from "./app-store";
 import AdminPageStore from "../app/pages/admin/stores/admin-page-store";
+import RacerStandingsStore from "../app/pages/racers-list/stores/racer-standings-store";
+import TeamsStandingsStore from "../app/pages/teams/stores/teams-standings-store";
 
 class RootStore {
 	constructor() {
@@ -38,6 +40,8 @@ class RootStore {
 		});
 		this.appStore = new AppStore(this);
 		this.adminPageStore = new AdminPageStore(this);
+		this.racerStandingsStore = new RacerStandingsStore(this);
+		this.teamsStandingsStore = new TeamsStandingsStore(this);
 	}
 
 	@observable pendingTasksCount = 0;

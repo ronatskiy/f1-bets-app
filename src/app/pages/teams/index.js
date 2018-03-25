@@ -1,18 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
-import kebabCase from "lodash.kebabcase";
 import { inject, observer, PropTypes as MobxPropTypes } from "mobx-react/index";
 import { Col, Container, Row, Table } from "reactstrap";
-
-import { Team } from "../../../storage";
+import { TeamsStanding } from "./stores/teams-standings-store";
 
 @inject(stores => ({
-	teams: stores.rootStore.teamsStore.teams,
+	teamsStandingList: stores.rootStore.teamsStandingsStore.teamsStandingList,
 }))
 @observer
 class TeamsList extends React.Component {
 	static propTypes = {
-		teams: MobxPropTypes.observableArrayOf(PropTypes.instanceOf(Team)).isRequired,
+		teamsStandingList: MobxPropTypes.observableArrayOf(PropTypes.instanceOf(TeamsStanding)).isRequired,
 	};
 
 	render() {
@@ -20,26 +18,26 @@ class TeamsList extends React.Component {
 			<Container>
 				<Row>
 					<Col>
-						<h1 className="page-title">Список команд сезона 2018</h1>
+						<h1 className="page-title">Турнирная таблица команд сезона 2018</h1>
 						<Table>
 							<thead className="thead-light">
 								<tr>
+									<th>Поз</th>
 									<th>Название</th>
-									<th>Мотор</th>
-									<th>Пилоты</th>
 									<th>Очки</th>
 								</tr>
 							</thead>
 							<tbody>
-								{this.props.teams.map(team => {
-									const { name, powerUnit, drivers, points } = team;
+								{this.props.teamsStandingList.map(team => {
+									const { pos, name, url, constructorId, points } = team;
 
 									return (
-										<tr key={kebabCase(name)}>
-											<td>{name}</td>
-											<td>{powerUnit}</td>
+										<tr key={constructorId}>
+											<td>{pos}</td>
 											<td>
-												{drivers[0].shortName} & {drivers[1].shortName}
+												<a target="_blank" href={url}>
+													{name}
+												</a>
 											</td>
 											<td>{points}</td>
 										</tr>
