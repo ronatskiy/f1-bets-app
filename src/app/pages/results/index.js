@@ -19,7 +19,7 @@ class ResultsPage extends React.Component {
 		return (
 			<Container className="results-page">
 				{allBetsData.map(raceInfo => {
-					const { raceTitle, usersBets, raceId } = raceInfo;
+					const { raceTitle, usersBets, raceId, hasRaceResults } = raceInfo;
 
 					if (usersBets.length === 0) {
 						return null;
@@ -29,7 +29,11 @@ class ResultsPage extends React.Component {
 						<Row key={raceId}>
 							<Col>
 								<h2 className="results-page__race-header">{raceTitle}</h2>
-								<BetsResultsTable nextRaceBets={usersBets} currentUser={currentUser} />
+								<BetsResultsTable
+									nextRaceBets={usersBets}
+									currentUser={currentUser}
+									hasRaceResults={hasRaceResults}
+								/>
 							</Col>
 						</Row>
 					);
@@ -43,11 +47,13 @@ class BetsResultsTable extends React.Component {
 	static propTypes = {
 		nextRaceBets: PropTypes.array,
 		currentUser: PropTypes.instanceOf(User),
+		hasRaceResults: PropTypes.bool,
 	};
 
 	static defaultProps = {
 		nextRaceBets: [],
 		currentUser: null,
+		hasRaceResults: false,
 	};
 
 	renderBets(betsMap, id) {
@@ -61,7 +67,7 @@ class BetsResultsTable extends React.Component {
 	}
 
 	render() {
-		const { nextRaceBets, currentUser } = this.props;
+		const { nextRaceBets, currentUser, hasRaceResults } = this.props;
 
 		return (
 			<Table responsive>
@@ -78,21 +84,28 @@ class BetsResultsTable extends React.Component {
 						<th className="text-center">8</th>
 						<th className="text-center">9</th>
 						<th className="text-center">10</th>
+						{hasRaceResults && <th className="text-center">PTS</th>}
 					</tr>
 				</thead>
 				<tbody>
-					{nextRaceBets.map(bet => {
-						const { userInfo, betsMap } = bet;
+					{nextRaceBets.map(({ betInfo, score }) => {
+						const { userInfo, betsMap } = betInfo;
+						const isOfficialResultsRow = userInfo.id === "official-results";
 						const classNames = cn({
 							"table-info": currentUser !== null && currentUser.id === userInfo.id,
 							"table-success": userInfo.id === "official-results",
-							"font-weight-bold": userInfo.id === "official-results",
+							"font-weight-bold": isOfficialResultsRow,
 						});
 
 						return (
 							<tr key={userInfo.id} className={classNames}>
 								<td>{userInfo.name}</td>
 								{this.renderBets(betsMap, userInfo.id)}
+								{hasRaceResults && (
+									<td>
+										<span title={score.tooltip}>{isOfficialResultsRow ? "" : score.value}</span>
+									</td>
+								)}
 							</tr>
 						);
 					})}

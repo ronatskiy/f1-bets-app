@@ -5,7 +5,7 @@ import RacesStore from "./races-store";
 import SessionStore from "./session-store";
 import RacerStore from "./racer-store";
 import TeamsStore from "./teams-store";
-import ResultsPageSrore from "./results-page-store";
+import ResultsPageSrore from "../app/pages/results/stores/results-page-store";
 import LoginFormStore from "./login-form-store";
 import { loginFormSettings, registerNewAccountFormSettings } from "./settings/login-form";
 import AppStore from "./app-store";
