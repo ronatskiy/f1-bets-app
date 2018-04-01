@@ -1,42 +1,7 @@
 import axios from "axios";
+import Driver from "./types/driver";
+import Constructor from "./types/constructor";
 
-/**
- * @property {string} constructorId
- * @property {string} url
- * @property {string} name
- * @property {string} nationality
- */
-class Constructor {
-	constructor({ constructorId, url, name, nationality }) {
-		this.constructorId = constructorId;
-		this.url = url;
-		this.name = name;
-		this.nationality = nationality;
-	}
-}
-
-/**
- * @property {string} driverId
- * @property {string} permanentNumber
- * @property {string} code
- * @property {string} url
- * @property {string} givenName
- * @property {string} familyName
- * @property {string} dateOfBirth
- * @property {string} nationality
- */
-class Driver {
-	constructor({ driverId, permanentNumber, code, url, givenName, familyName, dateOfBirth, nationality }) {
-		this.driverId = driverId;
-		this.permanentNumber = permanentNumber;
-		this.code = code;
-		this.url = url;
-		this.givenName = givenName;
-		this.familyName = familyName;
-		this.dateOfBirth = dateOfBirth;
-		this.nationality = nationality;
-	}
-}
 /**
  * @property {string} position
  * @property {string} positionText
@@ -54,7 +19,7 @@ class StandingBase {
 
 /**
  * @extends StandingBase
- * @property {Constructor} constructor
+ * @property {ErgastApi~Constructor} constructor
  */
 class ConstructorStanding extends StandingBase {
 	constructor(options) {
@@ -65,8 +30,8 @@ class ConstructorStanding extends StandingBase {
 
 /**
  * @extends StandingBase
- * @property {Driver} driver
- * @property {Constructor[]} constructors
+ * @property {ErgastApi~Driver} driver
+ * @property {ErgastApi~Constructor[]} constructors
  */
 class DriverStanding extends StandingBase {
 	constructor(options) {
