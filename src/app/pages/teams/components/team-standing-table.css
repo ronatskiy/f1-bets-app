@@ -1,0 +1,5 @@
+.team-car-photo {
+	max-width: 120px;
+	transform: scaleX(-1);
+	margin-right: 2rem;
+}

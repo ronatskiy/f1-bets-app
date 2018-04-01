@@ -1,15 +1,7 @@
 import { observable } from "mobx";
-import ErgastApi from "../../../lib/ergast-api";
 
-export class TeamsStanding {
-	constructor({ pos, name, constructorId, points, url }) {
-		this.pos = pos;
-		this.name = name;
-		this.constructorId = constructorId;
-		this.points = points;
-		this.url = url;
-	}
-}
+import ErgastApi from "../../../lib/ergast-api";
+import TeamsStanding from "../models/team-standing";
 
 class TeamsStandingsStore {
 	constructor(rootStore) {
@@ -34,9 +26,10 @@ class TeamsStandingsStore {
 					return new TeamsStanding({
 						pos: constructorStanding.position,
 						name: constructor.name,
-						constructorId: constructor.constructorId,
+						id: constructor.constructorId,
 						points: constructorStanding.points,
 						url: constructor.url,
+						nationality: constructor.nationality,
 					});
 				});
 			}
