@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Col, Container, Row, Table } from "reactstrap";
+import { Col, Container, Row } from "reactstrap";
 import { inject, observer, PropTypes as MobxPropTypes } from "mobx-react";
 
-import { RacerStanding } from "./stores/racer-standings-store";
+import RacerStanding from "./models/racer-standing";
+import RacerStandingTable from "./components/racer-standing-table";
 
 @inject(stores => ({
 	racerStandingList: stores.rootStore.racerStandingsStore.racerStandingList,
@@ -21,32 +22,7 @@ class RacersList extends React.Component {
 				<Row>
 					<Col>
 						<h1 className="page-title">Турнирная таблица пилотов сезона 2018</h1>
-						<Table>
-							<thead className="thead-light">
-								<tr className="text-uppercase">
-									<th>Поз</th>
-									<th>Имя</th>
-									<th>Номер</th>
-									<th>Очки</th>
-								</tr>
-							</thead>
-							<tbody>
-								{racerStandingList.map(({ pos, fullName, racerUrl, permanentNumber, code, points }) => {
-									return (
-										<tr key={code}>
-											<td>{pos}</td>
-											<td>
-												<a target="_blank" href={racerUrl}>
-													{fullName}
-												</a>
-											</td>
-											<td>{permanentNumber}</td>
-											<td>{points}</td>
-										</tr>
-									);
-								})}
-							</tbody>
-						</Table>
+						<RacerStandingTable racers={racerStandingList.slice()} />
 					</Col>
 				</Row>
 			</Container>

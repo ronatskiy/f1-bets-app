@@ -1,16 +1,7 @@
 import { observable } from "mobx";
-import ErgastApi from "../../../lib/ergast-api";
 
-export class RacerStanding {
-	constructor({ pos, fullName, code, points, racerUrl, permanentNumber }) {
-		this.pos = pos;
-		this.fullName = fullName;
-		this.code = code;
-		this.points = points;
-		this.racerUrl = racerUrl;
-		this.permanentNumber = permanentNumber;
-	}
-}
+import ErgastApi from "../../../lib/ergast-api";
+import RacerStanding from "../models/racer-standing";
 
 class RacerStandingsStore {
 	constructor(rootStore) {
@@ -26,19 +17,24 @@ class RacerStandingsStore {
 			const driverStandings = await ErgastApi.getDriverStandings("2018");
 
 			/**@var {DriverStandingsListItem} standingsListItem */
-			const standingsListItem = driverStandings.standingsLists[0];
+			const [standingsListItem] = driverStandings.standingsLists;
+
 			if (standingsListItem) {
 				this.racerStandingList = standingsListItem.driverStandings.map(driverStanding => {
-					/**@var {Driver} driver */
+					/**@var {ErgastApi~Driver} driver */
 					const driver = driverStanding.driver;
+					const [constructor] = driverStanding.constructors;
 
 					return new RacerStanding({
 						pos: driverStanding.position,
-						fullName: `${driver.givenName} ${driver.familyName}`,
-						points: driverStanding.points,
-						code: driver.code,
-						permanentNumber: driver.permanentNumber,
+						racerFullName: `${driver.givenName} ${driver.familyName}`,
+						racerPoints: driverStanding.points,
+						racerId: driver.code,
+						racerNumber: driver.permanentNumber,
 						racerUrl: driver.url,
+						constructorName: constructor.name,
+						constructorUrl: constructor.url,
+						racerNationality: driver.nationality,
 					});
 				});
 			}
