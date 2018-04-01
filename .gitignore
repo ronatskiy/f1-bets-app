@@ -1,5 +1,5 @@
 node_modules
 .idea
-/build
+build
 /.env.development
 /yarn-error.log
