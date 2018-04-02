@@ -13,7 +13,7 @@ class RacerStandingTable extends React.Component {
 		const { racers } = this.props;
 
 		return (
-			<Table>
+			<Table responsive>
 				<thead className="thead-light">
 					<tr className="text-uppercase">
 						<th>поз</th>

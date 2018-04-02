@@ -13,7 +13,7 @@ class TeamStandingTable extends React.Component {
 
 	render() {
 		return (
-			<Table>
+			<Table responsive>
 				<thead className="thead-light">
 					<tr className="text-uppercase">
 						<th>Поз</th>
