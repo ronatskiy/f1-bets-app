@@ -2,3 +2,7 @@
 	font-size: 1.75rem;
 	margin-top: 2rem;
 }
+
+.text--line-through {
+	text-decoration: line-through;
+}

@@ -1,0 +1,10 @@
+.bet-result-cell {
+	position: relative;
+}
+
+.bet-result-cell__badge {
+	position: absolute;
+	right: -15px;
+	top: -6px;
+	font-size: 0.6rem;
+}

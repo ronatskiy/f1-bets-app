@@ -8,7 +8,7 @@ import "./team-standing-table.css";
 
 class TeamStandingTable extends React.Component {
 	static propTypes = {
-		teams: PropTypes.instanceOf(TeamsStanding).isRequired,
+		teams: PropTypes.arrayOf(PropTypes.instanceOf(TeamsStanding)).isRequired,
 	};
 
 	render() {
