@@ -8,3 +8,4 @@ export { default as Race } from "./types/race";
 export { default as Racer } from "./types/racer";
 export { default as Team } from "./types/team";
 export { default as BetInfo } from "./types/bet-info";
+export { default as UserInfo } from "./types/user-info";

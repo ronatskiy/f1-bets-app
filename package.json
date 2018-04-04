@@ -15,6 +15,7 @@
     "lodash.capitalize": "^4.2.1",
     "lodash.isequal": "^4.5.0",
     "lodash.kebabcase": "^4.1.1",
+    "lodash.sortby": "^4.7.0",
     "lodash.words": "^4.2.0",
     "mobx": "3.6.2",
     "mobx-react": "4.4.3",
@@ -34,8 +35,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "build": "react-app-rewired build",
-    "test": "react-app-rewired test --env=jsdom",
-    "eject": "react-scripts eject"
+    "test": "react-app-rewired test --env=jsdom"
   },
   "devDependencies": {
     "babel-plugin-transform-decorators": "^6.24.1",
