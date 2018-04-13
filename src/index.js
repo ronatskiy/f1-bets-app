@@ -1,24 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { HashRouter as Router } from "react-router-dom";
+import { useStrict } from "mobx";
 import { Provider } from "mobx-react";
-
-import "bootstrap/dist/css/bootstrap.css";
 import registerServiceWorker from "./registerServiceWorker";
+import configProvider from "./config/config";
 
-import "./index.css";
+import "./vendor/index";
 
-import RootStore from "./store/root-store";
-import App from "./app/app";
+import AppComponent from "./components/app/app";
+import Application from "./application";
 
-const stores = {
-	rootStore: new RootStore(),
-};
+useStrict(true);
+
+const app = new Application({ configProvider });
+const stores = app.getStores();
 
 ReactDOM.render(
 	<Provider {...stores}>
 		<Router>
-			<App />
+			<AppComponent />
 		</Router>
 	</Provider>,
 	document.getElementById("root"),
