@@ -24,7 +24,11 @@ class AppStore {
 			this.rootStore.racesStore.nextRace && this.rootStore.racesStore.nextRace.qualifyingStartTime;
 
 		return qualificationStartTime && raceStartTime
-			? !this.currentTime.isBetween(moment(qualificationStartTime).subtract(1, "hour"), raceStartTime, "minute")
+			? !this.currentTime.isBetween(
+					moment(qualificationStartTime).subtract(10, "minute"),
+					raceStartTime,
+					"minute",
+			  )
 			: false;
 	}
 
