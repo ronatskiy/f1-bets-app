@@ -4,7 +4,7 @@ import { observer, PropTypes as MobxPropTypes } from "mobx-react";
 import { observable, computed } from "mobx";
 import { Form, FormGroup, Button, Table } from "reactstrap";
 
-import RacersSelect from "./racers-select";
+import RacersSelect from "./racers-select/racers-select";
 import Racer from "../domain/racer";
 
 class Grid {

@@ -4,7 +4,7 @@ import { Form, FormGroup, Button, Table } from "reactstrap";
 import { PropTypes as MobxPropTypes } from "mobx-react";
 import { withRouter } from "react-router-dom";
 
-import RacersSelect from "../../../components/racers-select";
+import RacersSelect from "../../../components/racers-select/racers-select";
 import { pathNames } from "../../../routes/routes";
 import Racer from "../../../domain/racer";
 import BetInfo from "../../../domain/bet-info";
@@ -98,6 +98,7 @@ class BetsForm extends Component {
 											racerList={availableRacers}
 											onSelect={this.handleSelect}
 											pos={pos}
+											placeholder="Укажите Ваш прогноз"
 										/>
 									</td>
 								</tr>

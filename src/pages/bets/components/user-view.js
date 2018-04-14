@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Form, FormGroup, Input, Label } from "reactstrap";
 
 import "./user-view.css";
 import User from "../../../domain/user";
 
-class UserView extends Component {
+class UserView extends React.Component {
 	static propTypes = {
 		user: PropTypes.instanceOf(User).isRequired,
 	};

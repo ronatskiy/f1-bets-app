@@ -15,7 +15,7 @@ const DevelopmentModeAlert = ({ pendingTasksCount, qualificationStartTime, isBet
 				<Row className="text-left">
 					<Col>Qualification start Time: {prettifyDate(qualificationStartTime)}</Col>
 					<Col className={isBetsAllowed ? "bg-success" : "bg-warning"}>
-						Is Bets Allowed: {isBetsAllowed && isBetsAllowed.toString()}
+						Is Bets Allowed: {isBetsAllowed.toString()}
 					</Col>
 					<Col>Current Time: {prettifyDateWithSeconds(currentTime)}</Col>
 				</Row>
