@@ -15,7 +15,7 @@ export { default as Route } from "./smart-route";
 export const pathNames = {
 	HOME: "/",
 	CALENDAR: "/calendar",
-	BETS: "/bets",
+	BETS: "/bet",
 	ADMIN: "/admin",
 	RESULTS: "/results",
 	RACERS: "/racers",

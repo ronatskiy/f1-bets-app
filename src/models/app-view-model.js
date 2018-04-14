@@ -97,7 +97,11 @@ export default class AppViewModel {
 			return (
 				qualificationStartTime &&
 				raceStartTime &&
-				!isInInterval(subtractTime(qualificationStartTime, VOTE_CLOSING_TIME), raceStartTime)
+				!isInInterval(
+					this.timeWatcher.currentTime,
+					subtractTime(qualificationStartTime, VOTE_CLOSING_TIME),
+					raceStartTime,
+				)
 			);
 		}
 
