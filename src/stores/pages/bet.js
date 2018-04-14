@@ -12,6 +12,9 @@ export default class BetPageStore {
 		return this._appViewModel.racers;
 	}
 
+	/**
+	 * @return {User}
+	 */
 	@computed
 	get currentUser() {
 		return this._appViewModel.session.authenticatedUser;
@@ -23,6 +26,17 @@ export default class BetPageStore {
 			return this._appViewModel.nextRace.prettyTitle;
 		}
 		return "";
+	}
+
+	@computed
+	get userBet() {
+		if (!this._appViewModel.isUserAlreadyBet) {
+			return {};
+		}
+
+		const betInfo = this._appViewModel.nextRace.bets.find(({ userInfo }) => userInfo.id === this.currentUser.id);
+
+		return betInfo ? betInfo.betsMap : {};
 	}
 
 	get isBetsAllowed() {

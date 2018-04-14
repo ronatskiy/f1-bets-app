@@ -26,7 +26,7 @@ export default class AppViewModel {
 
 		// Load next race info if current race is started.
 		when(
-			() => this.nextRace && isAfter(this.currentTime, this.nextRace.raceStartTime),
+			() => this.nextRace && isAfter(this._timeWatcher.currentTime, this.nextRace.raceStartTime),
 			async () => {
 				await this._racesModel.fetchRaces();
 			},
@@ -61,32 +61,6 @@ export default class AppViewModel {
 	 */
 	get isProduction() {
 		return this._isProductionMode;
-	}
-
-	/**
-	 *
-	 * @return {TimeWatcher}
-	 */
-	// @computed
-	get timeWatcher() {
-		return this._timeWatcher;
-	}
-
-	operationWithProgress(operation) {
-		return this._worker.operationWithProgress(operation);
-	}
-
-	operationWithProgressAsync(operation) {
-		return this._worker.operationWithProgressAsync(operation);
-	}
-
-	get worker() {
-		return this._worker;
-	}
-
-	@computed
-	get hasPendingTasks() {
-		return this._worker.pendingTasksCount > 0;
 	}
 
 	@computed
@@ -160,7 +134,21 @@ export default class AppViewModel {
 	/**
 	 * @return {UsersModel}
 	 */
-	get users() {
+	get usersModel() {
 		return this._usersModel;
+	}
+
+	/**
+	 * @return {TimeWatcher}
+	 */
+	get timeWatcher() {
+		return this._timeWatcher;
+	}
+
+	/**
+	 * @return {WorkerModel}
+	 */
+	get worker() {
+		return this._worker;
 	}
 }

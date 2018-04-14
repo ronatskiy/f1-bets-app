@@ -1,8 +1,8 @@
 import { observable } from "mobx";
 
 class TeamsStore {
-	constructor({ rootStore, teamService }) {
-		this._rootStore = rootStore;
+	constructor({ worker, teamService }) {
+		this._worker = worker;
 		this._teamService = teamService;
 		this._loadTeams();
 	}
@@ -10,7 +10,7 @@ class TeamsStore {
 	@observable teams = [];
 
 	async _loadTeams() {
-		return this._rootStore.operationWithProgressAsync(async () => {
+		return this._worker.operationWithProgressAsync(async () => {
 			try {
 				return (this.teams = await this._teamService.fetchAll());
 			} catch (error) {

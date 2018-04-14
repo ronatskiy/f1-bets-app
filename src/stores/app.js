@@ -19,7 +19,7 @@ class AppStore {
 	}
 
 	get hasPendingTasks() {
-		return this._appViewModel.hasPendingTasks;
+		return this._appViewModel.worker.hasPendingTasks;
 	}
 
 	get authenticatedUser() {

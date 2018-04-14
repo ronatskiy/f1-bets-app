@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Form, FormGroup, Input, Label } from "reactstrap";
 
 import "./user-view.css";
-import User from "../../../domain/user";
+import User from "../domain/user";
 
 class UserView extends React.Component {
 	static propTypes = {

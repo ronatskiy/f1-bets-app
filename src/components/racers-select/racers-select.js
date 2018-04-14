@@ -36,7 +36,7 @@ class RacersSelect extends React.Component {
 	handleSelect = option => {
 		const { pos, onSelect } = this.props;
 
-		onSelect(option.value, pos);
+		onSelect(option ? option.value : null, pos);
 	};
 
 	render() {

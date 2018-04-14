@@ -7,7 +7,7 @@ import BetsForm from "./components/bets-form";
 import Racer from "../../domain/racer";
 import User from "../../domain/user";
 
-const BetsPage = ({ betPageStore: { racers, currentUser, onBetsSubmit, isBetsAllowed, nextRaceTitle } }) => (
+const BetsPage = ({ betPageStore: { racers, currentUser, userBet, onBetsSubmit, isBetsAllowed, nextRaceTitle } }) => (
 	<Container>
 		<Row>
 			<Col>
@@ -22,7 +22,7 @@ const BetsPage = ({ betPageStore: { racers, currentUser, onBetsSubmit, isBetsAll
 						прогноз на будущую гонку у Вас появится после начала этой.
 					</div>
 				) : (
-					<BetsForm racers={racers} user={currentUser} onBetsSubmit={onBetsSubmit} />
+					<BetsForm racers={racers} user={currentUser} userBet={userBet} onBetsSubmit={onBetsSubmit} />
 				)}
 			</Col>
 		</Row>

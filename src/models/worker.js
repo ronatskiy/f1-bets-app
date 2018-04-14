@@ -1,7 +1,13 @@
 import { observable, action, runInAction } from "mobx";
+import { computed } from "mobx/lib/mobx";
 
 export default class WorkerModel {
 	@observable pendingTasksCount = 0;
+
+	@computed
+	get hasPendingTasks() {
+		return this.pendingTasksCount > 0;
+	}
 
 	@action
 	operationWithProgress(fn) {

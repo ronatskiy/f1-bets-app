@@ -9,7 +9,7 @@ export default class UsersSectionStore {
 		this._appViewModel = viewModel;
 		this._storeApiUrl = USER_STORE_URL;
 
-		this._appViewModel.users.fetchUsers();
+		this._appViewModel.usersModel.fetchUsers();
 	}
 
 	@observable isUserFormVisible = false;
@@ -20,7 +20,7 @@ export default class UsersSectionStore {
 	 */
 	@computed
 	get users() {
-		return this._appViewModel.users.users;
+		return this._appViewModel.usersModel.users;
 	}
 
 	get storeApiUrl() {
@@ -45,21 +45,21 @@ export default class UsersSectionStore {
 		}
 
 		return this._appViewModel.worker.operationWithProgressAsync(async () => {
-			await this._appViewModel.users.addOrUpdate(user);
+			await this._appViewModel.usersModel.addOrUpdate(user);
 
 			this.userForEdit = null;
 			this.toggleUserForm(false);
 
-			return await this._appViewModel.users.fetchUsers();
+			return await this._appViewModel.usersModel.fetchUsers();
 		});
 	}
 
 	async deleteUser(id) {
 		if (window.confirm("Вы точно хотите удалить пользователя?")) {
-			await this._appViewModel.users.deleteUser(id);
+			await this._appViewModel.usersModel.deleteUser(id);
 		}
 
-		return await this._appViewModel.users.fetchUsers();
+		return await this._appViewModel.usersModel.fetchUsers();
 	}
 
 	showRaceResultsPanel() {
