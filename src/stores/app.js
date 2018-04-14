@@ -1,5 +1,3 @@
-import { computed } from "mobx";
-
 class AppStore {
 	/**
 	 * @param {AppViewModel} viewModel

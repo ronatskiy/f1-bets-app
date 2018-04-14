@@ -1,5 +1,3 @@
-import { computed } from "mobx";
-
 export default class UserBetsHistoryPageStore {
 	/**
 	 * @param {AppViewModel} viewModel

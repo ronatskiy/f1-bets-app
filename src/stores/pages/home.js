@@ -1,5 +1,3 @@
-import { computed } from "mobx";
-
 export default class HomePageStore {
 	/**
 	 * @param {AppViewModel} viewModel
