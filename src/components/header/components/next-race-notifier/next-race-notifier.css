@@ -1,12 +1,10 @@
 .header__more-info-link {
-
 }
-
 
 .next-race-notifier {
 	min-height: 60px;
-	padding-top: 15px;
-	padding-bottom: 15px;
+	padding-top: 1.75rem;
+	padding-bottom: 2rem;
 }
 
 .next-race-notifier__pseudo-link {

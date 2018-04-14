@@ -8,7 +8,6 @@ export default class UserBetsHistoryPageStore {
 		this._appViewModel = viewModel;
 	}
 
-	@computed
 	get userBets() {
 		return this._appViewModel.authUserBets;
 	}

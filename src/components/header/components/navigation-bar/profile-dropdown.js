@@ -1,13 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "reactstrap";
-import { Link } from "react-router-dom";
 
-import { pathNames } from "../../../../../routes/routes";
-import User from "../../../../../domain/user";
+import { pathNames } from "../../../../routes/routes";
+import User from "../../../../domain/user";
+import NavLink from "../../../common/smart-nav-link";
 
 const ProfileDropdown = ({ user, isBetsAllowed }) => {
 	const { isAdmin, name } = user;
+
 	return (
 		<UncontrolledDropdown nav inNavbar>
 			<DropdownToggle nav caret>
@@ -17,30 +18,26 @@ const ProfileDropdown = ({ user, isBetsAllowed }) => {
 				<DropdownItem header>{name}</DropdownItem>
 				{isAdmin && (
 					<DropdownItem>
-						<Link to={pathNames.ADMIN} className="nav-bar-drop-down-menu__link">
+						<NavLink path={pathNames.ADMIN} className="nav-bar-drop-down-menu__link">
 							Админка
-						</Link>
+						</NavLink>
 					</DropdownItem>
 				)}
 				<DropdownItem disabled={!isBetsAllowed}>
-					{isBetsAllowed ? (
-						<Link to={pathNames.BETS} className="nav-bar-drop-down-menu__link">
-							Голосование
-						</Link>
-					) : (
-						"Голосование"
-					)}
+					<NavLink path={pathNames.BETS} className="nav-bar-drop-down-menu__link" disabled={!isBetsAllowed}>
+						Голосование
+					</NavLink>
 				</DropdownItem>
 				<DropdownItem>
-					<Link to={pathNames.BETS_HISTORY} className="nav-bar-drop-down-menu__link">
-						История ставок
-					</Link>
+					<NavLink path={pathNames.BETS_HISTORY} className="nav-bar-drop-down-menu__link">
+						История голосований
+					</NavLink>
 				</DropdownItem>
 				<DropdownItem divider />
 				<DropdownItem>
-					<Link to={pathNames.SIGN_OUT} className="nav-bar-drop-down-menu__link">
+					<NavLink path={pathNames.LOGOUT} className="nav-bar-drop-down-menu__link">
 						Выход
-					</Link>
+					</NavLink>
 				</DropdownItem>
 			</DropdownMenu>
 		</UncontrolledDropdown>

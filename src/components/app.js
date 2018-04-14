@@ -3,14 +3,14 @@ import PropTypes from "prop-types";
 import { inject, observer } from "mobx-react";
 import { withRouter } from "react-router-dom";
 
-import "../common/styles.css";
-import "../layout/layout.css";
+import "./common/styles.css";
+import "./layout.css";
 
-import Header from "../layout/header";
-import Footer from "../layout/footer";
-import AppRoutesConfig, { Route } from "../../routes/routes";
-import DevelopmentModeAlert from "../development-mode-alert";
-import Loader from "../loader/loader";
+import Header from "./header";
+import Footer from "./footer";
+import AppRoutesConfig, { Route } from "../routes/routes";
+import DevelopmentModeAlert from "./development-mode-alert";
+import Loader from "./loader/loader";
 
 @inject("appStore")
 @withRouter

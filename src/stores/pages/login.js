@@ -35,7 +35,6 @@ export default class LoginPageStore {
 
 	@observable isRegisterNew = false;
 
-	@computed
 	get isUserAuthenticated() {
 		return this._appViewModel.session.isAuthenticated;
 	}

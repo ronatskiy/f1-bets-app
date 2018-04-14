@@ -12,7 +12,7 @@ import "./styles.css";
 class BetsHistory extends React.Component {
 	static propTypes = {
 		userBetsHistoryPageStore: PropTypes.shape({
-			userBets: PropTypes.bool.isRequired,
+			userBets: PropTypes.array.isRequired,
 		}).isRequired,
 	};
 	render() {

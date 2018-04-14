@@ -42,6 +42,6 @@ ResultsPage.propTypes = {
 };
 
 export default inject(stores => ({
-	currentUser: stores.resultsPageStore.currentUser,
+	currentUser: stores.resultsPageStore.authenticatedUser,
 	raceResultsWithBets: stores.resultsPageStore.raceResultsWithBets,
 }))(observer(ResultsPage));

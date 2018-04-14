@@ -2,7 +2,7 @@ import React from "react";
 import { Badge, Col, Container, Row, Table } from "reactstrap";
 import { inject, observer } from "mobx-react";
 
-import { prettifyDate } from "../../components/helpers/prettify-date";
+import { prettifyDate } from "../../helpers/prettify-date";
 
 @inject("calendarPageStore")
 @observer

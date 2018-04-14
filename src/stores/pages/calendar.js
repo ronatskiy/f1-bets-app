@@ -8,12 +8,10 @@ class CalendarPageStore {
 		this._appViewModel = viewModel;
 	}
 
-	@computed
 	get races() {
 		return this._appViewModel.races;
 	}
 
-	@computed
 	get nextRace() {
 		return this._appViewModel.nextRace;
 	}

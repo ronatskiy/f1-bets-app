@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 import { Button, Col, Row, Table } from "reactstrap";
 
-import { prettifyDate } from "../../../components/helpers/prettify-date";
+import { prettifyDate } from "../../../helpers/prettify-date";
 import GridSelector from "../../../components/grid-selector";
 import RaceSelect from "./race-select";
 

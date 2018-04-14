@@ -14,37 +14,35 @@ import {
 	DropdownItem,
 } from "reactstrap";
 import { inject, observer } from "mobx-react";
+import { observable, action } from "mobx";
 
 import "./styles.css";
-import { pathNames } from "../../../../../routes/routes";
+import { pathNames } from "../../../../routes/routes";
 import ProfileDropdown from "./profile-dropdown";
-import User from "../../../../../domain/user";
+import User from "../../../../domain/user";
 
 @inject(stores => ({
 	isAuthenticated: stores.appStore.isUserAuthenticated,
-	currentUser: stores.appStore.currentUser,
+	authenticatedUser: stores.appStore.authenticatedUser,
 	isBetsAllowed: stores.appStore.isBetsAllowed,
 }))
 @observer
 class NavigationBar extends React.Component {
 	static propTypes = {
 		isAuthenticated: PropTypes.bool.isRequired,
-		currentUser: PropTypes.instanceOf(User),
+		isBetsAllowed: PropTypes.bool.isRequired,
+		authenticatedUser: PropTypes.instanceOf(User),
 	};
 
-	state = {
-		isOpen: false,
-	};
+	@observable isOpen = false;
 
+	@action
 	handleToggle = () => {
-		this.setState({
-			isOpen: !this.state.isOpen,
-		});
+		this.isOpen = !this.isOpen;
 	};
 
 	render() {
-		const { isOpen } = this.state;
-		const { isAuthenticated, currentUser, isBetsAllowed } = this.props;
+		const { isAuthenticated, authenticatedUser, isBetsAllowed } = this.props;
 
 		return (
 			<Navbar color="dark" dark expand="md" fixed="top">
@@ -53,7 +51,7 @@ class NavigationBar extends React.Component {
 						Formula 1 Bets App
 					</Link>
 					<NavbarToggler onClick={this.handleToggle} />
-					<Collapse isOpen={isOpen} navbar>
+					<Collapse isOpen={this.isOpen} navbar>
 						<Nav className="ml-auto" navbar>
 							<NavItem>
 								<Link to={pathNames.CALENDAR} className="nav-link">
@@ -89,7 +87,9 @@ class NavigationBar extends React.Component {
 									</Link>
 								</NavItem>
 							) : (
-								currentUser && <ProfileDropdown user={currentUser} isBetsAllowed={isBetsAllowed} />
+								authenticatedUser && (
+									<ProfileDropdown user={authenticatedUser} isBetsAllowed={isBetsAllowed} />
+								)
 							)}
 						</Nav>
 					</Collapse>

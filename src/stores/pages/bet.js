@@ -8,7 +8,6 @@ export default class BetPageStore {
 		this._appViewModel = viewModel;
 	}
 
-	@computed
 	get racers() {
 		return this._appViewModel.racers;
 	}
@@ -26,7 +25,6 @@ export default class BetPageStore {
 		return "";
 	}
 
-	@computed
 	get isBetsAllowed() {
 		return this._appViewModel.isBetsAllowed;
 	}

@@ -8,7 +8,6 @@ export default class LogoutPageStore {
 		this._appViewModel = viewModel;
 	}
 
-	@computed
 	get isUserAuthenticated() {
 		return this._appViewModel.session.isAuthenticated;
 	}

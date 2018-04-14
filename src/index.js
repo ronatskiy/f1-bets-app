@@ -8,7 +8,7 @@ import configProvider from "./config/config";
 
 import "./vendor/index";
 
-import AppComponent from "./components/app/app";
+import AppComponent from "./components/app";
 import Application from "./application";
 
 useStrict(true);

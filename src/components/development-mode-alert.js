@@ -1,9 +1,8 @@
 import React from "react";
-import moment from "moment";
 import { Col, Container, Row } from "reactstrap";
 import { inject, observer } from "mobx-react";
 
-import { prettifyDate } from "./helpers/prettify-date";
+import { prettifyDate, prettifyDateWithSeconds } from "../helpers/prettify-date";
 
 const DevelopmentModeAlert = ({ pendingTasksCount, qualificationStartTime, isBetsAllowed, currentTime }) => {
 	return (
@@ -18,7 +17,7 @@ const DevelopmentModeAlert = ({ pendingTasksCount, qualificationStartTime, isBet
 					<Col className={isBetsAllowed ? "bg-success" : "bg-warning"}>
 						Is Bets Allowed: {isBetsAllowed && isBetsAllowed.toString()}
 					</Col>
-					<Col>Current Time: {moment(currentTime).format("D MMMM YYYY, HH:mm:ss")}</Col>
+					<Col>Current Time: {prettifyDateWithSeconds(currentTime)}</Col>
 				</Row>
 			</Container>
 		</Row>

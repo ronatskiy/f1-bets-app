@@ -11,7 +11,7 @@ class ResultsPageStore {
 	}
 
 	@computed
-	get currentUser() {
+	get authenticatedUser() {
 		return this._appViewModel.session.authenticatedUser;
 	}
 

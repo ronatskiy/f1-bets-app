@@ -1,5 +1,6 @@
 import moment from "moment";
 import { action, computed, observable } from "mobx";
+import { toUTCStringDate } from "../helpers/prettify-date";
 
 export default class TimeWatcher {
 	constructor(tickInterval) {
@@ -25,5 +26,10 @@ export default class TimeWatcher {
 	@computed
 	get currentTime() {
 		return this._currentTime;
+	}
+
+	@computed
+	get currentTimeUtcString() {
+		return toUTCStringDate(this._currentTime);
 	}
 }

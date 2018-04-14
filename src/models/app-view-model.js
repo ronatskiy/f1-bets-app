@@ -50,6 +50,7 @@ export default class AppViewModel {
 	get races() {
 		return this._racesModel.races;
 	}
+
 	@computed
 	get racers() {
 		return this._racerListModel.racers;
@@ -62,12 +63,13 @@ export default class AppViewModel {
 		return this._isProductionMode;
 	}
 
-	startTimeWatcher() {
-		this._timeWatcher.start();
-	}
-
-	stopTimeWatcher() {
-		this._timeWatcher.stop();
+	/**
+	 *
+	 * @return {TimeWatcher}
+	 */
+	// @computed
+	get timeWatcher() {
+		return this._timeWatcher;
 	}
 
 	operationWithProgress(operation) {
@@ -78,14 +80,8 @@ export default class AppViewModel {
 		return this._worker.operationWithProgressAsync(operation);
 	}
 
-	@computed
 	get worker() {
 		return this._worker;
-	}
-
-	@computed
-	get currentTime() {
-		return this._timeWatcher.currentTime;
 	}
 
 	@computed
@@ -108,12 +104,10 @@ export default class AppViewModel {
 		return false;
 	}
 
-	@computed
 	get isUserAuthenticated() {
 		return this._sessionModel.isAuthenticated;
 	}
 
-	@computed
 	get isUserAdmin() {
 		return this._sessionModel.isCurrentUserAdmin;
 	}
@@ -121,7 +115,6 @@ export default class AppViewModel {
 	/**
 	 * @return {Race | null}
 	 */
-	@computed
 	get nextRace() {
 		return this._racesModel.nextRace;
 	}
@@ -156,7 +149,6 @@ export default class AppViewModel {
 	/**
 	 * @return {SessionModel}
 	 */
-	@computed
 	get session() {
 		return this._sessionModel;
 	}
@@ -164,7 +156,6 @@ export default class AppViewModel {
 	/**
 	 * @return {UsersModel}
 	 */
-	@computed
 	get users() {
 		return this._usersModel;
 	}
