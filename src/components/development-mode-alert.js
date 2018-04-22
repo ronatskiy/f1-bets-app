@@ -6,7 +6,7 @@ import { prettifyDate, prettifyDateWithSeconds } from "../helpers/prettify-date"
 
 const DevelopmentModeAlert = ({ pendingTasksCount, qualificationStartTime, isBetsAllowed, currentTime }) => {
 	return (
-		<Row className="text-center bg-danger">
+		<div className="text-center bg-danger">
 			<Container>
 				<Row>
 					<Col>DEVELOPMENT MODE ON!!!</Col>
@@ -20,7 +20,7 @@ const DevelopmentModeAlert = ({ pendingTasksCount, qualificationStartTime, isBet
 					<Col>Current Time: {prettifyDateWithSeconds(currentTime)}</Col>
 				</Row>
 			</Container>
-		</Row>
+		</div>
 	);
 };
 

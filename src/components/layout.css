@@ -3,15 +3,11 @@
 	width: 100%;
 	margin-top: 60px;
 }
-
-.layout__header {
-}
-
+.layout__header {}
 .layout__main {
 	flex-grow: 2;
 	padding: 1.5rem 0;
 }
-
 .layout__footer {
 	position: absolute;
 	background: #5b5b61;
