@@ -50,7 +50,7 @@ class RacesSectionStore {
 			return;
 		}
 
-		this._appViewModel.worker.operationWithProgressAsync(async () => {
+		await this._appViewModel.operationManager.runWithProgressAsync(async () => {
 			await this._raceInfoService.addOrUpdateRaceResult(this.selectedRace.id, js);
 			this.isRaceResultsPanelVisible = false;
 		});

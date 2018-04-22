@@ -16,7 +16,7 @@ class RacerStandingsStore {
 
 	@action
 	async _fetchRacerStandings() {
-		return this._appViewModel.worker.operationWithProgressAsync(async () => {
+		return this._appViewModel.operationManager.runWithProgressAsync(async () => {
 			try {
 				const driverStandings = await ErgastApi.getDriverStandings("2018");
 

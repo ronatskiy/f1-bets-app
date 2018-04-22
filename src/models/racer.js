@@ -1,8 +1,8 @@
 import { observable, action, runInAction } from "mobx";
 
 class RacerListModel {
-	constructor({ worker, racerService }) {
-		this._worker = worker;
+	constructor({ operationManager, racerService }) {
+		this._operationManager = operationManager;
 		this._racerService = racerService;
 		this._loadRacers();
 	}
@@ -11,7 +11,7 @@ class RacerListModel {
 
 	@action
 	async _loadRacers() {
-		return this._worker.operationWithProgressAsync(async () => {
+		return this._operationManager.runWithProgressAsync(async () => {
 			try {
 				const racers = await this._racerService.fetchAll();
 

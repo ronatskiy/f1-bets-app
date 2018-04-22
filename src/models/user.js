@@ -4,14 +4,14 @@ export default class UsersModel {
 	/**
 	 * @param {UserService} userService
 	 * @param {SessionModel} sessionModel
-	 * @param {WorkerModel} worker
+	 * @param {OperationManager} operationManager
 	 */
-	constructor({ userService, sessionModel, worker }) {
+	constructor({ userService, sessionModel, operationManager }) {
 		this._userService = userService;
-		this._worker = worker;
+		this._operationManager = operationManager;
 		this._session = sessionModel;
 
-		this._worker.operationWithProgressAsync(() => this.fetchUsers());
+		this._operationManager.runWithProgressAsync(() => this.fetchUsers());
 	}
 
 	@observable users = [];
@@ -24,7 +24,7 @@ export default class UsersModel {
 	@action
 	fetchUsers() {
 		try {
-			return this._worker.operationWithProgressAsync(
+			return this._operationManager.runWithProgressAsync(
 				runInAction(async () => {
 					return (this.users = await this._userService.fetchAll());
 				}),
@@ -45,7 +45,7 @@ export default class UsersModel {
 			return;
 		}
 
-		return this._worker.operationWithProgressAsync(async () => {
+		return this._operationManager.runWithProgressAsync(async () => {
 			return await this._userService.addOrUpdate(user);
 		});
 	}

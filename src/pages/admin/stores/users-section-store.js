@@ -44,7 +44,7 @@ export default class UsersSectionStore {
 			return;
 		}
 
-		return this._appViewModel.worker.operationWithProgressAsync(async () => {
+		return this._appViewModel.operationManager.runWithProgressAsync(async () => {
 			await this._appViewModel.usersModel.addOrUpdate(user);
 
 			this.userForEdit = null;
@@ -61,25 +61,4 @@ export default class UsersSectionStore {
 
 		return await this._appViewModel.usersModel.fetchUsers();
 	}
-
-	showRaceResultsPanel() {
-		this.isRaceResultsPanelVisible = true;
-	}
-
-	// async addOrUpdateRaceResults(js) {
-	// 	if (!this.selectedRace) {
-	// 		window.alert("Выберите гонку!");
-	// 		return;
-	// 	}
-	//
-	// 	if (Object.values(js).filter(racer => Boolean(racer)).length < 10) {
-	// 		window.alert("Не все гоншики выбраны!");
-	// 		return;
-	// 	}
-	//
-	// 	this._rootStore.operationWithProgressAsync(() => {
-	// 		this._raceInfoService.addOrUpdateRaceResult(this.selectedRace.id, js);
-	// 		this.isRaceResultsPanelVisible = false;
-	// 	});
-	// }
 }

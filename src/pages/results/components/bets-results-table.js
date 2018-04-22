@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import cn from "classnames";
-
 import { Table } from "reactstrap";
+
 import BetResultCell from "./bet-result-cell";
 import UserBetsResult, { OFFICIAL_RESULTS_USER_ID } from "../models/user-bets-result";
 import User from "../../../domain/user";

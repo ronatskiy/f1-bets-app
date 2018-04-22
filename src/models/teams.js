@@ -10,7 +10,7 @@ class TeamsStore {
 	@observable teams = [];
 
 	async _loadTeams() {
-		return this._worker.operationWithProgressAsync(async () => {
+		return this._worker.runWithProgressAsync(async () => {
 			try {
 				return (this.teams = await this._teamService.fetchAll());
 			} catch (error) {

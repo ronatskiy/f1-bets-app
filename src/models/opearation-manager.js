@@ -1,7 +1,6 @@
-import { observable, action, runInAction } from "mobx";
-import { computed } from "mobx/lib/mobx";
+import { observable, action, runInAction, computed } from "mobx";
 
-export default class WorkerModel {
+export default class OperationManager {
 	@observable pendingTasksCount = 0;
 
 	@computed
@@ -10,14 +9,14 @@ export default class WorkerModel {
 	}
 
 	@action
-	operationWithProgress(fn) {
+	runWithProgress(fn) {
 		this.pendingTasksCount++;
 		fn();
 		this.pendingTasksCount--;
 	}
 
 	@action
-	async operationWithProgressAsync(fn) {
+	async runWithProgressAsync(fn) {
 		this.pendingTasksCount++;
 
 		try {

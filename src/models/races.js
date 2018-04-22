@@ -4,8 +4,8 @@ import isEqual from "lodash.isequal";
 import { isAfter } from "./helpers";
 
 class RacesModel {
-	constructor({ worker, raceInfoService, timeWatcher }) {
-		this._worker = worker;
+	constructor({ operationManager, raceInfoService, timeWatcher }) {
+		this._operationManager = operationManager;
 		this._timeWatcher = timeWatcher;
 		this._raceInfoService = raceInfoService;
 		this.fetchRaces();
@@ -26,7 +26,7 @@ class RacesModel {
 
 	@action
 	async fetchRaces() {
-		return this._worker.operationWithProgressAsync(async () => {
+		return this._operationManager.runWithProgressAsync(async () => {
 			try {
 				const races = await this._raceInfoService.fetchAll();
 
@@ -41,7 +41,7 @@ class RacesModel {
 
 	@action
 	async addNewBet(bet) {
-		return this._worker.operationWithProgressAsync(async () => {
+		return this._operationManager.runWithProgressAsync(async () => {
 			try {
 				await this._raceInfoService.addOrUpdateBet(bet, this.nextRace.id);
 				await this.fetchRaces();

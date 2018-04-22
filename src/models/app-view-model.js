@@ -1,7 +1,7 @@
 import { computed, when } from "mobx";
 
 import TimeWatcher from "./time-watcher";
-import WorkerModel from "./worker";
+import OperationManager from "./opearation-manager";
 import SessionModel from "./session";
 import { isAfter, isInInterval, subtractTime } from "./helpers";
 import RacerListModel from "./racer";
@@ -18,11 +18,19 @@ export default class AppViewModel {
 		this._isProductionMode = configProvider.isProductionMode();
 		const tickInterval = configProvider.getTickInterval();
 		this._timeWatcher = new TimeWatcher(tickInterval);
-		this._worker = new WorkerModel();
-		this._sessionModel = new SessionModel({ authenticationService, worker: this._worker });
-		this._racerListModel = new RacerListModel({ racerService, worker: this._worker });
-		this._racesModel = new RacesModel({ raceInfoService, worker: this._worker, timeWatcher: this._timeWatcher });
-		this._usersModel = new UsersModel({ worker: this._worker, userService, sessionModel: this._sessionModel });
+		this._operationManager = new OperationManager();
+		this._sessionModel = new SessionModel({ authenticationService, operationManager: this._operationManager });
+		this._racerListModel = new RacerListModel({ racerService, operationManager: this._operationManager });
+		this._racesModel = new RacesModel({
+			raceInfoService,
+			operationManager: this._operationManager,
+			timeWatcher: this._timeWatcher,
+		});
+		this._usersModel = new UsersModel({
+			operationManager: this._operationManager,
+			userService,
+			sessionModel: this._sessionModel,
+		});
 
 		// Load next race info if current race is started.
 		when(
@@ -146,9 +154,9 @@ export default class AppViewModel {
 	}
 
 	/**
-	 * @return {WorkerModel}
+	 * @return {OperationManager}
 	 */
-	get worker() {
-		return this._worker;
+	get operationManager() {
+		return this._operationManager;
 	}
 }

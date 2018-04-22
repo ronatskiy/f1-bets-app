@@ -8,13 +8,13 @@ import User from "../domain/user";
 export default class SessionModel {
 	/**
 	 * @param {AuthenticationService} authenticationService
-	 * @param {WorkerModel} worker
+	 * @param {OperationManager} operationManager
 	 */
-	constructor({ authenticationService, worker }) {
+	constructor({ authenticationService, operationManager }) {
 		this._authService = authenticationService;
-		this._worker = worker;
+		this._operationManager = operationManager;
 
-		this._worker.operationWithProgressAsync(async () => {
+		this._operationManager.runWithProgressAsync(async () => {
 			const user = await authenticationService.authenticate();
 
 			if (user instanceof User) {
@@ -41,7 +41,7 @@ export default class SessionModel {
 
 	@action
 	async login({ login, password }) {
-		return this._worker.operationWithProgressAsync(async () => {
+		return this._operationManager.runWithProgressAsync(async () => {
 			const resp = await this._authService.login({ login, password });
 
 			if (resp instanceof User) {
@@ -65,6 +65,6 @@ export default class SessionModel {
 
 	@action
 	async signIn({ login, name, password }) {
-		return this._worker.operationWithProgressAsync(() => this._authService.signIn({ login, name, password }));
+		return this._operationManager.runWithProgressAsync(() => this._authService.signIn({ login, name, password }));
 	}
 }

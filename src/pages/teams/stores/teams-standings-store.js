@@ -16,7 +16,7 @@ class TeamsStandingsStore {
 
 	@action
 	async _fetchStandings() {
-		this._appViewModel.worker.operationWithProgressAsync(async () => {
+		await this._appViewModel.operationManager.runWithProgressAsync(async () => {
 			try {
 				const constructorStandings = await ErgastApi.getConstructorStandings("2018");
 
