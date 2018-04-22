@@ -40,23 +40,24 @@ class App extends Component {
 		const { hasPendingTasks, isUserAuthenticated, isUserAdmin, isProduction } = appStore;
 
 		return (
-			<div className="layout">
-				{!isProduction && <DevelopmentModeAlert />}
+			<React.Fragment>
 				{hasPendingTasks && <Loader />}
-
-				<Header className="layout__header" />
-				<main className="layout__main">
-					{AppRoutesConfig.map(route => (
-						<Route
-							key={route.id}
-							isAuthenticated={isUserAuthenticated}
-							isCurrentUserAdmin={isUserAdmin}
-							{...route}
-						/>
-					))}
-				</main>
-				<Footer className="layout__footer" />
-			</div>
+				<div className="layout">
+					{!isProduction && <DevelopmentModeAlert />}
+					<Header className="layout__header" />
+					<main className="layout__main">
+						{AppRoutesConfig.map(route => (
+							<Route
+								key={route.id}
+								isAuthenticated={isUserAuthenticated}
+								isCurrentUserAdmin={isUserAdmin}
+								{...route}
+							/>
+						))}
+					</main>
+					<Footer className="layout__footer" />
+				</div>
+			</React.Fragment>
 		);
 	}
 }

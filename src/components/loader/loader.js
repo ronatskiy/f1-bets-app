@@ -1,6 +1,14 @@
 import React from "react";
-import "./styles.css";
+import "./loader.css";
 
-const Loader = () => <div className="loader" />;
+const Loader = () => (
+	<div className="loader__overlay">
+		<div className="loader">
+			<div className="loader__plate loader__plate--first" />
+			<div className="loader__plate loader__plate--second" />
+			<div className="loader__plate loader__plate--third" />
+		</div>
+	</div>
+);
 
 export default Loader;
