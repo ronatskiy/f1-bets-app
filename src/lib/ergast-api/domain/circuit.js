@@ -12,13 +12,13 @@ class Circuit {
 	 * @param {string} circuitId
 	 * @param {string} url
 	 * @param {ErgastApi~Location} Location
-	 * @param {string} CircuitName
+	 * @param {string} circuitName
 	 */
-	constructor({ circuitId, url, Location, CircuitName }) {
+	constructor({ circuitId, url, Location, circuitName }) {
 		this.circuitId = circuitId;
 		this.url = url;
 		this.location = new LocationType(Location);
-		this.circuitName = CircuitName;
+		this.circuitName = circuitName;
 	}
 }
 
