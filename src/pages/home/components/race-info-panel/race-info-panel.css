@@ -3,7 +3,7 @@
 	padding-top: 2rem;
 	text-align: center;
 }
-.race-info-panel__country {
+.race-info-panel__country-info {
 	margin-bottom: 1rem;
 }
 .race-info-panel__grand-prix-title {
@@ -24,15 +24,4 @@
 	margin-bottom: 0.5rem;
 	margin-top: 0.5rem;
 	font-size: 0.8rem;
-}
-
-.country__flag {
-	margin-bottom: 0.5rem;
-}
-.country__flag-image {
-	max-width: 4rem;
-}
-
-.country__name {
-	text-transform: uppercase;
 }

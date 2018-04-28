@@ -1,0 +1,10 @@
+.country-info {}
+.country-info__flag {
+	margin-bottom: 0.5rem;
+}
+.country-info__flag-image {
+	max-width: 4rem;
+}
+.country-info__country-name {
+	text-transform: uppercase;
+}

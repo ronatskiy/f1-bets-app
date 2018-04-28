@@ -6,6 +6,7 @@ import PrimaryButton from "../../../../components/common/primary-button";
 import WeekendInfoModel from "../../models/weekend-info-model/weekend-info-model";
 import "./race-info-panel.css";
 import TextLink from "../../../../components/common/text-link";
+import CountryInfo from "./country-info";
 
 class RaceInfoPanel extends React.Component {
 	static propTypes = {
@@ -34,12 +35,11 @@ class RaceInfoPanel extends React.Component {
 			<Container className="race-info-panel">
 				<Row>
 					<Col xs={12}>
-						<div className="race-info-panel__country">
-							<div className="country__flag">
-								<img className="country__flag-image" src={flagUrl} alt={countryName} />
-							</div>
-							<div className="country__name">{countryName}</div>
-						</div>
+						<CountryInfo
+							className="race-info-panel__country-info"
+							countryName={countryName}
+							flagUrl={flagUrl}
+						/>
 						<TextLink target="_blank" href={circuitUrl} className="race-info-panel__grand-prix-title">
 							{raceTitle}
 						</TextLink>
