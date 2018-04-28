@@ -1,0 +1,5 @@
+a.text-link,
+a.text-link:hover,
+a.text-link:visited {
+	color: var(--default-text);
+}
