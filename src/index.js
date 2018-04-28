@@ -10,6 +10,7 @@ import "./vendor/index";
 
 import AppComponent from "./components/app";
 import Application from "./application";
+import ScrollToTop from "./components/common/scroll-to-top";
 
 useStrict(true);
 
@@ -19,7 +20,9 @@ const stores = app.getStores();
 ReactDOM.render(
 	<Provider {...stores}>
 		<Router>
-			<AppComponent />
+			<ScrollToTop>
+				<AppComponent />
+			</ScrollToTop>
 		</Router>
 	</Provider>,
 	document.getElementById("root"),
