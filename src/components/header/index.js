@@ -5,7 +5,6 @@ import { inject, observer } from "mobx-react";
 import NavigationBar from "./components/navigation-bar/index";
 import NextRaceNotifier from "./components/next-race-notifier/next-race-notifier";
 import Race from "../../domain/race";
-import { Container } from "reactstrap";
 
 @inject("headerStore")
 @observer
@@ -30,9 +29,9 @@ class Header extends React.Component {
 			<header className={className}>
 				<NavigationBar />
 				{nextRace && (
-					<Container>
+					<section className="colors--very-light-green">
 						<NextRaceNotifier nextRace={nextRace} currentTimeUtcString={currentTimeUtcString} />
-					</Container>
+					</section>
 				)}
 			</header>
 		);

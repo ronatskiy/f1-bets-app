@@ -1,7 +1,7 @@
 import { computed, observable, action, runInAction } from "mobx";
 
 import isEqual from "lodash.isequal";
-import { isAfter } from "./helpers";
+import { isAfter } from "../helpers/time-modification";
 
 class RacesModel {
 	constructor({ operationManager, raceInfoService, timeWatcher }) {

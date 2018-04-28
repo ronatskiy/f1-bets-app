@@ -1,4 +1,4 @@
-import HomePageStore from "./home";
+import HomePageStore from "../../pages/home/stores/home";
 import RacerStandingsStore from "../../pages/racers-list/stores/racer-standings-store";
 import TeamsStandingsStore from "../../pages/teams/stores/teams-standings-store";
 import AdminPageStore from "../../pages/admin/stores/admin-page-store";

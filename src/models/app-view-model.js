@@ -3,33 +3,45 @@ import { computed, when } from "mobx";
 import TimeWatcher from "./time-watcher";
 import OperationManager from "./opearation-manager";
 import SessionModel from "./session";
-import { isAfter, isInInterval, subtractTime } from "./helpers";
+import { isAfter, isInInterval, subtractTime } from "../helpers/time-modification";
 import RacerListModel from "./racer";
 import RacesModel from "./races";
 import UsersModel from "./user";
+import FormulaOneOfficialModel from "./formula-one-official";
 
 const VOTE_CLOSING_TIME = 15; // minutes
 
 export default class AppViewModel {
 	constructor(services, configProvider) {
-		const { userService, authenticationService, raceInfoService, racerService } = services;
+		const {
+			userService,
+			authenticationService,
+			raceInfoService,
+			racerService,
+			formulaOneOfficialDataService,
+		} = services;
 
 		this._raceInfoService = raceInfoService;
 		this._isProductionMode = configProvider.isProductionMode();
 		const tickInterval = configProvider.getTickInterval();
 		this._timeWatcher = new TimeWatcher(tickInterval);
-		this._operationManager = new OperationManager();
-		this._sessionModel = new SessionModel({ authenticationService, operationManager: this._operationManager });
-		this._racerListModel = new RacerListModel({ racerService, operationManager: this._operationManager });
+		const operationManager = new OperationManager();
+		this._operationManager = operationManager;
+		this._sessionModel = new SessionModel({ authenticationService, operationManager });
+		this._racerListModel = new RacerListModel({ racerService, operationManager });
 		this._racesModel = new RacesModel({
 			raceInfoService,
-			operationManager: this._operationManager,
+			operationManager,
 			timeWatcher: this._timeWatcher,
 		});
 		this._usersModel = new UsersModel({
-			operationManager: this._operationManager,
+			operationManager,
 			userService,
 			sessionModel: this._sessionModel,
+		});
+		this._formulaOneOfficialModel = new FormulaOneOfficialModel({
+			formulaOneOfficialDataService,
+			operationManager,
 		});
 
 		// Load next race info if current race is started.
@@ -158,5 +170,12 @@ export default class AppViewModel {
 	 */
 	get operationManager() {
 		return this._operationManager;
+	}
+
+	/**
+	 * @return {FormulaOneOfficialModel}
+	 */
+	get formulaOneOfficial() {
+		return this._formulaOneOfficialModel;
 	}
 }

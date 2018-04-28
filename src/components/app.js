@@ -45,7 +45,7 @@ class App extends Component {
 				<div className="layout">
 					{!isProduction && <DevelopmentModeAlert />}
 					<Header className="layout__header" />
-					<main className="layout__main">
+					<main className="layout__main colors--very-light-grey">
 						{AppRoutesConfig.map(route => (
 							<Route
 								key={route.id}

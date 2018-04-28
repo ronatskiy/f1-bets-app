@@ -1,3 +1,5 @@
+// based on https://www.npmjs.com/package/countryjs
+
 export const countryList = [
 	{
 		name: "Australia",
@@ -12,6 +14,20 @@ export const countryList = [
 		flag: "http://upload.wikimedia.org/wikipedia/commons/4/41/Flag_of_Austria.svg",
 		iso2: "AT",
 		iso3: "AUT",
+	},
+	{
+		name: "Azerbaijan",
+		demonym: "Azerbaijani",
+		flag: "http://upload.wikimedia.org/wikipedia/commons/d/dd/Flag_of_Azerbaijan.svg",
+		iso2: "AZ",
+		iso3: "AZE",
+	},
+	{
+		name: "Bahrain",
+		demonym: "Bahraini",
+		flag: "https://upload.wikimedia.org/wikipedia/commons/2/2c/Flag_of_Bahrain.svg",
+		iso2: "BH",
+		iso3: "BHR",
 	},
 	{
 		name: "Belgium",
@@ -40,6 +56,13 @@ export const countryList = [
 		flag: "https://upload.wikimedia.org/wikipedia/commons/7/78/Flag_of_Chile.svg",
 		iso2: "CL",
 		iso3: "CHL",
+	},
+	{
+		name: "China",
+		demonym: "Chinese",
+		flag: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Flag_of_the_People%27s_Republic_of_China.svg",
+		iso2: "CN",
+		iso3: "CHN",
 	},
 	{
 		name: "Colombia",
@@ -189,6 +212,14 @@ export const countryList = [
 		iso3: "RUS",
 	},
 	{
+		name: "Singapore",
+		demonym: "Singaporean",
+		flag: "https://upload.wikimedia.org/wikipedia/commons/4/48/Flag_of_Singapore.svg",
+		iso2: "SG",
+		iso3: "SGP",
+		altSpellings: ["SG", "Singapura", "Republik Singapura"],
+	},
+	{
 		name: "South Africa",
 		demonym: "South African",
 		flag: "https://upload.wikimedia.org/wikipedia/commons/a/af/Flag_of_South_Africa.svg",
@@ -225,6 +256,7 @@ export const countryList = [
 	},
 	{
 		name: "United Kingdom",
+		altSpellings: ["UK"],
 		demonym: "British",
 		flag: "https://upload.wikimedia.org/wikipedia/commons/a/ae/Flag_of_the_United_Kingdom.svg",
 		iso2: "GB",
@@ -232,10 +264,19 @@ export const countryList = [
 	},
 	{
 		name: "United States",
+		altSpellings: ["USA"],
 		demonym: "American",
 		flag: "https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg",
 		iso2: "US",
 		iso3: "USA",
+	},
+	{
+		name: "United Arab Emirates",
+		demonym: "Emirati",
+		flag: "https://upload.wikimedia.org/wikipedia/commons/c/cb/Flag_of_the_United_Arab_Emirates.svg",
+		iso2: "AE",
+		iso3: "ARE",
+		altSpellings: ["AE", "UAE"],
 	},
 	{
 		name: "Uruguay",
@@ -255,6 +296,18 @@ export const countryList = [
 
 export function getFlagUrl(nationality) {
 	const countryInfo = countryList.find(({ demonym }) => demonym === nationality);
+
+	if (countryInfo) {
+		return countryInfo.flag || "";
+	}
+
+	return "";
+}
+
+export function getFlagUrlByCountryName(countryName) {
+	const countryInfo =
+		countryList.find(({ name }) => name === countryName) ||
+		countryList.find(({ altSpellings }) => altSpellings && altSpellings.some(item => item === countryName));
 
 	if (countryInfo) {
 		return countryInfo.flag || "";

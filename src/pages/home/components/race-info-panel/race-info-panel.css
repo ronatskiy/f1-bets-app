@@ -1,0 +1,38 @@
+.race-info-panel {
+	padding-bottom: 3rem;
+	padding-top: 2rem;
+	text-align: center;
+}
+.race-info-panel__country {
+	margin-bottom: 1rem;
+}
+.race-info-panel__grand-prix-title {
+	font-size: 1.2rem;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+.race-info-panel__weekend-schedule {
+	text-align: left;
+	font-size: 0.8rem;
+	max-width: 40rem;
+	margin: 0 auto;
+}
+.race-info-panel__stage-info {
+	margin-bottom: 0.5rem;
+}
+.race-info-panel__weekend-interval {
+	margin-bottom: 0.5rem;
+	margin-top: 0.5rem;
+	font-size: 0.8rem;
+}
+
+.country__flag {
+	margin-bottom: 0.5rem;
+}
+.country__flag-image {
+	max-width: 4rem;
+}
+
+.country__name {
+	text-transform: uppercase;
+}

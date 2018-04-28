@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { inject, observer } from "mobx-react";
+import { observable, action } from "mobx";
 import {
 	Collapse,
 	Navbar,
@@ -13,10 +15,8 @@ import {
 	DropdownMenu,
 	DropdownItem,
 } from "reactstrap";
-import { inject, observer } from "mobx-react";
-import { observable, action } from "mobx";
 
-import "./styles.css";
+import "./navigation-bar.css";
 import { pathNames } from "../../../../routes/routes";
 import ProfileDropdown from "./profile-dropdown";
 import User from "../../../../domain/user";
@@ -45,7 +45,7 @@ class NavigationBar extends React.Component {
 		const { isAuthenticated, authenticatedUser, isBetsAllowed } = this.props;
 
 		return (
-			<Navbar color="dark" dark expand="md" fixed="top">
+			<Navbar className="navigation-bar" color="dark" dark expand="md" fixed="top">
 				<Container>
 					<Link to={pathNames.HOME} className="navbar-brand">
 						Formula 1 Bets App

@@ -1,22 +1,24 @@
-.header__more-info-link {
+.next-race-notifier {}
+.next-race-notifier__race-info {
+	align-items: center;
+	display: flex;
+	font-size: small;
 }
 
-.next-race-notifier {
-	min-height: 60px;
-	padding-top: 1.75rem;
-	padding-bottom: 2rem;
+.next-race-notifier__race-title {
+	font-weight: normal;
+	margin-left: 5px;
+	text-transform: uppercase;
 }
 
-.next-race-notifier__pseudo-link {
-	border-bottom: 1px dotted;
-}
-
-.next-race-notifier__race-info-tooltip {
-	min-width: 300px;
+.next-race-notifier__countdown-timer {
+	font-size: small;
 }
 
 @media (max-width: 575.98px) {
-	.next-race-notifier__countdown-title {
+	.next-race-notifier__race-info {
+		justify-content: center;
+		flex-direction: column;
 		text-align: center;
 	}
 

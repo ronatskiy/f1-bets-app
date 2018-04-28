@@ -1,3 +1,7 @@
+.navigation-bar {
+	min-height: 60px;
+}
+
 .nav-bar-drop-down-menu {}
 .nav-bar-drop-down-menu__link,
 .nav-bar-drop-down-menu__link:hover,
