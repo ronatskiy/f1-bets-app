@@ -35,3 +35,15 @@ export function subtractTime(time, timePeriod, unit = "minute") {
 export function isAfter(currentTime, timeToTest) {
 	return wrapToMomentIfNeeded(currentTime).isAfter(wrapToMomentIfNeeded(timeToTest));
 }
+
+/**
+ * @param {moment.Moment | string} time
+ * @param {number} timePeriod
+ * @param {string} unit
+ * @return {moment.Moment}
+ */
+export function addTime(time, timePeriod, unit = "minute") {
+	time = wrapToMomentIfNeeded(time);
+
+	return time.add(timePeriod, unit);
+}
