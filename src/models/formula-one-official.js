@@ -12,18 +12,16 @@ export default class FormulaOneOfficialModel {
 		this._fetchRacesSchedule();
 	}
 
-	@observable racesSchedule = [];
+	/** @type {ExtendedRoundInfo[]} */
+	@observable roundsInfo = [];
 
 	async _fetchRacesSchedule() {
 		return this._operationManager.runWithProgressAsync(async () => {
 			try {
-				const races = await this._service.fetchRaceScheduleInfo();
+				const roundsInfo = await this._service.fetchSeasonRoundsSchedule();
 
 				runInAction(() => {
-					this.racesSchedule = races.map(race => ({
-						...race,
-						calendar: this._service.findCalendarByRoundNumber(race.round),
-					}));
+					this.roundsInfo = roundsInfo;
 				});
 			} catch (e) {
 				console.error(e.message);

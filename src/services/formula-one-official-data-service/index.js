@@ -1,17 +1,20 @@
-import ErgastApi from "../../lib/ergast-api";
-import calendatData from "./calendar-data";
+import createExtendedRoundInfo from "./helpers/create-extended-round-info";
 
 export default class FormulaOneOfficialDataService {
 	/**
-	 * @return {Promise<ErgastApi~Race[]>}
+	 * @param {FormulaOneOfficialDataRepository} formulaOneOfficialDataRepository
 	 */
-	async fetchRaceScheduleInfo() {
-		const raceSchedules = await ErgastApi.getRaceScheduleInfo();
-
-		return raceSchedules.races;
+	constructor({ formulaOneOfficialDataRepository }) {
+		this._repository = formulaOneOfficialDataRepository;
 	}
 
-	findCalendarByRoundNumber(round = 1) {
-		return calendatData.find(item => item.round === Number(round));
+	/**
+	 * @return {Promise<ExtendedRoundInfo[]>}
+	 */
+	async fetchSeasonRoundsSchedule() {
+		const roundSchedules = await this._repository.getF1Calendar();
+		const raceTable = await this._repository.getRaceSchedule();
+
+		return raceTable.races.map(race => createExtendedRoundInfo(race, roundSchedules));
 	}
 }

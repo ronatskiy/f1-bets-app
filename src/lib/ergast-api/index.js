@@ -41,7 +41,7 @@ class ErgastApi {
 	 * @param {string | "all"} round
 	 * @return {Promise<RaceTable>}
 	 */
-	static async getRaceScheduleInfo(season = "2018", round = "all") {
+	static async getRaceSchedule(season = "2018", round = "all") {
 		// http://ergast.com/api/f1/{season}/{round}
 		const resp = await axios.get(ErgastApi._createJsonUrl(season, round !== "all" ? round : undefined));
 

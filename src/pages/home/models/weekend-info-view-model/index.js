@@ -6,61 +6,62 @@ import { shortDate } from "../../../../helpers/prettify-date";
 
 export default class WeekendInfoModel {
 	/**
-	 * @param {ErgastApi~Race} raceInfo
+	 * @param {ExtendedRoundInfo} roundInfo
 	 */
-	constructor(raceInfo) {
-		this._race = raceInfo;
+	constructor(roundInfo) {
+		this._roundInfo = roundInfo;
 	}
 
 	get _firstPracticeStartTime() {
-		if (this._race.calendar) {
-			return this._race.calendar.practice_1;
+		if (this._roundInfo.roundSchedule) {
+			return this._roundInfo.roundSchedule.practices[0] || "";
 		}
 
 		return "";
 	}
 
 	get _secondPracticeStartTime() {
-		if (this._race.calendar) {
-			return this._race.calendar.practice_2;
+		if (this._roundInfo.roundSchedule) {
+			return this._roundInfo.roundSchedule.practices[1] || "";
 		}
 
 		return "";
 	}
 
 	get _thirdPracticeStartTime() {
-		if (this._race.calendar) {
-			return this._race.calendar.practice_3;
+		if (this._roundInfo.roundSchedule) {
+			return this._roundInfo.roundSchedule.practices[2] || "";
 		}
 
 		return "";
 	}
 
 	get _qualificationStartTime() {
-		if (this._race.calendar) {
-			return this._race.calendar.qualification;
+		if (this._roundInfo.roundSchedule) {
+			return this._roundInfo.roundSchedule.qualification;
 		}
 
 		return "";
 	}
 
 	get raceStartTime() {
-		if (this._race.calendar) {
-			return this._race.calendar.race;
+		if (this._roundInfo.roundSchedule) {
+			return this._roundInfo.roundSchedule.race;
 		}
-		return this._race.date + "T" + this._race.time;
+
+		return "";
 	}
 
 	get countryName() {
-		return this._race.circuit.location.country;
+		return this._roundInfo.circuit.countryName;
 	}
 
 	get circuitUrl() {
-		return this._race.circuit.url;
+		return this._roundInfo.circuit.url;
 	}
 
 	get raceUrl() {
-		return this._race.url;
+		return this._roundInfo.raceUrl;
 	}
 
 	get flagUrl() {
@@ -68,7 +69,7 @@ export default class WeekendInfoModel {
 	}
 
 	get raceTitle() {
-		return `Formula 1 ${this._race.season} ${this._race.raceName}`;
+		return `Formula 1 ${this._roundInfo.season} ${this._roundInfo.raceName}`;
 	}
 
 	get practices() {

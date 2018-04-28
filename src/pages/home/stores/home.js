@@ -1,6 +1,6 @@
 import { computed } from "mobx";
 import { isAfter } from "../../../helpers/time-modification";
-import WeekendInfoModel from "../models/weekend-info-model/index";
+import WeekendInfoModel from "../models/weekend-info-view-model/index";
 
 export default class HomePageStore {
 	/**
@@ -30,7 +30,7 @@ export default class HomePageStore {
 	get nextRaceInfo() {
 		const now = this._appViewModel.timeWatcher.currentTime;
 
-		const [nextRace] = this._appViewModel.formulaOneOfficial.racesSchedule
+		const [nextRace] = this._appViewModel.formulaOneOfficial.roundsInfo
 			.map(race => new WeekendInfoModel(race))
 			.filter(r => isAfter(r.raceStartTime, now));
 
@@ -41,7 +41,7 @@ export default class HomePageStore {
 	get previousRaces() {
 		const now = this._appViewModel.timeWatcher.currentTime;
 
-		return this._appViewModel.formulaOneOfficial.racesSchedule
+		return this._appViewModel.formulaOneOfficial.roundsInfo
 			.map(race => new WeekendInfoModel(race))
 			.filter(r => !isAfter(r.raceStartTime, now))
 			.reverse();

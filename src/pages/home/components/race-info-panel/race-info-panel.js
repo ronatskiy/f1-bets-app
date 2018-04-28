@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Col, Container, Row } from "reactstrap";
 
 import PrimaryButton from "../../../../components/common/primary-button";
-import WeekendInfoModel from "../../models/weekend-info-model/index";
+import WeekendInfoModel from "../../models/weekend-info-view-model/index";
 import "./race-info-panel.css";
 import TextLink from "../../../../components/common/text-link";
 import CountryInfo from "./country-info";
