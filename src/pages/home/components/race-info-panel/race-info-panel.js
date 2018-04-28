@@ -5,6 +5,7 @@ import { Col, Container, Row } from "reactstrap";
 import PrimaryButton from "../../../../components/common/primary-button";
 import WeekendInfoModel from "../../models/weekend-info-model/weekend-info-model";
 import "./race-info-panel.css";
+import TextLink from "../../../../components/common/text-link";
 
 class RaceInfoPanel extends React.Component {
 	static propTypes = {
@@ -18,7 +19,16 @@ class RaceInfoPanel extends React.Component {
 
 	render() {
 		const { raceInfo, commandButton: CommandButton } = this.props;
-		const { flagUrl, countryName, raceTitle, weekendInterval, practices, qualification, race } = raceInfo;
+		const {
+			flagUrl,
+			countryName,
+			raceTitle,
+			weekendInterval,
+			practices,
+			qualification,
+			race,
+			circuitUrl,
+		} = raceInfo;
 
 		return (
 			<Container className="race-info-panel">
@@ -30,7 +40,9 @@ class RaceInfoPanel extends React.Component {
 							</div>
 							<div className="country__name">{countryName}</div>
 						</div>
-						<div className="race-info-panel__grand-prix-title">{raceTitle}</div>
+						<TextLink target="_blank" href={circuitUrl} className="race-info-panel__grand-prix-title">
+							{raceTitle}
+						</TextLink>
 					</Col>
 				</Row>
 				<Row>
