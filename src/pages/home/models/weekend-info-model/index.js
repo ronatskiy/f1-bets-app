@@ -59,6 +59,10 @@ export default class WeekendInfoModel {
 		return this._race.circuit.url;
 	}
 
+	get raceUrl() {
+		return this._race.url;
+	}
+
 	get flagUrl() {
 		return getFlagUrlByCountryName(this.countryName);
 	}

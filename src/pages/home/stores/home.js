@@ -1,6 +1,6 @@
 import { computed } from "mobx";
 import { isAfter } from "../../../helpers/time-modification";
-import WeekendInfoModel from "../models/weekend-info-model/weekend-info-model";
+import WeekendInfoModel from "../models/weekend-info-model/index";
 
 export default class HomePageStore {
 	/**

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Col, Container, Row } from "reactstrap";
 
 import PrimaryButton from "../../../../components/common/primary-button";
-import WeekendInfoModel from "../../models/weekend-info-model/weekend-info-model";
+import WeekendInfoModel from "../../models/weekend-info-model/index";
 import "./race-info-panel.css";
 import TextLink from "../../../../components/common/text-link";
 import CountryInfo from "./country-info";
@@ -29,6 +29,7 @@ class RaceInfoPanel extends React.Component {
 			qualification,
 			race,
 			circuitUrl,
+			raceUrl,
 		} = raceInfo;
 
 		return (
@@ -39,8 +40,9 @@ class RaceInfoPanel extends React.Component {
 							className="race-info-panel__country-info"
 							countryName={countryName}
 							flagUrl={flagUrl}
+							countryUrl={circuitUrl}
 						/>
-						<TextLink target="_blank" href={circuitUrl} className="race-info-panel__grand-prix-title">
+						<TextLink target="_blank" href={raceUrl} className="race-info-panel__grand-prix-title">
 							{raceTitle}
 						</TextLink>
 					</Col>
