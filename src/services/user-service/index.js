@@ -1,4 +1,4 @@
-import { fetchData, updateData } from "../web-api";
+import { fetchData, updateData } from "../helpers/web-api";
 import User from "../../domain/user";
 
 /**
