@@ -30,6 +30,10 @@ class AppStore {
 		return this._appViewModel.isUserAuthenticated;
 	}
 
+	get isUserAlreadyBet() {
+		return this._appViewModel.isUserAlreadyBet;
+	}
+
 	get isUserAdmin() {
 		return this._appViewModel.isUserAdmin;
 	}

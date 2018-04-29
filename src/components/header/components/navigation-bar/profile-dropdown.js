@@ -23,9 +23,9 @@ const ProfileDropdown = ({ user, isBetsAllowed }) => {
 						</NavLink>
 					</DropdownItem>
 				)}
-				<DropdownItem disabled={!isBetsAllowed}>
-					<NavLink path={pathNames.BETS} className="nav-bar-drop-down-menu__link" disabled={!isBetsAllowed}>
-						Голосование
+				<DropdownItem disabled>
+					<NavLink path={pathNames.BETS} disabled className="nav-bar-drop-down-menu__link">
+						Редактировать профиль
 					</NavLink>
 				</DropdownItem>
 				<DropdownItem>

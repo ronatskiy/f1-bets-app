@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 
 import PrimaryButton from "../../../components/common/primary-button";
 import { pathNames } from "../../../routes/routes";
+import { BET_BUTTON_CHANGE_VOTE_TEXT, BET_BUTTON_VOTE_TEXT } from "../../../constants/texts";
 
 @withRouter
 @inject(stores => ({
@@ -36,11 +37,7 @@ class BetButton extends React.Component {
 
 		if (isBetsAllowed) {
 			if (isAuthenticated) {
-				if (!isUserAlreadyBet) {
-					text = "Сделать прогноз";
-				} else {
-					text = "Изменить прогноз";
-				}
+				text = !isUserAlreadyBet ? BET_BUTTON_VOTE_TEXT : BET_BUTTON_CHANGE_VOTE_TEXT;
 			} else {
 				text = "Войти для голосования";
 			}

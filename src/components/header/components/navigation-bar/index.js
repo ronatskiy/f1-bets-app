@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 import { inject, observer } from "mobx-react";
 import { observable, action } from "mobx";
 import {
@@ -20,17 +19,21 @@ import "./navigation-bar.css";
 import { pathNames } from "../../../../routes/routes";
 import ProfileDropdown from "./profile-dropdown";
 import User from "../../../../domain/user";
+import NavLink from "../../../common/smart-nav-link";
+import { BET_BUTTON_CHANGE_VOTE_TEXT, BET_BUTTON_VOTE_TEXT } from "../../../../constants/texts";
 
 @inject(stores => ({
 	isAuthenticated: stores.appStore.isUserAuthenticated,
 	authenticatedUser: stores.appStore.authenticatedUser,
 	isBetsAllowed: stores.appStore.isBetsAllowed,
+	isUserAlreadyBet: stores.appStore.isUserAlreadyBet,
 }))
 @observer
 class NavigationBar extends React.Component {
 	static propTypes = {
 		isAuthenticated: PropTypes.bool.isRequired,
 		isBetsAllowed: PropTypes.bool.isRequired,
+		isUserAlreadyBet: PropTypes.bool.isRequired,
 		authenticatedUser: PropTypes.instanceOf(User),
 	};
 
@@ -42,49 +45,77 @@ class NavigationBar extends React.Component {
 	};
 
 	render() {
-		const { isAuthenticated, authenticatedUser, isBetsAllowed } = this.props;
+		const { isAuthenticated, authenticatedUser, isBetsAllowed, isUserAlreadyBet } = this.props;
 
 		return (
 			<Navbar className="navigation-bar" color="dark" dark expand="md" fixed="top">
 				<Container>
-					<Link to={pathNames.HOME} className="navbar-brand">
+					<NavLink path={pathNames.HOME} className="navbar-brand">
 						Formula 1 Bets App
-					</Link>
+					</NavLink>
 					<NavbarToggler onClick={this.handleToggle} />
 					<Collapse isOpen={this.isOpen} navbar>
 						<Nav className="ml-auto" navbar>
-							<NavItem>
-								<Link to={pathNames.CALENDAR} className="nav-link">
-									Календарь
-								</Link>
-							</NavItem>
 							<UncontrolledDropdown nav inNavbar>
 								<DropdownToggle nav caret>
-									Статистика
+									Голосование
+								</DropdownToggle>
+								<DropdownMenu className="nav-bar-drop-down-menu" right>
+									{isAuthenticated && (
+										<DropdownItem disabled={!isBetsAllowed}>
+											<NavLink
+												path={pathNames.BETS}
+												className="nav-bar-drop-down-menu__link"
+												disabled={!isBetsAllowed}
+											>
+												{!isUserAlreadyBet ? BET_BUTTON_VOTE_TEXT : BET_BUTTON_CHANGE_VOTE_TEXT}
+											</NavLink>
+										</DropdownItem>
+									)}
+									<DropdownItem>
+										<NavLink path={pathNames.RESULTS} className="nav-bar-drop-down-menu__link">
+											Результаты голосования
+										</NavLink>
+									</DropdownItem>
+									{isAuthenticated && (
+										<DropdownItem>
+											<NavLink
+												path={pathNames.BETS_HISTORY}
+												className="nav-bar-drop-down-menu__link"
+											>
+												История Ваших голосований
+											</NavLink>
+										</DropdownItem>
+									)}
+								</DropdownMenu>
+							</UncontrolledDropdown>
+							<UncontrolledDropdown nav inNavbar>
+								<DropdownToggle nav caret>
+									Чемпионат
 								</DropdownToggle>
 								<DropdownMenu className="nav-bar-drop-down-menu" right>
 									<DropdownItem>
-										<Link to={pathNames.RESULTS} className="nav-bar-drop-down-menu__link">
-											Результаты голосования
-										</Link>
+										<NavLink path={pathNames.CALENDAR} className="nav-bar-drop-down-menu__link">
+											Календарь
+										</NavLink>
 									</DropdownItem>
 									<DropdownItem>
-										<Link to={pathNames.RACERS} className="nav-bar-drop-down-menu__link">
+										<NavLink path={pathNames.RACERS} className="nav-bar-drop-down-menu__link">
 											Гонщики
-										</Link>
+										</NavLink>
 									</DropdownItem>
 									<DropdownItem>
-										<Link to={pathNames.TEAMS} className="nav-bar-drop-down-menu__link">
+										<NavLink path={pathNames.TEAMS} className="nav-bar-drop-down-menu__link">
 											Команды
-										</Link>
+										</NavLink>
 									</DropdownItem>
 								</DropdownMenu>
 							</UncontrolledDropdown>
 							{!isAuthenticated ? (
 								<NavItem>
-									<Link to={pathNames.LOGIN} className="nav-link">
+									<NavLink path={pathNames.LOGIN} className="nav-link">
 										Вход
-									</Link>
+									</NavLink>
 								</NavItem>
 							) : (
 								authenticatedUser && (
