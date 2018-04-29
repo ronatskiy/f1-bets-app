@@ -2,6 +2,7 @@ import StandingsListItem from "./standings-list-item";
 import DriverStanding from "./driver-standing";
 
 /**
+ * @name DriverStandingsListItem
  * @memberOf ErgastApi
  * @extends ErgastApi.StandingsListItem
  * @property {ErgastApi.DriverStanding[]} driverStandings

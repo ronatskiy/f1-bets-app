@@ -1,4 +1,5 @@
 /**
+ * @name Constructor
  * @memberOf ErgastApi
  * @property {string} constructorId
  * @property {string} url

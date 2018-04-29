@@ -2,8 +2,9 @@ import Constructor from "../constructor";
 import StandingBase from "./standing-base";
 
 /**
+ * @name ConstructorStanding
  * @memberOf ErgastApi
- * @extends StandingBase
+ * @extends ErgastApi.StandingBase
  * @property {ErgastApi.Constructor} constructor
  */
 export default class ConstructorStanding extends StandingBase {

@@ -1,6 +1,7 @@
 import Location from "./location";
 
 /**
+ * @name Circuit
  * @memberOf ErgastApi
  * @property {string} circuitId
  * @property {string} url

@@ -1,4 +1,5 @@
 /**
+ * @name Driver
  * @memberOf ErgastApi
  * @property {string} driverId
  * @property {string} permanentNumber

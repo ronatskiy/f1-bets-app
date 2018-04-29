@@ -3,9 +3,7 @@ import { fetch, fetchAll } from "./helpers/fetch";
 
 const API_ENDPOINT = "https://ergast.com/api/f1";
 
-/**
- * @memberOf ErgastApi
- */
+/** @namespace ErgastApi */
 class ErgastApi {
 	/**
 	 * @static
@@ -73,7 +71,7 @@ class ErgastApi {
 	 */
 	static async getAllRacesResults(season = "2018") {
 		// http://ergast.com/api/f1/{season}/results
-		const mrData = fetchAll(ErgastApi._createJsonUrl(season, "results"));
+		const mrData = await fetchAll(ErgastApi._createJsonUrl(season, "results"));
 
 		return new RaceTableExtended(mrData.RaceTable);
 	}

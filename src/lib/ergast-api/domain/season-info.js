@@ -1,4 +1,5 @@
 /**
+ * @name SeasonInfo
  * @memberOf ErgastApi
  * @property {string} season
  */

@@ -13,7 +13,7 @@ export async function fetch(url) {
  * @return {Promise<*>} MRData
  */
 export async function fetchAll(url) {
-	const total = await fetch(`${url}?limit=0`).total;
+	const total = (await fetch(`${url}?limit=0`)).total;
 
 	return fetch(`${url}?limit=${total}`);
 }

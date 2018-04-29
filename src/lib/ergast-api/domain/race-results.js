@@ -3,6 +3,7 @@ import Driver from "./driver";
 import FastestLap from "./fastest-lap";
 
 /**
+ * @name RaceResults
  * @memberOf ErgastApi
  * @property {string} number
  * @property {string} position
@@ -31,7 +32,7 @@ export default class RaceResults {
 		this.laps = laps;
 		this.status = status;
 		this.time = { ...Time };
-		this.fastestLap = new FastestLap(options.FastestLap);
+		this.fastestLap = options.FastestLap ? new FastestLap(options.FastestLap) : undefined;
 	}
 }
 

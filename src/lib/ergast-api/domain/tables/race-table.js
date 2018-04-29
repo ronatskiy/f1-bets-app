@@ -2,6 +2,7 @@ import Race from "../race";
 import SeasonInfo from "../season-info";
 
 /**
+ * @name RaceTable
  * @memberOf ErgastApi
  * @extends ErgastApi.SeasonInfo
  * @property {ErgastApi.Race[]} races

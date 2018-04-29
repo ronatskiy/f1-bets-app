@@ -2,8 +2,9 @@ import Race from "../race-with-results";
 import RaceTable from "./race-table";
 
 /**
+ * @name RaceTableExtended
  * @memberOf ErgastApi
- * @extends RaceTable
+ * @extends ErgastApi.RaceTable
  * @property {string} round
  */
 export default class RaceTableExtended extends RaceTable {

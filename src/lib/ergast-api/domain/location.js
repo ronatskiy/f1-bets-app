@@ -1,4 +1,5 @@
 /**
+ * @name Location
  * @memberOf ErgastApi
  * @property {string} locality
  * @property {string} country

@@ -1,4 +1,5 @@
 /**
+ * @name FastestLap
  * @memberOf ErgastApi
  * @property {string} rank
  * @property {string} lap

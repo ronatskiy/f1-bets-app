@@ -1,4 +1,5 @@
 /**
+ * @name PitStop
  * @memberOf ErgastApi
  * @property {string} driverId
  * @property {number} stop

@@ -2,14 +2,9 @@ import Race from "./race";
 import RaceResults from "./race-results";
 
 /**
+ * @name RaceWithResults
  * @memberOf ErgastApi
- * @property {string} season
- * @property {string} round
- * @property {string} url
- * @property {string} raceName
- * @property {string} date
- * @property {string} time
- * @property {ErgastApi.Circuit} circuit
+ * @extends ErgastApi.Race
  * @property {ErgastApi.RaceResults[]} raceResults
  */
 export default class RaceWithResults extends Race {

@@ -1,4 +1,5 @@
 /**
+ * @name StandingBase
  * @memberOf ErgastApi
  * @property {string} position
  * @property {string} positionText

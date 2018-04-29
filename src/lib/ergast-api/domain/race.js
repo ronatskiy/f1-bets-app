@@ -2,6 +2,7 @@ import Circuit from "./circuit";
 import SeasonInfo from "./season-info";
 
 /**
+ * @name Race
  * @memberOf ErgastApi
  * @extends ErgastApi.SeasonInfo
  * @property {string} round

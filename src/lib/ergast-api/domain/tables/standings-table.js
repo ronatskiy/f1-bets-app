@@ -1,6 +1,7 @@
 import SeasonInfo from "../season-info";
 
 /**
+ * @name StandingsTable
  * @memberOf ErgastApi
  * @extends ErgastApi.SeasonInfo
  * @property {array} standingsLists

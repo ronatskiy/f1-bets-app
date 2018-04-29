@@ -2,6 +2,7 @@ import StandingsTable from "./standings-table";
 import ConstructorStandingsListItem from "../standings/constructor-standings-list-item";
 
 /**
+ * @name ConstructorStandingsTable
  * @memberOf ErgastApi
  * @extends ErgastApi.StandingsTable
  * @property {ErgastApi.ConstructorStandingsListItem[]} standingsLists
