@@ -1,13 +1,15 @@
 import SeasonInfo from "../season-info";
 
 /**
- * @property {string} season
+ * @memberOf ErgastApi
+ * @extends ErgastApi.SeasonInfo
  * @property {string} round
  */
 export default class StandingsListItem extends SeasonInfo {
 	/**
-	 * @param {string} season
-	 * @param {string} round
+	 * @param {Object} options
+	 * @param {string} options.season
+	 * @param {string} options.round
 	 */
 	constructor({ season, round }) {
 		super({ season });

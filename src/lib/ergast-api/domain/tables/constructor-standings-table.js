@@ -2,14 +2,15 @@ import StandingsTable from "./standings-table";
 import ConstructorStandingsListItem from "../standings/constructor-standings-list-item";
 
 /**
- * @property {string} season
- * @property {ConstructorStandingsListItem[]} standingsLists
+ * @memberOf ErgastApi
+ * @extends ErgastApi.StandingsTable
+ * @property {ErgastApi.ConstructorStandingsListItem[]} standingsLists
  */
 export default class ConstructorStandingsTable extends StandingsTable {
 	/**
-	 *
-	 * @param {string} season
-	 * @param {ConstructorStandingsListItem[]} StandingsLists
+	 * @param {Object} options
+	 * @param {string} options.season
+	 * @param {ErgastApi.ConstructorStandingsListItem[]} options.StandingsLists
 	 */
 	constructor({ season, StandingsLists }) {
 		super({ season, StandingsLists });

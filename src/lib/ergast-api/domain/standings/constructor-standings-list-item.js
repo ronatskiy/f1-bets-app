@@ -2,8 +2,9 @@ import ConstructorStanding from "./constructor-standing";
 import StandingsListItem from "./standings-list-item";
 
 /**
- * @extends StandingsListItem
- * @property {ConstructorStanding[]} constructorStandings
+ * @memberOf ErgastApi
+ * @extends ErgastApi.StandingsListItem
+ * @property {ErgastApi.ConstructorStanding[]} constructorStandings
  */
 export default class ConstructorStandingsListItem extends StandingsListItem {
 	constructor(options) {

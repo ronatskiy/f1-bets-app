@@ -3,17 +3,16 @@ import Driver from "../driver";
 import StandingBase from "./standing-base";
 
 /**
- * @class DriverStanding
- * @extends StandingBase
- * @property {ErgastApi~Driver} driver
- * @property {ErgastApi~Constructor[]} constructors
+ * @memberOf ErgastApi
+ * @extends ErgastApi.StandingBase
+ * @property {ErgastApi.Driver} driver
+ * @property {ErgastApi.Constructor[]} constructors
  */
 export default class DriverStanding extends StandingBase {
 	/**
-	 *
 	 * @param {Object} options
-	 * @param options.Driver
-	 * @param options.Constructors
+	 * @param {ErgastApi~DriverRawData} options.Driver
+	 * @param {ErgastApi~ConstructorRawData} options.Constructors
 	 */
 	constructor(options) {
 		super(options);

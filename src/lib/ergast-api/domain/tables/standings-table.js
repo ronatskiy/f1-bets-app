@@ -1,8 +1,8 @@
 import SeasonInfo from "../season-info";
 
 /**
- * @class StandingsTable
- * @extends SeasonInfo
+ * @memberOf ErgastApi
+ * @extends ErgastApi.SeasonInfo
  * @property {array} standingsLists
  */
 export default class StandingsTable extends SeasonInfo {

@@ -1,5 +1,5 @@
 /**
- * @typedef {Object} ErgastApi~Driver
+ * @memberOf ErgastApi
  * @property {string} driverId
  * @property {string} permanentNumber
  * @property {string} code
@@ -9,16 +9,9 @@
  * @property {string} dateOfBirth
  * @property {string} nationality
  */
-class Driver {
+export default class Driver {
 	/**
-	 * @param {string} driverId
-	 * @param {string} url
-	 * @param {string} permanentNumber
-	 * @param {string} givenName
-	 * @param {string} familyName
-	 * @param {string} dateOfBirth
-	 * @param {string} code
-	 * @param {string} nationality
+	 * @param {ErgastApi~DriverRawData} options
 	 */
 	constructor({ driverId, url, permanentNumber, givenName, familyName, dateOfBirth, code, nationality }) {
 		this.driverId = driverId;
@@ -32,4 +25,14 @@ class Driver {
 	}
 }
 
-export default Driver;
+/**
+ * @typedef {Object} ErgastApi~DriverRawData
+ * @property {string} driverId
+ * @property {string} url
+ * @property {string} permanentNumber
+ * @property {string} givenName
+ * @property {string} familyName
+ * @property {string} dateOfBirth
+ * @property {string} code
+ * @property {string} nationality
+ */

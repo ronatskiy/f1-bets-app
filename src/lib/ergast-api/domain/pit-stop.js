@@ -1,18 +1,19 @@
 /**
- * @typedef {Object} ErgastApi~PitStop
+ * @memberOf ErgastApi
  * @property {string} driverId
  * @property {number} stop
  * @property {number} lap
  * @property {string} time
  * @property {string} duration
  */
-class PitStop {
+export default class PitStop {
 	/**
-	 * @param {string} driverId
-	 * @param {number} stop
-	 * @param {number} lap
-	 * @param {string} time
-	 * @param {string} duration
+	 * @param {Object} options
+	 * @param {string} options.driverId
+	 * @param {number} options.stop
+	 * @param {number} options.lap
+	 * @param {string} options.time
+	 * @param {string} options.duration
 	 */
 	constructor({ driverId, stop, lap, time, duration }) {
 		this.driverId = driverId;
@@ -22,5 +23,3 @@ class PitStop {
 		this.duration = duration;
 	}
 }
-
-export default PitStop;

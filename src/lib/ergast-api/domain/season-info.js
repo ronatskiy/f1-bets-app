@@ -1,5 +1,5 @@
 /**
- * @typedef SeasonInfo
+ * @memberOf ErgastApi
  * @property {string} season
  */
 export default class SeasonInfo {

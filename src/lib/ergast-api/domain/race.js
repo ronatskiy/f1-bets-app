@@ -2,24 +2,18 @@ import Circuit from "./circuit";
 import SeasonInfo from "./season-info";
 
 /**
- * @typedef {Object} ErgastApi~Race
- * @property {string} season
+ * @memberOf ErgastApi
+ * @extends ErgastApi.SeasonInfo
  * @property {string} round
  * @property {string} url
  * @property {string} raceName
  * @property {string} date
  * @property {string} time
- * @property {ErgastApi~Circuit} circuit
+ * @property {ErgastApi.Circuit} circuit
  */
 export default class Race extends SeasonInfo {
 	/**
-	 * @param {Object} options
-	 * @param {string} options.round
-	 * @param {string} options.url
-	 * @param {string} options.raceName
-	 * @param {string} options.date
-	 * @param {string} options.time
-	 * @param {ErgastApi~Circuit} options.Circuit
+	 * @param {ErgastApi~RaceRawData} options
 	 */
 	constructor(options) {
 		super(options);
@@ -31,3 +25,14 @@ export default class Race extends SeasonInfo {
 		this.circuit = new Circuit(options.Circuit);
 	}
 }
+
+/**
+ * @typedef {Object} ErgastApi~RaceRawData
+ * @property {string} season
+ * @property {string} round
+ * @property {string} url
+ * @property {string} raceName
+ * @property {string} date
+ * @property {string} time
+ * @property {ErgastApi~CircuitRawData} Circuit
+ */

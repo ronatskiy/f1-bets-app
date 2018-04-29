@@ -1,25 +1,30 @@
-import LocationType from "./location";
+import Location from "./location";
 
 /**
- * @typedef {Object} ErgastApi~Circuit
+ * @memberOf ErgastApi
  * @property {string} circuitId
  * @property {string} url
  * @property {string} circuitName
- * @property {ErgastApi~Location} location
+ * @property {ErgastApi.Location} location
  */
-class Circuit {
+export default class Circuit {
 	/**
-	 * @param {string} circuitId
-	 * @param {string} url
-	 * @param {ErgastApi~Location} Location
-	 * @param {string} circuitName
+	 * @param {ErgastApi~CircuitRawData} options
 	 */
-	constructor({ circuitId, url, Location, circuitName }) {
+	constructor(options) {
+		const { circuitId, url, circuitName } = options;
+
 		this.circuitId = circuitId;
 		this.url = url;
-		this.location = new LocationType(Location);
 		this.circuitName = circuitName;
+		this.location = new Location(options.Location);
 	}
 }
 
-export default Circuit;
+/**
+ * @typedef {Object} ErgastApi~CircuitRawData
+ * @property {string} circuitId
+ * @property {string} url
+ * @property {string} circuitName
+ * @property {ErgastApi~LocationRawData} Location
+ */

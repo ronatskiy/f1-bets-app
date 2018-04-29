@@ -2,7 +2,8 @@ import StandingsTable from "./standings-table";
 import DriverStandingsListItem from "../standings/driver-standings-list-item";
 
 /**
- * @extends StandingsTable
+ * @memberOf ErgastApi
+ * @extends ErgastApi.StandingsTable
  * @property {DriverStandingsListItem[]} standingsLists
  */
 export default class DriverStandingsTable extends StandingsTable {

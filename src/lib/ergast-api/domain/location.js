@@ -1,20 +1,18 @@
 /**
- * @typedef {Object} ErgastApi~Location
+ * @memberOf ErgastApi
  * @property {string} locality
  * @property {string} country
- * @property {number} lat
- * @property {number} long
- * @property {number} alt
+ * @property {string} lat
+ * @property {string} long
+ * @property {string} alt
  */
-class Location {
+export default class Location {
 	/**
-	 * @param {string} locality
-	 * @param {string} country
-	 * @param {number} lat
-	 * @param {number} long
-	 * @param {number} alt
+	 * @param {ErgastApi~LocationRawData} options
 	 */
-	constructor({ locality, country, lat, long, alt }) {
+	constructor(options) {
+		const { locality, country, lat, long, alt } = options;
+
 		this.locality = locality;
 		this.country = country;
 		this.lat = lat;
@@ -23,4 +21,11 @@ class Location {
 	}
 }
 
-export default Location;
+/**
+ * @typedef {Object} ErgastApi~LocationRawData
+ * @property {string} locality
+ * @property {string} country
+ * @property {string} lat
+ * @property {string} long
+ * @property {string} alt
+ */

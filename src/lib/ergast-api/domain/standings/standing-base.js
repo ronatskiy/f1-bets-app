@@ -1,4 +1,5 @@
 /**
+ * @memberOf ErgastApi
  * @property {string} position
  * @property {string} positionText
  * @property {string} points

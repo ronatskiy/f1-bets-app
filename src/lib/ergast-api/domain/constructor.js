@@ -1,16 +1,13 @@
 /**
- * @typedef {Object} ErgastApi~Constructor
+ * @memberOf ErgastApi
  * @property {string} constructorId
  * @property {string} url
  * @property {string} name
  * @property {string} nationality
  */
-class Constructor {
+export default class Constructor {
 	/**
-	 * @param {string} constructorId
-	 * @param {string} url
-	 * @param {string} name
-	 * @param {string} nationality
+	 * @param {ErgastApi~ConstructorRawData} options
 	 */
 	constructor({ constructorId, url, name, nationality }) {
 		this.constructorId = constructorId;
@@ -20,4 +17,10 @@ class Constructor {
 	}
 }
 
-export default Constructor;
+/**
+ * @typedef {Object} ErgastApi~ConstructorRawData
+ * @property {string} constructorId
+ * @property {string} url
+ * @property {string} name
+ * @property {string} nationality
+ */
