@@ -1,6 +1,6 @@
 import { computed } from "mobx";
 
-import RaceInformation from "../../pages/results/models/race-information";
+import RaceInformation from "../models/race-information";
 
 class ResultsPageStore {
 	/**
@@ -17,7 +17,14 @@ class ResultsPageStore {
 
 	@computed
 	get raceResultsWithBets() {
-		return this._appViewModel.races.map(race => new RaceInformation({ race }));
+		const { racesResults } = this._appViewModel.formulaOneOfficial;
+		return this._appViewModel.races.map(
+			(race, index) =>
+				new RaceInformation({
+					race,
+					racers: index < racesResults.length ? racesResults[index].racersStandings : undefined,
+				}),
+		);
 	}
 }
 

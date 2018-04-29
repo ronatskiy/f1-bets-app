@@ -4,7 +4,7 @@ import TeamsStandingsStore from "../../pages/teams/stores/teams-standings-store"
 import AdminPageStore from "../../pages/admin/stores/admin-page-store";
 import LoginPageStore from "./login";
 import LogoutPageStore from "./logout";
-import ResultsPageStore from "./results";
+import ResultsPageStore from "../../pages/results/stores/results-page-store";
 import CalendarPageStore from "./calendar";
 import UserBetsHistoryPageStore from "./user-bets-history";
 import BetPageStore from "./bet";

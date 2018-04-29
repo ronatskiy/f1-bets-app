@@ -10,9 +10,18 @@ export default class FormulaOneOfficialDataRepository {
 	}
 
 	/**
+	 * @param {string} season
 	 * @return {Promise<RaceTable>}
 	 */
 	async getRaceSchedule(season = "2018") {
 		return await ErgastApi.getRaceSchedule(season);
+	}
+
+	/**
+	 * @param {string} season
+	 * @return {Promise<RaceTableExtended>}
+	 */
+	async getRacesResults(season = "2018") {
+		return await ErgastApi.getAllRacesResults(season);
 	}
 }

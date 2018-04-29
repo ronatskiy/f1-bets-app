@@ -1,4 +1,5 @@
 /**
+ * @name RoundSchedule
  * @property {number} round
  * @property {string} practice_1
  * @property {string} practice_2

@@ -1,7 +1,7 @@
 import ExtendedRoundInfo from "../../../domain/extended-round-info";
 
 /**
- * @param {ErgastApi~Race} race
+ * @param {ErgastApi.Race} race
  * @param {RoundSchedule[]} roundSchedules
  * @return {ExtendedRoundInfo}
  */

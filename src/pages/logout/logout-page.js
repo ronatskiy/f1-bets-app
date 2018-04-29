@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { inject, observer } from "mobx-react";
 import { Col, Container, Row } from "reactstrap";
@@ -8,7 +8,7 @@ import { pathNames } from "../../routes/routes";
 
 @inject("logoutPageStore")
 @observer
-class LogoutPage extends Component {
+class LogoutPage extends React.Component {
 	static propTypes = {
 		logoutPageStore: PropTypes.shape({
 			isUserAuthenticated: PropTypes.bool.isRequired,

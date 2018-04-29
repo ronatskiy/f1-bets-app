@@ -10,10 +10,14 @@ export default class FormulaOneOfficialModel {
 		this._operationManager = operationManager;
 
 		this._fetchRacesSchedule();
+		this._fetchRacesResults();
 	}
 
 	/** @type {ExtendedRoundInfo[]} */
 	@observable roundsInfo = [];
+
+	/** @type {RaceResult[]} */
+	@observable racesResults = [];
 
 	async _fetchRacesSchedule() {
 		return this._operationManager.runWithProgressAsync(async () => {
@@ -22,6 +26,20 @@ export default class FormulaOneOfficialModel {
 
 				runInAction(() => {
 					this.roundsInfo = roundsInfo;
+				});
+			} catch (e) {
+				console.error(e.message);
+			}
+		});
+	}
+
+	async _fetchRacesResults() {
+		return this._operationManager.runWithProgressAsync(async () => {
+			try {
+				const racesResults = await this._service.fetchRacesResults();
+
+				runInAction(() => {
+					this.racesResults = racesResults;
 				});
 			} catch (e) {
 				console.error(e.message);
