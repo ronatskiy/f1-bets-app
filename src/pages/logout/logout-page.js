@@ -21,25 +21,22 @@ class LogoutPage extends Component {
 	}
 
 	render() {
-		const { logoutPageStore } = this.props;
+		const { isUserAuthenticated } = this.props.logoutPageStore;
+
 		return (
 			<Container>
-				{logoutPageStore.isUserAuthenticated ? (
-					<Row>
+				<Row className="section">
+					{isUserAuthenticated ? (
 						<Col>Идет обработка...</Col>
-					</Row>
-				) : (
-					<Fragment>
-						<Row>
-							<Col>Мы будем скучать по тебе :)</Col>
-						</Row>
-						<Row>
-							<Col>
+					) : (
+						<Col lg={{ size: 6, offset: 3 }} md={{ size: 8, offset: 2 }}>
+							<div>Мы будем скучать по тебе :)</div>
+							<div>
 								<Link to={pathNames.HOME}>Вернуться на главную</Link>
-							</Col>
-						</Row>
-					</Fragment>
-				)}
+							</div>
+						</Col>
+					)}
+				</Row>
 			</Container>
 		);
 	}
