@@ -1,5 +1,4 @@
 .race-info-panel {
-	padding-bottom: 3rem;
 	padding-top: 2rem;
 	text-align: center;
 }
@@ -24,4 +23,8 @@
 	margin-bottom: 0.5rem;
 	margin-top: 0.5rem;
 	font-size: 0.8rem;
+}
+.race-info-panel__underscore {
+	margin-top: 2.5rem;
+	margin-bottom: 0.15rem;
 }

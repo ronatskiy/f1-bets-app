@@ -1,25 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Col, Container, Row } from "reactstrap";
+import { Col, Container, FormText, Row } from "reactstrap";
 
-import PrimaryButton from "../../../../components/common/primary-button";
 import WeekendInfoModel from "../../models/weekend-info-view-model/index";
 import "./race-info-panel.css";
 import TextLink from "../../../../components/common/text-link";
 import CountryInfo from "./country-info";
+import RacerStandingsWidget from "./racer-standings-widget";
 
 class RaceInfoPanel extends React.Component {
 	static propTypes = {
 		raceInfo: PropTypes.instanceOf(WeekendInfoModel).isRequired,
-		commandButton: PropTypes.any,
+		commandButton: PropTypes.any.isRequired,
+		infoText: PropTypes.string,
 	};
 
 	static defaultProps = {
-		commandButton: () => <PrimaryButton>Подробнее</PrimaryButton>,
+		infoText: "",
 	};
 
 	render() {
-		const { raceInfo, commandButton: CommandButton } = this.props;
+		const { /** @type {?WeekendInfoModel}*/ raceInfo, infoText, commandButton: CommandButton } = this.props;
 		const {
 			flagUrl,
 			countryName,
@@ -30,6 +31,7 @@ class RaceInfoPanel extends React.Component {
 			race,
 			circuitUrl,
 			raceUrl,
+			/** @type {RacerViewModel[]} */ racerStandings,
 		} = raceInfo;
 
 		return (
@@ -73,11 +75,20 @@ class RaceInfoPanel extends React.Component {
 						</Row>
 					</Col>
 				</Row>
+				{racerStandings.length > 0 && <RacerStandingsWidget racers={racerStandings} />}
 				<Row>
 					<Col>
 						<CommandButton />
 					</Col>
 				</Row>
+				<hr className="race-info-panel__underscore" />
+				{infoText && (
+					<Row>
+						<Col>
+							<FormText color="muted">{infoText}</FormText>
+						</Col>
+					</Row>
+				)}
 			</Container>
 		);
 	}

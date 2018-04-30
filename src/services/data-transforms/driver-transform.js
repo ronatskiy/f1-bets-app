@@ -6,5 +6,13 @@ import Racer from "../../domain/racer";
  * @return {Racer}
  */
 export function driverTransform(driver, points) {
-	return new Racer(driver.givenName, driver.familyName, driver.permanentNumber, driver.code, points);
+	return new Racer(
+		driver.givenName,
+		driver.familyName,
+		driver.permanentNumber,
+		driver.code,
+		points,
+		driver.nationality,
+		driver.dateOfBirth,
+	);
 }

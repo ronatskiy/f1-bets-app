@@ -1,0 +1,9 @@
+.racer-view {
+	display: flex;
+	align-items: center;
+}
+.racer-view__image {
+	margin-right: 0.3rem;
+	max-width: 1rem;
+}
+.racer-view__name {}

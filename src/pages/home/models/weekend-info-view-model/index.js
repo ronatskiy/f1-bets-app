@@ -4,12 +4,16 @@ import RaceInfoModel from "./race-info-model";
 import QualificationInfoModel from "./qualification-info-model";
 import { shortDate } from "../../../../helpers/prettify-date";
 
+/**
+ * @property {RacerViewModel[]} racerStandings
+ */
 export default class WeekendInfoModel {
 	/**
 	 * @param {ExtendedRoundInfo} roundInfo
 	 */
 	constructor(roundInfo) {
 		this._roundInfo = roundInfo;
+		this.racerStandings = [];
 	}
 
 	get _firstPracticeStartTime() {
@@ -90,5 +94,11 @@ export default class WeekendInfoModel {
 
 	get weekendInterval() {
 		return `${shortDate(this._firstPracticeStartTime)} - ${shortDate(this.raceStartTime)}`;
+	}
+
+	addRacerStandings(racerStandings = []) {
+		this.racerStandings = racerStandings;
+
+		return this;
 	}
 }

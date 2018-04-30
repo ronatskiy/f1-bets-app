@@ -1,5 +1,6 @@
 import createExtendedRoundInfo from "./helpers/create-extended-round-info";
 import { createRaceResult } from "../data-transforms/race-with-results-transform";
+import Racer from "../../domain/racer";
 
 export default class FormulaOneOfficialDataService {
 	/**
@@ -31,6 +32,25 @@ export default class FormulaOneOfficialDataService {
 			const raceTableExtended = await this._repository.getRacesResults();
 
 			return raceTableExtended.races.map(race => createRaceResult(race));
+		} catch (e) {
+			console.error(e.message);
+		}
+	}
+
+	/**
+	 * @return {Promise<Racer[]>}
+	 */
+	async fetchRacers() {
+		try {
+			const driverTable = await this._repository.getDrivers();
+
+			return driverTable.drivers.map(driver =>
+				Racer.create({
+					...driver,
+					firstName: driver.givenName,
+					lastName: driver.familyName,
+				}),
+			);
 		} catch (e) {
 			console.error(e.message);
 		}

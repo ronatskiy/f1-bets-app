@@ -24,4 +24,12 @@ export default class FormulaOneOfficialDataRepository {
 	async getRacesResults(season = "2018") {
 		return await ErgastApi.getAllRacesResults(season);
 	}
+
+	/**
+	 * @param {string} season
+	 * @return {Promise<DriverTable>}
+	 */
+	async getDrivers(season = "2018") {
+		return await ErgastApi.getDrivers(season);
+	}
 }

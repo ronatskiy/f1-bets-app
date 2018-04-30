@@ -11,6 +11,7 @@ export default class FormulaOneOfficialModel {
 
 		this._fetchRacesSchedule();
 		this._fetchRacesResults();
+		this._fetchRacers();
 	}
 
 	/** @type {ExtendedRoundInfo[]} */
@@ -18,6 +19,9 @@ export default class FormulaOneOfficialModel {
 
 	/** @type {RaceResult[]} */
 	@observable racesResults = [];
+
+	/** @type {Racer[]} */
+	@observable racers = [];
 
 	async _fetchRacesSchedule() {
 		return this._operationManager.runWithProgressAsync(async () => {
@@ -40,6 +44,20 @@ export default class FormulaOneOfficialModel {
 
 				runInAction(() => {
 					this.racesResults = racesResults;
+				});
+			} catch (e) {
+				console.error(e.message);
+			}
+		});
+	}
+
+	async _fetchRacers() {
+		return this._operationManager.runWithProgressAsync(async () => {
+			try {
+				const racers = await this._service.fetchRacers();
+
+				runInAction(() => {
+					this.racers = racers;
 				});
 			} catch (e) {
 				console.error(e.message);

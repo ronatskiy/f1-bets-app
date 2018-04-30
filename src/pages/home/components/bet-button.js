@@ -33,7 +33,7 @@ class BetButton extends React.Component {
 
 	render() {
 		const { isBetsAllowed, isUserAlreadyBet, isAuthenticated } = this.props;
-		let text = "Подробнее";
+		let text = "Таблица прогнозов";
 
 		if (isBetsAllowed) {
 			if (isAuthenticated) {
