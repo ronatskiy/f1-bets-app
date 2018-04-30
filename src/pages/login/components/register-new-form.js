@@ -1,8 +1,9 @@
 import React from "react";
 import { observer } from "mobx-react";
-import { Form, Label, Input, FormGroup, FormText, Button, FormFeedback } from "reactstrap";
+import { Form, Label, Input, FormGroup, FormText, FormFeedback } from "reactstrap";
 
 import { RegisterNewAccountFormFields } from "../../../stores/forms/settings/login-form";
+import PrimaryButton from "../../../components/common/primary-button";
 
 const RegisterNewForm = observer(({ form }) => {
 	const nameField = form.$(RegisterNewAccountFormFields.NAME);
@@ -45,15 +46,14 @@ const RegisterNewForm = observer(({ form }) => {
 					Ну, я предупредил если что :)
 				</FormText>
 			</FormGroup>
-			<Button
-				color="primary"
+			<PrimaryButton
 				type="submit"
 				disabled={form.isEmpty || !form.isValid}
 				onClick={form.onSubmit}
 				style={{ width: "100%" }}
 			>
 				Создать новый аккаунт
-			</Button>
+			</PrimaryButton>
 		</Form>
 	);
 });

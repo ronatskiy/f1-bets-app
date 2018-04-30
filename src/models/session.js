@@ -65,6 +65,17 @@ export default class SessionModel {
 
 	@action
 	async signIn({ login, name, password }) {
-		return this._operationManager.runWithProgressAsync(() => this._authService.signIn({ login, name, password }));
+		return this._operationManager.runWithProgressAsync(async () => {
+			const resp = await this._authService.signIn({ login, name, password });
+
+			if (resp instanceof User) {
+				runInAction(() => {
+					this.authenticatedUser = resp;
+				});
+				return true;
+			}
+
+			return resp;
+		});
 	}
 }

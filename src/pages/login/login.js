@@ -37,7 +37,7 @@ class LoginPage extends React.Component {
 		return isUserAuthenticated ? (
 			<Redirect to={this._redirectPath} />
 		) : (
-			<Container>
+			<Container tag="section" className="section">
 				<Row>
 					<Col lg={{ size: 6, offset: 3 }} md={{ size: 8, offset: 2 }}>
 						<Row>

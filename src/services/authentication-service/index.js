@@ -83,7 +83,11 @@ export default class AuthenticationService {
 			return "Server Error. Cannot add or update user";
 		}
 
-		return this._authenticate(newUser);
+		if (this._authenticate(newUser)) {
+			return newUser;
+		}
+
+		return false;
 	}
 
 	/**
