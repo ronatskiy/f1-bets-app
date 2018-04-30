@@ -1,5 +1,5 @@
-import { DriverStandingsTable, RaceTable, ConstructorStandingsTable, RaceTableExtended } from "./domain/index";
 import { fetch, fetchAll } from "./helpers/fetch";
+import { DriverStandingsTable, RaceTable, ConstructorStandingsTable, RaceTableExtended, DriverTable } from "./domain";
 
 const API_ENDPOINT = "https://ergast.com/api/f1";
 
@@ -74,6 +74,18 @@ class ErgastApi {
 		const mrData = await fetchAll(ErgastApi._createJsonUrl(season, "results"));
 
 		return new RaceTableExtended(mrData.RaceTable);
+	}
+
+	/**
+	 * @static
+	 * @param {string} season
+	 * @return {Promise<DriverTable>}
+	 */
+	static async getDrivers(season = "2018") {
+		// http://ergast.com/api/f1/{season}/drivers.json
+		const mrData = await fetch(ErgastApi._createJsonUrl(season, "drivers"));
+
+		return new DriverTable(mrData.DriverTable);
 	}
 }
 
