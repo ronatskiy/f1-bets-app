@@ -1,8 +1,16 @@
 import React from "react";
 import { Button } from "reactstrap";
+import "./primary-button.css";
 
-const PrimaryButton = ({ className, onClick, disabled, children, size }) => (
-	<Button className={className} onClick={onClick} disabled={disabled} color="primary" size={size}>
+const PrimaryButton = ({ className, onClick, disabled, children, size, ...props }) => (
+	<Button
+		className={`button button--primary ${className}`}
+		onClick={onClick}
+		disabled={disabled}
+		color="primary"
+		size={size}
+		{...props}
+	>
 		{children}
 	</Button>
 );
