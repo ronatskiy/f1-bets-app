@@ -1,6 +1,5 @@
 import { computed, observable, action, runInAction } from "mobx";
 
-import isEqual from "lodash.isequal";
 import { isAfter } from "../helpers/time-modification";
 
 class RacesModel {
@@ -16,7 +15,7 @@ class RacesModel {
 	/**
 	 * @return {Race | null}
 	 */
-	@computed.equals(isEqual)
+	@computed
 	get nextRace() {
 		const currentTime = this._timeWatcher.currentTime;
 		const [nextRace] = this.races.filter(r => isAfter(r.raceStartTime, currentTime));
