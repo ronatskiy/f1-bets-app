@@ -24,11 +24,13 @@ export default class UsersModel {
 	@action
 	fetchUsers() {
 		try {
-			return this._operationManager.runWithProgressAsync(
+			return this._operationManager.runWithProgressAsync(async () => {
+				const users = await this._userService.fetchAll();
+
 				runInAction(async () => {
-					return (this.users = await this._userService.fetchAll());
-				}),
-			);
+					this.users = users;
+				});
+			});
 		} catch (error) {
 			console.log("Can't load 'users' in UserModel!!\n", error);
 		}
