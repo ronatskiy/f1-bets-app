@@ -38,7 +38,7 @@ export default class UsersModel {
 
 	async deleteUser(id) {
 		await this._userService.delete(id);
-		await this._loadUsers();
+		await this.fetchUsers();
 	}
 
 	@action
