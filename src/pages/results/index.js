@@ -3,43 +3,45 @@ import PropTypes from "prop-types";
 import { Col, Container, Row } from "reactstrap";
 import { inject, observer } from "mobx-react";
 
-import BetsResultsTable from "./components/bets-results-table";
+import PollingResultsTable from "./components/polling-results-table/index";
 import "./styles.css";
 import RaceInformation from "./models/race-information";
 
-const ResultsPage = props => {
-	const { currentUser, raceResultsWithBets } = props;
+class ResultsPage extends React.Component {
+	static propTypes = {
+		raceResultsWithBets: PropTypes.arrayOf(PropTypes.instanceOf(RaceInformation)).isRequired,
+	};
 
-	return (
-		<Container className="results-page">
-			{raceResultsWithBets.map(raceInfo => {
-				const { raceId, raceTitle, hasOfficialResults, userBetsResults } = raceInfo;
+	render() {
+		const { currentUser, /** @type {RaceInformation[]} */ raceResultsWithBets } = this.props;
 
-				if (userBetsResults.length === 0) {
-					return null;
-				}
+		return (
+			<Container className="results-page">
+				{raceResultsWithBets.map(raceInfo => {
+					const { raceId, raceTitle, hasOfficialResults, userBetsResults } = raceInfo;
 
-				return (
-					<Row key={raceId}>
-						<Col>
-							<h2 className="results-page__race-header">{raceTitle}</h2>
+					if (userBetsResults.length === 0) {
+						return null;
+					}
 
-							<BetsResultsTable
-								raceBetsData={userBetsResults}
-								currentUser={currentUser}
-								hasRaceResults={hasOfficialResults}
-							/>
-						</Col>
-					</Row>
-				);
-			})}
-		</Container>
-	);
-};
+					return (
+						<Row key={raceId}>
+							<Col>
+								<h2 className="results-page__race-header">{raceTitle}</h2>
 
-ResultsPage.propTypes = {
-	raceResultsWithBets: PropTypes.arrayOf(PropTypes.instanceOf(RaceInformation)).isRequired,
-};
+								<PollingResultsTable
+									rows={userBetsResults}
+									currentUser={currentUser}
+									hasRaceResults={hasOfficialResults}
+								/>
+							</Col>
+						</Row>
+					);
+				})}
+			</Container>
+		);
+	}
+}
 
 export default inject(stores => ({
 	currentUser: stores.resultsPageStore.authenticatedUser,

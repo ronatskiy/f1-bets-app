@@ -3,7 +3,6 @@ import sortBy from "lodash.sortby";
 import UserBetsResult from "./user-bets-result";
 
 /**
- * @class RaceInformation
  * @property {string} raceId
  * @property {string} raceTitle
  * @property {boolean} hasOfficialResults
@@ -11,37 +10,58 @@ import UserBetsResult from "./user-bets-result";
  */
 class RaceInformation {
 	_officialResults = null;
-	userBetsResults = [];
+	_officialResultsBetMap = null;
 
+	/**
+	 * @param {Race} race
+	 * @param {Racer[]} racers
+	 */
 	constructor({ race, racers = [] }) {
 		this.raceId = race.id;
 		this.raceTitle = race.prettyTitle;
 
-		this._tryAddOfficialResults(racers);
-		let userBets = race.bets.map(betInfo => new UserBetsResult(betInfo, this._officialResults));
-
-		if (this.hasOfficialResults) {
-			userBets = sortBy(userBets, ub => -ub.userScore.value);
+		if (racers.length > 0) {
+			this._officialResultsBetMap = this._convertToBetMap(racers);
+			this._officialResults = UserBetsResult.createOfficialResults(this._officialResultsBetMap);
 		}
 
-		this.userBetsResults = [...this.userBetsResults, ...userBets];
+		this._userVotes = race.bets.map(
+			betInfo =>
+				new UserBetsResult(
+					{
+						userName: betInfo.userInfo.name,
+						userId: betInfo.userInfo.id,
+						userBetsMap: betInfo.betsMap,
+					},
+					this._officialResultsBetMap,
+				),
+		);
 	}
 
 	get hasOfficialResults() {
 		return this._officialResults !== null;
 	}
 
-	_tryAddOfficialResults(racers) {
-		if (racers.length > 0) {
-			const results = racers
-				.slice(0, 10)
-				.reduce((betMap, racer, index) => ({ ...betMap, [index + 1]: racer.abbreviation }), {});
+	/**
+	 * @return {UserBetsResult[]}
+	 */
+	get userBetsResults() {
+		if (this.hasOfficialResults) {
+			this._userVotes = sortBy(this._userVotes, ub => -ub.userScore.value);
 
-			if (results) {
-				this._officialResults = UserBetsResult.createOfficialResults(results);
-				this.userBetsResults.push(this._officialResults);
-			}
+			return [this._officialResults, ...this._userVotes];
 		}
+
+		return [...this._userVotes];
+	}
+
+	/**
+	 * @param {Racer[]} racers
+	 * @return {*}
+	 * @private
+	 */
+	_convertToBetMap(racers) {
+		return racers.reduce((betMap, racer, index) => ({ ...betMap, [index + 1]: racer.abbreviation }), {});
 	}
 }
 

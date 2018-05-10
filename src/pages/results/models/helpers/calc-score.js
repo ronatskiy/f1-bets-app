@@ -1,37 +1,54 @@
-import { calcPointsForGuessedBet } from "./calc-points-for-guessed-bet";
 import BetScore from "../bet-score";
 
 /**
- * @param {BetInfo} userBetInfo
- * @param {?UserBetsResult} officialResults
+ * @param betMap
+ * @param {number} length
+ * @return {string[]}
+ */
+function convertToArray(betMap, length = 10) {
+	return Array(length)
+		.fill(null)
+		.map((_, index) => (betMap[index + 1] ? betMap[index + 1] : ""));
+}
+
+/**
+ * @param {Object} userBetsMap
+ * @param {Object} officialResultsBetsMap
  * @return {BetScore}
  */
-export function calcScore(userBetInfo, officialResults = null) {
+export default function calcScore(userBetsMap, officialResultsBetsMap = null) {
 	const betScore = new BetScore();
-	if (!officialResults) {
+	if (!officialResultsBetsMap) {
 		return betScore;
 	}
 
-	const officialResultsRacers = Object.values(officialResults.betInfo.betsMap);
+	const usersVoteRacers = convertToArray(userBetsMap);
+	const officialResultsRacers = Object.values(officialResultsBetsMap);
 
-	for (let officialRacerPos = 1; officialRacerPos <= 10; officialRacerPos++) {
-		const userBetRacerCode = userBetInfo.betsMap[officialRacerPos];
+	return calculateScore(usersVoteRacers, officialResultsRacers);
+}
 
-		if (!userBetRacerCode) {
+/**
+ * @param {string[]} usersVoteRacers
+ * @param {string[]} officialResultsRacers
+ * @return {BetScore}
+ */
+export function calculateScore(usersVoteRacers, officialResultsRacers) {
+	const betScore = new BetScore();
+	const firstTen = officialResultsRacers.slice(0, 10);
+
+	usersVoteRacers.forEach((usersVoteRacerCode, racerPredictedPos) => {
+		if (!usersVoteRacerCode) {
 			betScore.add(0);
-			continue;
+			return;
 		}
+		const racerFinishedPos = officialResultsRacers.findIndex(racerCode => racerCode === usersVoteRacerCode);
+		const divergence = Math.abs(racerFinishedPos - racerPredictedPos);
+		const isInFirstTen = firstTen.some(racerCode => racerCode === usersVoteRacerCode);
+		const score = divergence < 5 ? 10 - divergence * 2 : isInFirstTen ? 2 : 0;
 
-		const predicate = code => code === userBetRacerCode;
-
-		if (officialResultsRacers.some(predicate)) {
-			const userBetRacerPos = officialResultsRacers.findIndex(predicate) + 1;
-
-			betScore.add(calcPointsForGuessedBet(officialRacerPos, userBetRacerPos));
-		} else {
-			betScore.add(0);
-		}
-	}
+		betScore.add(score);
+	});
 
 	return betScore;
 }

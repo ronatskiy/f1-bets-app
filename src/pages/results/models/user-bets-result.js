@@ -1,31 +1,34 @@
-import { calcScore } from "./helpers/calc-score";
-import BetInfo from "../../../domain/bet-info";
+import calcScore from "./helpers/calc-score";
 import UserInfo from "../../../domain/user-info";
 
-const OFFICIAL_RESULT_USER_TITLE = "Formula 1 (Official)";
+const OFFICIAL_RESULTS_USER_NAME = "Formula 1 (Official)";
 export const OFFICIAL_RESULTS_USER_ID = "official-results";
 
 /**
- * @class UserBetsResult
+ * @extends UserInfo
  * @property {BetScore} userScore
+ * @property {Object} userPoll
  */
-class UserBetsResult {
+class UserBetsResult extends UserInfo {
 	/**
-	 * @param {BetInfo} betInfo
-	 * @param {?UserBetsResult} officialResults
+	 * @param {Object} user
+	 * @param {!string} user.userName
+	 * @param {!string} user.userId
+	 * @param {Object} user.userBetsMap
+	 * @param {?Object} officialResultsBetMap
 	 */
-	constructor(betInfo, officialResults = null) {
-		this.betInfo = betInfo;
-		this.userScore = calcScore(betInfo, officialResults);
+	constructor({ userName: name, userId: id, userBetsMap }, officialResultsBetMap = null) {
+		super({ name, id });
+		this.userPoll = userBetsMap;
+		this.userScore = calcScore(userBetsMap, officialResultsBetMap);
 	}
 
 	static createOfficialResults(officialResults) {
-		return new UserBetsResult(
-			new BetInfo({
-				userInfo: new UserInfo({ name: OFFICIAL_RESULT_USER_TITLE, id: OFFICIAL_RESULTS_USER_ID }),
-				betsMap: officialResults,
-			}),
-		);
+		return new UserBetsResult({
+			userName: OFFICIAL_RESULTS_USER_NAME,
+			userId: OFFICIAL_RESULTS_USER_ID,
+			userBetsMap: officialResults,
+		});
 	}
 }
 
