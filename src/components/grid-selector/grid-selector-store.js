@@ -2,25 +2,18 @@ import { action, observable, computed } from "mobx";
 
 export default class GridSelectorStore {
 	constructor({ racers, onSave, initData = {}, gridPositionsCount = 10 }) {
+		this._initMap(racers, initData, gridPositionsCount);
 		this._racers = racers;
 		this._onSave = onSave;
-
-		this.map = observable.shallowMap(
-			Array(gridPositionsCount)
-				.fill(null)
-				.map((item, index) => {
-					const racer = racers.find(r => r.abbreviation === initData[index + 1]);
-
-					return [index + 1, racer || null];
-				}),
-		);
 	}
+
+	@observable _map = new Map();
 
 	@computed
 	get gridMapAsJS() {
 		const js = {};
 
-		for (let [pos, racer] of this.map) {
+		for (let [pos, racer] of this._map) {
 			if (racer) {
 				js[pos] = racer.abbreviation;
 			}
@@ -31,7 +24,7 @@ export default class GridSelectorStore {
 
 	@computed
 	get tableData() {
-		return this.map.entries().map(([pos, racer]) => ({ pos, racer }));
+		return Array.from(this._map).map(([pos, racer]) => ({ pos, racer }));
 	}
 
 	@computed
@@ -43,10 +36,20 @@ export default class GridSelectorStore {
 
 	@action
 	handleSelect = (racer, pos) => {
-		this.map.set(pos, racer);
+		this._map.set(pos, racer);
 	};
 
 	handleSubmit = () => {
 		return this._onSave(this.gridMapAsJS);
 	};
+
+	@action
+	_initMap(racers, initData, gridPositionsCount) {
+		Array(gridPositionsCount)
+			.fill(null)
+			.forEach((_, index) => {
+				const racer = racers.find(r => r.abbreviation === initData[index + 1]);
+				this.handleSelect(racer || null, index + 1);
+			});
+	}
 }
