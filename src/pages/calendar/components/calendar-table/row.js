@@ -1,7 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import FontAwesomeIcon from "@fortawesome/react-fontawesome";
-import { faAngleDown } from "@fortawesome/fontawesome-free-solid";
 import { Badge } from "reactstrap";
 import { observer } from "mobx-react";
 import { observable, action } from "mobx";
@@ -10,6 +8,7 @@ import cn from "classnames";
 import { extractDate, extractTime } from "../../../../helpers/prettify-date";
 import RaceViewModel from "../../models/race-view-model";
 import PseudoLink from "../../../../components/common/pseudo-link";
+import ChevronIcon from "../../../../components/common/chevron-icon";
 
 @observer
 export default class CalendarTableRow extends React.Component {
@@ -37,10 +36,7 @@ export default class CalendarTableRow extends React.Component {
 			<React.Fragment>
 				<tr onClick={this._toggle} className={classNames}>
 					<td className="calendar-table__command-column">
-						<FontAwesomeIcon
-							className={this._isOpen ? "chevron-icon" : "chevron-icon--right"}
-							icon={faAngleDown}
-						/>
+						<ChevronIcon direction={this._isOpen ? "right" : "down"} />
 					</td>
 					<td>
 						<PseudoLink>{race.raceName}</PseudoLink>

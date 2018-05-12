@@ -30,8 +30,3 @@
 	padding: 0.1rem 0.4rem;
 	vertical-align: top;
 }
-
-.chevron-icon {}
-.chevron-icon--right {
-	transform: rotate(-90deg);
-}
