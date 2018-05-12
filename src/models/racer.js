@@ -7,6 +7,9 @@ class RacerListModel {
 		this._loadRacers();
 	}
 
+	/**
+	 * @type {Racer[]}
+	 */
 	@observable racers = [];
 
 	@action

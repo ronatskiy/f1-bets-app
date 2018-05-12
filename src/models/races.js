@@ -10,6 +10,9 @@ class RacesModel {
 		this.fetchRaces();
 	}
 
+	/**
+	 * @type {Race[]}
+	 */
 	@observable races = [];
 
 	/**

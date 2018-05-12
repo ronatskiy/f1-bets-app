@@ -5,7 +5,7 @@ import AdminPageStore from "../../pages/admin/stores/admin-page-store";
 import LoginPageStore from "./login";
 import LogoutPageStore from "./logout";
 import ResultsPageStore from "../../pages/results/stores/results-page-store";
-import CalendarPageStore from "./calendar";
+import CalendarPageStore from "../../pages/calendar/stores/calendar";
 import UserBetsHistoryPageStore from "./user-bets-history";
 import BetPageStore from "./bet";
 

@@ -66,11 +66,17 @@ export default class AppViewModel {
 		return false;
 	}
 
+	/**
+	 * @return {Race[]}
+	 */
 	@computed
 	get races() {
 		return this._racesModel.races;
 	}
 
+	/**
+	 * @return {Racer[]}
+	 */
 	@computed
 	get racers() {
 		return this._racerListModel.racers;

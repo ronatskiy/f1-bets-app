@@ -13,6 +13,7 @@ export default function createExtendedRoundInfo(race, roundSchedules) {
 		circuit: {
 			url: race.circuit.url,
 			countryName: race.circuit.location.country,
+			circuitName: race.circuit.circuitName,
 		},
 	};
 	const roundSchedule = roundSchedules.find(({ round }) => round === Number(race.round));

@@ -1,14 +1,24 @@
 import React from "react";
-import { Badge, Col, Container, Row, Table } from "reactstrap";
+import PropTypes from "prop-types";
+import { Col, Container, Row } from "reactstrap";
 import { inject, observer } from "mobx-react";
 
-import { prettifyDate } from "../../helpers/prettify-date";
+import CalendarTable from "./components/calendar-table";
+import RaceViewModel from "./models/race-view-model";
 
 @inject("calendarPageStore")
 @observer
 class CalendarPage extends React.Component {
+	static propTypes = {
+		calendarPageStore: PropTypes.shape({
+			races: PropTypes.arrayOf(PropTypes.instanceOf(RaceViewModel)).isRequired,
+			nextRace: PropTypes.instanceOf(RaceViewModel),
+			isRaceWeekend: PropTypes.bool.isRequired,
+		}).isRequired,
+	};
+
 	render() {
-		const { races, nextRace, isRaceWeekend } = this.props.calendarPageStore;
+		const { /** @types {RaceViewModel[]} */ races, nextRace, isRaceWeekend } = this.props.calendarPageStore;
 
 		return (
 			<Container tag="section" style={{ marginTop: "1rem", marginBottom: "1rem" }}>
@@ -17,36 +27,10 @@ class CalendarPage extends React.Component {
 						<h1 className="page-title">Календарь гонок сезона 2018 года</h1>
 					</Col>
 				</Row>
+
 				<Row>
 					<Col>
-						<Table size="sm" responsive>
-							<thead className="thead-light">
-								<tr>
-									<th>Grand Prix</th>
-									<th>Date</th>
-								</tr>
-							</thead>
-							<tbody>
-								{races.map(race => {
-									const { id, title, location, raceStartTime, qualifyingStartTime } = race;
-
-									return (
-										<tr key={id} className={id === nextRace.id ? "bg-success text-light" : ""}>
-											<td>
-												{title}, {location}{" "}
-												{id === nextRace.id && (
-													<Badge color="info">{isRaceWeekend ? "Now" : "Next"}</Badge>
-												)}
-											</td>
-											<td>
-												<div>Qual: {prettifyDate(qualifyingStartTime)}</div>
-												<div>Race: {prettifyDate(raceStartTime)}</div>
-											</td>
-										</tr>
-									);
-								})}
-							</tbody>
-						</Table>
+						<CalendarTable races={races} nextRace={nextRace} isRaceWeekend={isRaceWeekend} />
 					</Col>
 				</Row>
 			</Container>

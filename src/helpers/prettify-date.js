@@ -14,6 +14,10 @@ export function toUTCStringDate(date) {
 		.format();
 }
 
+export function extractDate(date) {
+	return moment(date).format("DD MMMM");
+}
+
 export function extractDay(date) {
 	return moment(date).format("ddd");
 }

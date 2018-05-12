@@ -1,0 +1,37 @@
+.calendar-table__row {}
+.calendar-table__row--expandable {
+	background-color: var(--very-light-green);
+	cursor: pointer;
+}
+.calendar-table__row--highlighted {
+	background-color: #ade297;
+}
+.calendar-table__row--nested {
+	background-color: #edfaff;
+	padding-left: 2rem !important;
+}
+
+.calendar-table__command-column {
+	padding-right: 0!important;
+	width: 0.5rem;
+}
+.calendar-table__grand-prix-column {}
+
+.calendar-table__date-column {
+	width: 8rem;
+}
+.calendar-table__time-column {
+	width: 5rem;
+}
+.calendar-table__badge {
+	border: 1px solid #68b0fd;
+	border-radius: 0;
+	margin-left: 0.75rem;
+	padding: 0.1rem 0.4rem;
+	vertical-align: top;
+}
+
+.chevron-icon {}
+.chevron-icon--right {
+	transform: rotate(-90deg);
+}
