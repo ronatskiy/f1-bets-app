@@ -1,6 +1,6 @@
 import React from "react";
 import { observer } from "mobx-react";
-import { Form, Label, Input, FormGroup, Button, FormFeedback } from "reactstrap";
+import { Form, Label, Input, FormGroup, Button, FormFeedback } from "../../../vendor";
 
 import { LoginFormFields } from "../../../stores/forms/settings/login-form";
 

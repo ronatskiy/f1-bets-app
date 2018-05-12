@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Collapse, Table } from "reactstrap";
 import sortBy from "lodash.sortby";
 import { action, observable } from "mobx";
 import { observer } from "mobx-react";
+import { Collapse, Table } from "../../../../vendor";
 
 import PseudoLink from "../../../../components/common/pseudo-link";
 import "./styles.css";

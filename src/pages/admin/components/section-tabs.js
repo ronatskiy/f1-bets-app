@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Badge, Col, Nav, NavItem, NavLink, Row, TabContent, TabPane } from "reactstrap";
 import { observable, action } from "mobx";
 import { observer, inject } from "mobx-react";
+import { Badge, Col, Nav, NavItem, NavLink, Row, TabContent, TabPane } from "../../../vendor";
 
 import RaceSection from "./race-section";
 import UsersSection from "./users-section/users-section";

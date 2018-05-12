@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "reactstrap";
+import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "../../../../vendor";
 
 import { pathNames } from "../../../../routes/routes";
 import User from "../../../../domain/user";
 import NavLink from "../../../common/smart-nav-link";
 
-const ProfileDropdown = ({ user, isBetsAllowed }) => {
+const ProfileDropdown = ({ user }) => {
 	const { isAdmin, name } = user;
 
 	return (

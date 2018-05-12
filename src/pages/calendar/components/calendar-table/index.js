@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Table } from "reactstrap";
+import { Table } from "../../../../vendor";
+
 import CalendarTableRow from "./row";
 import RaceViewModel from "../../models/race-view-model";
 

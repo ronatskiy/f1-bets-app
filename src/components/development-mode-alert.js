@@ -1,6 +1,6 @@
 import React from "react";
-import { Col, Container, Row } from "reactstrap";
 import { inject, observer } from "mobx-react";
+import { Col, Container, Row } from "../vendor";
 
 import { prettifyDate, prettifyDateWithSeconds } from "../helpers/prettify-date";
 

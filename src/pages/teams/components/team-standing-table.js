@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Table } from "../../../vendor";
 
 import NationalizedLink from "../../../components/nationalized-link";
 import TeamsStanding from "../models/team-standing";
-import { Table } from "reactstrap";
 import "./team-standing-table.css";
 
 class TeamStandingTable extends React.Component {

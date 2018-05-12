@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { observer, inject } from "mobx-react";
 import { withRouter, Redirect } from "react-router-dom";
-import { Container, Row, Col, Button } from "reactstrap";
+import { Container, Row, Col, Button } from "../../vendor";
 
 import LoginForm from "./components/login-form";
 import RegisterNewAccountForm from "./components/register-new-form";

@@ -13,7 +13,7 @@ import {
 	DropdownToggle,
 	DropdownMenu,
 	DropdownItem,
-} from "reactstrap";
+} from "../../../../vendor";
 
 import "./navigation-bar.css";
 import { pathNames } from "../../../../routes/routes";

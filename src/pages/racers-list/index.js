@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Col, Container, Row } from "reactstrap";
 import { inject, observer, PropTypes as MobxPropTypes } from "mobx-react";
+import { Col, Container, Row } from "../../vendor";
 
 import RacerStanding from "./models/racer-standing";
 import RacerStandingTable from "./components/racer-standing-table";

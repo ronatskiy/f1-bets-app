@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Badge } from "reactstrap";
 import { observer } from "mobx-react";
 import { observable, action } from "mobx";
 import cn from "classnames";
+import { Badge } from "../../../../vendor";
 
 import { extractDate, extractTime } from "../../../../helpers/prettify-date";
 import RaceViewModel from "../../models/race-view-model";

@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Col, Container, Row, Table } from "reactstrap";
 import { inject, observer } from "mobx-react";
 import { Link } from "react-router-dom";
-import { pathNames } from "../../routes/routes";
+import { Col, Container, Row, Table } from "../../vendor";
 
+import { pathNames } from "../../routes/routes";
 import "./styles.css";
 
 @inject("userBetsHistoryPageStore")

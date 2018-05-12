@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Badge } from "reactstrap";
 import cn from "classnames";
+import { Badge } from "../../../../vendor";
 
 import "./cell.css";
 

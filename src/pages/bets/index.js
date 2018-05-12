@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Col, Container, Row } from "reactstrap";
 import { observer, inject, PropTypes as MobXPropTypes } from "mobx-react";
+import { Container, Row, Col } from "../../vendor";
 
 import BetsForm from "./components/bets-form";
 import Racer from "../../domain/racer";

@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import Select from "react-select";
 import "react-select/dist/react-select.css";
-import "./racers-select.css";
 
+import "./racers-select.css";
 import Racer from "../../domain/racer";
 
 function racerListTransformer(racerList) {
