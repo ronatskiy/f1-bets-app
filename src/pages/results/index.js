@@ -6,18 +6,29 @@ import { inject, observer } from "mobx-react";
 import PollingResultsTable from "./components/polling-results-table/index";
 import "./styles.css";
 import RaceInformation from "./models/race-information";
+import UserStandingsTable from "./components/user-standings-table";
+import UserStanding from "./models/user-standing";
+import User from "../../domain/user";
 
 class ResultsPage extends React.Component {
 	static propTypes = {
+		currentUser: PropTypes.instanceOf(User),
 		raceResultsWithBets: PropTypes.arrayOf(PropTypes.instanceOf(RaceInformation)).isRequired,
+		userStandings: PropTypes.arrayOf(PropTypes.instanceOf(UserStanding)).isRequired,
 	};
 
 	render() {
-		const { currentUser, /** @type {RaceInformation[]} */ raceResultsWithBets } = this.props;
+		const { currentUser, /** @type {RaceInformation[]} */ raceResultsWithBets, userStandings } = this.props;
 
 		return (
 			<Container className="results-page">
-				{raceResultsWithBets.map(raceInfo => {
+				<Row>
+					<Col>
+						<UserStandingsTable usersVotes={userStandings} />
+					</Col>
+				</Row>
+
+				{raceResultsWithBets.reverse().map(raceInfo => {
 					const { raceId, raceTitle, hasOfficialResults, userBetsResults } = raceInfo;
 
 					if (userBetsResults.length === 0) {
@@ -46,4 +57,5 @@ class ResultsPage extends React.Component {
 export default inject(stores => ({
 	currentUser: stores.resultsPageStore.authenticatedUser,
 	raceResultsWithBets: stores.resultsPageStore.raceResultsWithBets,
+	userStandings: stores.resultsPageStore.userStandings,
 }))(observer(ResultsPage));

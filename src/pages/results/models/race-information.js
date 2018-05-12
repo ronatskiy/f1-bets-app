@@ -47,12 +47,19 @@ class RaceInformation {
 	 */
 	get userBetsResults() {
 		if (this.hasOfficialResults) {
-			this._userVotes = sortBy(this._userVotes, ub => -ub.userScore.value);
+			const sortedVotes = sortBy(this._userVotes, ub => -ub.userScore.value);
 
-			return [this._officialResults, ...this._userVotes];
+			return [this._officialResults, ...sortedVotes];
 		}
 
 		return [...this._userVotes];
+	}
+
+	/**
+	 * @return {UserBetsResult}
+	 */
+	get userVotes() {
+		return this._userVotes;
 	}
 
 	/**
