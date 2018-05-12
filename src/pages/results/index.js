@@ -21,7 +21,7 @@ class ResultsPage extends React.Component {
 		const { currentUser, /** @type {RaceInformation[]} */ raceResultsWithBets, userStandings } = this.props;
 
 		return (
-			<Container className="results-page">
+			<Container tag="section" className="results-page">
 				<Row>
 					<Col>
 						<UserStandingsTable usersVotes={userStandings} />

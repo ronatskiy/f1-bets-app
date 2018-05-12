@@ -24,7 +24,7 @@ class PollingResultsTable extends React.Component {
 		const { /** @type {UserBetsResult[]} */ rows, currentUser, hasRaceResults } = this.props;
 
 		return (
-			<Table responsive>
+			<Table size="sm" responsive>
 				<TableHeader hasRaceResults={hasRaceResults} />
 				<tbody>
 					{rows.map(userBetsResult => {
