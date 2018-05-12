@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "reactstrap";
 import FontAwesomeIcon from "@fortawesome/react-fontawesome";
-import { faTelegram } from "@fortawesome/fontawesome-free-brands";
+import * as faTelegram from "@fortawesome/fontawesome-free-brands/faTelegram";
 
 import "./styles.css";
 
