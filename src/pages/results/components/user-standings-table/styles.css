@@ -1,0 +1,5 @@
+.user-standings-table {}
+.user-standings-table__pos-column {
+	text-align: center;
+	width: 2rem;
+}

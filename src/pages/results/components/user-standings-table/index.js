@@ -4,10 +4,10 @@ import { Collapse, Table } from "reactstrap";
 import sortBy from "lodash.sortby";
 import { action, observable } from "mobx";
 import { observer } from "mobx-react";
-import FontAwesomeIcon from "@fortawesome/react-fontawesome";
-import { faAngleDown } from "@fortawesome/fontawesome-free-solid";
 
 import PseudoLink from "../../../../components/common/pseudo-link";
+import "./styles.css";
+import ChevronIcon from "../../../../components/common/chevron-icon";
 
 @observer
 export default class UserStandingsTable extends React.Component {
@@ -36,20 +36,23 @@ export default class UserStandingsTable extends React.Component {
 			<React.Fragment>
 				<h2 className="results-page__race-header" onClick={this._toggle}>
 					<PseudoLink>
-						Сводная таблица результатов голосования <FontAwesomeIcon icon={faAngleDown} />
+						Сводная таблица результатов голосования{" "}
+						<ChevronIcon direction={this._isOpen ? "top" : "down"} />
 					</PseudoLink>
 				</h2>
 				<Collapse isOpen={this._isOpen}>
-					<Table size="sm" responsive>
+					<Table className="user-standings-table" size="sm" responsive>
 						<thead className="thead-light">
 							<tr className="text-uppercase">
+								<th className="user-standings-table__pos-column">Поз</th>
 								<th>Пользователь</th>
 								<th className="text-right">очки</th>
 							</tr>
 						</thead>
 						<tbody>
-							{sortedVotes.map(vote => (
+							{sortedVotes.map((vote, index) => (
 								<tr key={vote.userId}>
+									<td className="user-standings-table__pos-column">{index + 1}</td>
 									<td>{vote.userName}</td>
 									<td className="text-right">{vote.totalPoints}</td>
 								</tr>
