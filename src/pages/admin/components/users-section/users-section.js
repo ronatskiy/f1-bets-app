@@ -4,13 +4,9 @@ import { Button, Col, Row, Table } from "reactstrap";
 
 import UserEditForm from "./user-edit-form";
 
-@inject(stores => {
-	const { usersSectionStore } = stores.adminPageStore;
-
-	return {
-		usersSectionStore,
-	};
-})
+@inject(stores => ({
+	usersSectionStore: stores.adminPageStore.usersSectionStore,
+}))
 @observer
 class UsersSection extends Component {
 	_toggleForm(visible) {

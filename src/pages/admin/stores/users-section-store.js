@@ -54,11 +54,11 @@ export default class UsersSectionStore {
 		});
 	}
 
-	async deleteUser(id) {
+	deleteUser = async id => {
 		if (window.confirm("Вы точно хотите удалить пользователя?")) {
 			await this._appViewModel.usersModel.deleteUser(id);
 		}
 
 		return await this._appViewModel.usersModel.fetchUsers();
-	}
+	};
 }

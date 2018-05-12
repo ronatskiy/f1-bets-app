@@ -8,7 +8,7 @@ class AdminPageStore {
 	 */
 	constructor(viewModel) {
 		const RACE_STORE_URL = configProvider.getRaceStoreApiUrl();
-		const USER_STORE_URL = configProvider.getRaceStoreApiUrl();
+		const USER_STORE_URL = configProvider.getUserStoreApiUrl();
 		this._racesSectionStore = new RacesSectionStore(viewModel, RACE_STORE_URL);
 		this._usersSectionStore = new UsersSectionStore(viewModel, USER_STORE_URL);
 	}
