@@ -31,6 +31,7 @@
     "validatorjs": "^3.14.2"
   },
   "scripts": {
+    "analyze": "source-map-explorer build/static/js/main.*",
     "start": "react-app-rewired start",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
@@ -46,6 +47,7 @@
     "prettier": "^1.11.1",
     "prop-types": "^15.6.1",
     "react-app-rewire-mobx": "^1.0.7",
-    "react-app-rewired": "^1.5.0"
+    "react-app-rewired": "^1.5.0",
+    "source-map-explorer": "^1.5.0"
   }
 }
