@@ -1,6 +1,6 @@
 {
   "name": "f1-bets-app",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "homepage": "http://f1bets.tk/",
   "repository": "github:ronatskiy/f1-bets-app",
@@ -13,6 +13,7 @@
     "bcryptjs": "^2.4.3",
     "bootstrap": "^4.0.0",
     "classnames": "^2.2.5",
+    "country-flags-svg": "^0.0.4",
     "lodash.capitalize": "^4.2.1",
     "lodash.kebabcase": "^4.1.1",
     "lodash.sortby": "^4.7.0",

@@ -1,5 +1,5 @@
 import Racer from "../../../domain/racer";
-import { getFlagUrl } from "../../../lib/country-flags";
+import { findFlagUrlByNationality } from "country-flags-svg";
 
 export default class RacerViewModel extends Racer {
 	constructor({ firstName, lastName, number, abbreviation, points, nationality }) {
@@ -7,6 +7,6 @@ export default class RacerViewModel extends Racer {
 	}
 
 	get flagUrl() {
-		return getFlagUrl(this.nationality);
+		return findFlagUrlByNationality(this.nationality);
 	}
 }

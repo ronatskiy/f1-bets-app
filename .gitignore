@@ -5,3 +5,6 @@
 /yarn-error.log
 /dev-storage-server/
 /__.env.development.local
+/build/asset-manifest.json
+/build/index.html
+/build/service-worker.js

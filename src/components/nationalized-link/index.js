@@ -1,16 +1,14 @@
-import React, { Fragment } from "react";
+import React from "react";
 import PropTypes from "prop-types";
+import { findFlagUrlByNationality } from "country-flags-svg";
 
-import { getFlagUrl } from "../../lib/country-flags/index";
 import "./index.css";
 
 const NationalizedLink = ({ text, url, nationality }) => (
-	<Fragment>
-		<a target="_blank" href={url}>
-			<img className="nationalized-link__flag" src={getFlagUrl(nationality)} alt={nationality} />
-			<span>{text}</span>
-		</a>
-	</Fragment>
+	<a target="_blank" href={url}>
+		<img className="nationalized-link__flag" src={findFlagUrlByNationality(nationality)} alt={nationality} />
+		<span>{text}</span>
+	</a>
 );
 
 NationalizedLink.propTypes = {

@@ -1,4 +1,4 @@
-import { getFlagUrlByCountryName } from "../../../../lib/country-flags/index";
+import { findFlagUrlByCountryName } from "country-flags-svg";
 import PracticeInfoModel from "./practice-info";
 import RaceInfoModel from "./race-info-model";
 import QualificationInfoModel from "./qualification-info-model";
@@ -69,7 +69,7 @@ export default class WeekendInfoModel {
 	}
 
 	get flagUrl() {
-		return getFlagUrlByCountryName(this.countryName);
+		return findFlagUrlByCountryName(this.countryName);
 	}
 
 	get raceTitle() {
