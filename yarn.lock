@@ -1775,9 +1775,9 @@ cosmiconfig@^2.1.0, cosmiconfig@^2.1.1:
     parse-json "^2.2.0"
     require-from-string "^1.1.0"
 
-country-flags-svg@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/country-flags-svg/-/country-flags-svg-0.0.4.tgz#33c3d11e81f8b07f0d6686f11cf2c0e7b317dfb5"
+country-flags-svg@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/country-flags-svg/-/country-flags-svg-0.0.6.tgz#f8805efcae227474cc356accc3cfc1ba535a2a07"
 
 create-ecdh@^4.0.0:
   version "4.0.3"
