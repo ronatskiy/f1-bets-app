@@ -1,4 +1,5 @@
 import { computed } from "mobx";
+import sortBy from "lodash.sortby";
 
 import RaceInformation from "../models/race-information";
 import UserStanding from "../models/user-standing";
@@ -49,9 +50,26 @@ class ResultsPageStore {
 
 	@computed
 	get userStandings() {
-		const result = new Map([]);
+		const MAX_VALUABLE_RACE_COUNT = 7;
 
-		this.userStandingsByRound.forEach(({ userStandings }) => {
+		const maxValuableUserStandings = Array.from(
+			this.userStandingsByRound
+				.reduce((acc, { userStandings }) => {
+					userStandings.forEach(roundsUserScore => {
+						acc.set(roundsUserScore.userId, [...(acc.get(roundsUserScore.userId) || []), roundsUserScore]);
+					});
+
+					return acc;
+				}, new Map([]))
+				.values(),
+		).map(userStandings => {
+			const arr = sortBy(userStandings, userStanding => userStanding.totalPoints);
+
+			return arr.slice(Math.max(arr.length - MAX_VALUABLE_RACE_COUNT, 0));
+		});
+
+		const result = new Map([]);
+		maxValuableUserStandings.forEach(userStandings => {
 			userStandings.forEach(userStanding => {
 				if (result.has(userStanding.userId)) {
 					const newValue = userStanding;
@@ -62,6 +80,7 @@ class ResultsPageStore {
 				}
 			});
 		});
+
 		return Array.from(result.values());
 	}
 }
