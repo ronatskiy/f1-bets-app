@@ -28,4 +28,8 @@ export {
 	TabPane,
 	FormText,
 	FormFeedback,
+	Modal,
+	ModalHeader,
+	ModalBody,
+	ModalFooter,
 } from "./reactstrap-vendor";

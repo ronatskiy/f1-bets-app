@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
-import { Button, Col, Row, Table } from "../../../vendor";
+import { Button, Col, Row, Table } from "../../../../vendor";
 
-import { prettifyDate } from "../../../helpers/prettify-date";
-import GridSelector from "../../../components/grid-selector/grid-selector";
+import { prettifyDate } from "../../../../helpers/prettify-date";
+import GridSelector from "../../../../components/grid-selector/grid-selector";
 import RaceSelect from "./race-select";
+import AddBetButton from "./add-bet-button";
 
 @inject(stores => ({
 	racesSectionStore: stores.adminPageStore.racesSectionStore,
@@ -53,7 +54,7 @@ class RaceSection extends Component {
 					</Col>
 				</Row>
 				{isRaceResultsPanelVisible && [
-					<Row key={"11"}>
+					<Row key={1}>
 						<Col md={2}>Выберите гонку:</Col>
 						<Col>
 							<RaceSelect
@@ -63,7 +64,7 @@ class RaceSection extends Component {
 							/>
 						</Col>
 					</Row>,
-					<Row key={"22"}>
+					<Row key={2}>
 						<Col>
 							<GridSelector racers={racers.slice()} onSave={this.handleGridSelectorSave} />
 						</Col>
@@ -78,6 +79,7 @@ class RaceSection extends Component {
 									<th>Title</th>
 									<th>Date</th>
 									<th>Bets</th>
+									<th>Commands</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -93,6 +95,9 @@ class RaceSection extends Component {
 												<div>Race: {prettifyDate(raceStartTime)}</div>
 											</td>
 											<td>We have {bets.length} bets</td>
+											<td>
+												<AddBetButton race={race} />
+											</td>
 										</tr>
 									);
 								})}

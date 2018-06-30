@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import Select from "react-select";
 
-import Race from "../../../domain/race";
+import Race from "../../../../domain/race";
 
 class RaceSelect extends React.Component {
 	static propTypes = {

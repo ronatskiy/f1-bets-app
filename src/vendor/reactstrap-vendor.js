@@ -24,6 +24,10 @@ import TabPane from "reactstrap/lib/TabPane";
 import NavLink from "reactstrap/lib/NavLink";
 import FormText from "reactstrap/lib/FormText";
 import FormFeedback from "reactstrap/lib/FormFeedback";
+import Modal from "reactstrap/lib/Modal";
+import ModalHeader from "reactstrap/lib/ModalHeader";
+import ModalBody from "reactstrap/lib/ModalBody";
+import ModalFooter from "reactstrap/lib/ModalFooter";
 
 export {
 	Badge,
@@ -50,4 +54,8 @@ export {
 	TabPane,
 	FormText,
 	FormFeedback,
+	Modal,
+	ModalHeader,
+	ModalBody,
+	ModalFooter,
 };

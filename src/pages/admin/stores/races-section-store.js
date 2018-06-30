@@ -14,6 +14,14 @@ class RacesSectionStore {
 	@observable isRaceResultsPanelVisible = false;
 	@observable selectedRace = null;
 
+	/**
+	 * @return {User[]}
+	 */
+	@computed
+	get users() {
+		return this._appViewModel.usersModel.users;
+	}
+
 	@computed
 	get races() {
 		return this._appViewModel.races;
@@ -55,6 +63,10 @@ class RacesSectionStore {
 			this.isRaceResultsPanelVisible = false;
 		});
 	}
+
+	addNewBet = bets => {
+		return this._appViewModel.addNewBet(bets);
+	};
 }
 
 export default RacesSectionStore;
