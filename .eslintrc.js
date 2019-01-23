@@ -4,7 +4,6 @@ module.exports = {
 	extends: "react-app",
 	parserOptions: {
 		ecmaFeatures: {
-			experimentalObjectRestSpread: true,
 			legacyDecorators: true
 		},
 	},
