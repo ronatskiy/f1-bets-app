@@ -1,7 +1,13 @@
+import { library, dom } from "@fortawesome/fontawesome-svg-core";
+import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
+import { faTelegram } from "@fortawesome/free-brands-svg-icons";
 import "bootstrap/dist/css/bootstrap.css";
 import "moment/locale/ru";
 import moment from "moment";
 moment.locale("ru");
+
+library.add(faAngleDown, faTelegram);
+dom.watch();
 
 export {
 	Badge,

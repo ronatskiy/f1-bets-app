@@ -7,6 +7,7 @@ function encodePassword(password) {
 function isPasswordValid(password, hash) {
 	return bcrypt.compareSync(password, hash);
 }
+
 export const cryptoService = {
 	encodePassword,
 	isPasswordValid,
