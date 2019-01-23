@@ -1,7 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "../../vendor";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTelegram } from "@fortawesome/free-brands-svg-icons";
+import { ReactComponent as TelegramIcon } from "../../images/telegram.svg";
 
 import "./styles.css";
 
@@ -15,7 +14,7 @@ const Footer = ({ className = "" }) => {
 						<Row className="social-media-links">
 							<Col className="social-media-links__telegram-box">
 								<a href="https://t.me/f1funteam" className="footer__link social-media-links__link">
-									<FontAwesomeIcon icon={faTelegram} />
+									<TelegramIcon className="social-media-links__icon" />
 								</a>
 							</Col>
 						</Row>

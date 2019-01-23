@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
+import { ReactComponent as Chevron } from "../../images/chevron.svg";
 import cn from "classnames";
 
 import "./chevron-icon.css";
@@ -9,7 +8,7 @@ import "./chevron-icon.css";
 const ChevronIcon = ({ direction = "down", className = "" }) => {
 	const classNames = cn("chevron-icon", `chevron-icon--${direction}`, className);
 
-	return <FontAwesomeIcon className={classNames} icon={faAngleDown} />;
+	return <Chevron className={classNames} />;
 };
 
 ChevronIcon.propTypes = {

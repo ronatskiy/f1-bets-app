@@ -1,4 +1,6 @@
-.chevron-icon {}
+.chevron-icon {
+	width: 1rem;
+}
 .chevron-icon--down {}
 .chevron-icon--right {
 	transform: rotate(-90deg);

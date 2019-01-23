@@ -23,6 +23,10 @@
 	text-align: center;
 }
 
+.social-media-links__icon {
+	width: 1rem;
+}
+
 .social-media-links__telegram-box {
 	border-bottom: 2px solid #419fd9;
 	padding: 0;
