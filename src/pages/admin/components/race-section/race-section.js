@@ -108,7 +108,7 @@ class RaceSection extends Component {
 				<Row>
 					<Col>
 						Details:{" "}
-						<a target="_blank" href={storeApiUrl}>
+						<a target="_blank" rel="noopener noreferrer" href={storeApiUrl}>
 							{storeApiUrl}
 						</a>
 					</Col>

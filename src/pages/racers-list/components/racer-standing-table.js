@@ -51,7 +51,7 @@ class RacerStandingTable extends React.Component {
 										/>
 									</td>
 									<td>
-										<a target="_blank" href={constructorUrl}>
+										<a target="_blank" rel="noopener noreferrer" href={constructorUrl}>
 											{constructorName}
 										</a>
 									</td>
