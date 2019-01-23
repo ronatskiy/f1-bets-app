@@ -5,7 +5,7 @@ import { findFlagUrlByNationality } from "country-flags-svg";
 import "./index.css";
 
 const NationalizedLink = ({ text, url, nationality }) => (
-	<a target="_blank" href={url}>
+	<a target="_blank" rel="noopener noreferrer" href={url}>
 		<img className="nationalized-link__flag" src={findFlagUrlByNationality(nationality)} alt={nationality} />
 		<span>{text}</span>
 	</a>

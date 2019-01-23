@@ -29,12 +29,11 @@ class Cell extends React.Component {
 		return (
 			<div className={classNames}>
 				{text}
-				{isBadgeVisible &&
-					text && (
-						<Badge className="polling-result-cell__badge" color="light" pill>
-							{points}
-						</Badge>
-					)}
+				{isBadgeVisible && text && (
+					<Badge className="polling-result-cell__badge" color="light" pill>
+						{points}
+					</Badge>
+				)}
 			</div>
 		);
 	}

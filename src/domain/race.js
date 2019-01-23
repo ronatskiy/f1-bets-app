@@ -11,7 +11,10 @@ class Race {
 		this.season = season;
 		this.officialData = officialData;
 		this.bets = bets.map(bet => {
-			const { userInfo: { name, id }, betsMap } = bet;
+			const {
+				userInfo: { name, id },
+				betsMap,
+			} = bet;
 
 			return new BetInfo({ userInfo: new UserInfo({ name, id }), betsMap });
 		});

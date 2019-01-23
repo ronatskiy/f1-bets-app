@@ -1,6 +1,3 @@
-const rewireMobX = require("react-app-rewire-mobx");
+const { override, useEslintRc, addDecoratorsLegacy } = require("customize-cra");
 
-module.exports = function override(config, env) {
-	config = rewireMobX(config, env);
-	return config;
-};
+module.exports = override(useEslintRc(), addDecoratorsLegacy());

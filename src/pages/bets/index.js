@@ -18,8 +18,9 @@ const BetsPage = ({ betPageStore: { racers, currentUser, userBet, onBetsSubmit, 
 			<Col>
 				{!isBetsAllowed ? (
 					<div className="alert alert-warning" role="alert">
-						Сейчас прогнозы на {nextRaceTitle} уже не принимаются.<br />Новая возможность оставить свой
-						прогноз на будущую гонку у Вас появится после начала этой.
+						Сейчас прогнозы на {nextRaceTitle} уже не принимаются.
+						<br />
+						Новая возможность оставить свой прогноз на будущую гонку у Вас появится после начала этой.
 					</div>
 				) : (
 					<BetsForm racers={racers} user={currentUser} userBet={userBet} onBetsSubmit={onBetsSubmit} />
