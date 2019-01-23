@@ -1,12 +1,12 @@
 {
   "main.css": "/static/css/main.ce65fdfc.chunk.css",
-  "main.js": "/static/js/main.b5ea47e2.chunk.js",
+  "main.js": "/static/js/main.580203fd.chunk.js",
   "static/css/1.efd2d15e.chunk.css": "/static/css/1.efd2d15e.chunk.css",
-  "static/js/1.d48b2590.chunk.js": "/static/js/1.d48b2590.chunk.js",
+  "static/js/1.a7a73b00.chunk.js": "/static/js/1.a7a73b00.chunk.js",
   "runtime~main.js": "/static/js/runtime~main.229c360f.js",
   "static/media/chevron.6f43a39e.svg": "/static/media/chevron.6f43a39e.svg",
   "static/media/telegram.8a14cb4c.svg": "/static/media/telegram.8a14cb4c.svg",
   "index.html": "/index.html",
-  "precache-manifest.b4500b0a84764ff99b05c6e078249181.js": "/precache-manifest.b4500b0a84764ff99b05c6e078249181.js",
+  "precache-manifest.12364219c000ebcfd304df27f66fdbc4.js": "/precache-manifest.12364219c000ebcfd304df27f66fdbc4.js",
   "service-worker.js": "/service-worker.js"
 }
