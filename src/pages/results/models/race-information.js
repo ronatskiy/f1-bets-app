@@ -14,14 +14,14 @@ class RaceInformation {
 
 	/**
 	 * @param {Race} race
-	 * @param {Racer[]} racers
+	 * @param {Racer[]} finishedRacers
 	 */
-	constructor({ race, racers = [] }) {
-		this.raceId = race.id;
-		this.raceTitle = race.prettyTitle;
+	constructor({ race, finishedRacers = [] }) {
+		this.raceId = race.roundId;
+		this.raceTitle = race.prettyTitle + " " + race.season;
 
-		if (racers.length > 0) {
-			this._officialResultsBetMap = this._convertToBetMap(racers);
+		if (finishedRacers.length > 0) {
+			this._officialResultsBetMap = this._convertToBetMap(finishedRacers);
 			this._officialResults = UserBetsResult.createOfficialResults(this._officialResultsBetMap);
 		}
 
@@ -68,7 +68,7 @@ class RaceInformation {
 	 * @private
 	 */
 	_convertToBetMap(racers) {
-		return racers.reduce((betMap, racer, index) => ({ ...betMap, [index + 1]: racer.abbreviation }), {});
+		return racers.reduce((betMap, racer, index) => ({ ...betMap, [index + 1]: racer.code }), {});
 	}
 }
 

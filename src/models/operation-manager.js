@@ -1,4 +1,4 @@
-import { observable, action, runInAction, computed } from "mobx";
+import { action, computed, observable, runInAction } from "mobx";
 
 export default class OperationManager {
 	@observable pendingTasksCount = 0;
@@ -20,13 +20,8 @@ export default class OperationManager {
 		this.pendingTasksCount++;
 
 		try {
-			const result = await fn();
-			runInAction(() => {
-				this.pendingTasksCount--;
-			});
-
-			return result;
-		} catch (e) {
+			return await fn();
+		} finally {
 			runInAction(() => {
 				this.pendingTasksCount--;
 			});

@@ -9,9 +9,12 @@ import "./team-standing-table.css";
 class TeamStandingTable extends React.Component {
 	static propTypes = {
 		teams: PropTypes.arrayOf(PropTypes.instanceOf(TeamsStanding)).isRequired,
+		currentSeason: PropTypes.string.isRequired,
 	};
 
 	render() {
+		const { currentSeason, teams } = this.props;
+
 		return (
 			<Table responsive>
 				<thead className="thead-light">
@@ -23,14 +26,18 @@ class TeamStandingTable extends React.Component {
 					</tr>
 				</thead>
 				<tbody>
-					{this.props.teams.map(team => {
+					{teams.map(team => {
 						const { pos, name, url, id, points, nationality } = team;
 
 						return (
 							<tr key={id}>
 								<td>{pos}</td>
 								<td className="text-right">
-									<img className="team-car-photo" src={"/images/cars/" + id + ".jpg"} alt={name} />
+									<img
+										className="team-car-photo"
+										src={`/images/cars/${currentSeason}/${id}.png`}
+										alt={name}
+									/>
 								</td>
 								<td>
 									<NationalizedLink text={name} nationality={nationality} url={url} />

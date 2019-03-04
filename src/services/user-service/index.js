@@ -1,4 +1,4 @@
-import { fetchData, updateData } from "../helpers/web-api";
+import { ajax } from "../../vendor";
 import User from "../../domain/user";
 
 /**
@@ -17,7 +17,7 @@ export default class UserService {
 	 * @return {Promise<User[]>}
 	 */
 	async fetchAll() {
-		return (await fetchData(this._apiUrl)).map(User.fromJs);
+		return (await ajax.get(this._apiUrl)).map(User.fromJs);
 	}
 
 	/**
@@ -28,7 +28,7 @@ export default class UserService {
 		const user = (await this.fetchAll()).find(u => u.id === id);
 
 		if (!user) {
-			throw new Error("User cann't be found!");
+			throw new Error("User can't be found!");
 		}
 
 		return user;
@@ -39,7 +39,7 @@ export default class UserService {
 	 * @return {Promise<User | null>}
 	 */
 	async findById(id) {
-		return this.findBy(u => u.id === id);
+		return this.findBy(user => user.id === id);
 	}
 
 	/**
@@ -74,7 +74,7 @@ export default class UserService {
 			users.push(user);
 		}
 
-		return updateData(this._apiUrl, users);
+		return ajax.put(this._apiUrl, users);
 	}
 
 	async delete(id) {
@@ -83,6 +83,6 @@ export default class UserService {
 		}
 		const users = await this.fetchAll();
 
-		return updateData(this._apiUrl, users.filter(user => user.id !== id));
+		return ajax.put(this._apiUrl, users.filter(user => user.id !== id));
 	}
 }

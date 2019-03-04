@@ -2,14 +2,14 @@ import { observable, action, computed } from "mobx";
 
 export default class UsersSectionStore {
 	/**
-	 * @param {AppViewModel} viewModel
+	 * @param {AppModel} appModel
 	 * @param {string} USER_STORE_URL
 	 */
-	constructor(viewModel, USER_STORE_URL) {
-		this._appViewModel = viewModel;
+	constructor(appModel, USER_STORE_URL) {
+		this._appModel = appModel;
 		this._storeApiUrl = USER_STORE_URL;
 
-		this._appViewModel.usersModel.fetchUsers();
+		this._appModel.usersModel.fetchUsers();
 	}
 
 	@observable isUserFormVisible = false;
@@ -20,7 +20,7 @@ export default class UsersSectionStore {
 	 */
 	@computed
 	get users() {
-		return this._appViewModel.usersModel.users;
+		return this._appModel.usersModel.users;
 	}
 
 	get storeApiUrl() {
@@ -44,21 +44,21 @@ export default class UsersSectionStore {
 			return;
 		}
 
-		return this._appViewModel.operationManager.runWithProgressAsync(async () => {
-			await this._appViewModel.usersModel.addOrUpdate(user);
+		return this._appModel.operationManager.runWithProgressAsync(async () => {
+			await this._appModel.usersModel.addOrUpdate(user);
 
 			this.userForEdit = null;
 			this.toggleUserForm(false);
 
-			return await this._appViewModel.usersModel.fetchUsers();
+			return await this._appModel.usersModel.fetchUsers();
 		});
 	}
 
 	deleteUser = async id => {
 		if (window.confirm("Вы точно хотите удалить пользователя?")) {
-			await this._appViewModel.usersModel.deleteUser(id);
+			await this._appModel.usersModel.deleteUser(id);
 		}
 
-		return await this._appViewModel.usersModel.fetchUsers();
+		return await this._appModel.usersModel.fetchUsers();
 	};
 }

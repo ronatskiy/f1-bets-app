@@ -33,3 +33,5 @@ export {
 	ModalBody,
 	ModalFooter,
 } from "./reactstrap-vendor";
+
+export { ajax } from "./ajax";

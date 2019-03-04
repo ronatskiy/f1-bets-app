@@ -1,4 +1,5 @@
 import { observable, runInAction } from "mobx";
+import configProvider from "../config/config";
 
 export default class FormulaOneOfficialModel {
 	/**
@@ -8,60 +9,58 @@ export default class FormulaOneOfficialModel {
 	constructor({ formulaOneOfficialDataService, operationManager }) {
 		this._service = formulaOneOfficialDataService;
 		this._operationManager = operationManager;
-
-		this._fetchRacesSchedule();
-		this._fetchRacesResults();
-		this._fetchRacers();
+		this._currentSeason = configProvider.getCurrentSeason();
 	}
 
-	/** @type {ExtendedRoundInfo[]} */
-	@observable roundsInfo = [];
+	/** @type {FormulaOneRound[]} */
+	@observable currentSeasonRounds = [];
 
 	/** @type {RaceResult[]} */
-	@observable racesResults = [];
+	@observable currentSeasonRacesResults = [];
 
 	/** @type {Racer[]} */
-	@observable racers = [];
+	@observable currentSeasonRacers = [];
+
+	/**
+	 * @return {string}
+	 */
+	get currentSeason() {
+		return this._currentSeason;
+	}
+
+	async fetchAll() {
+		await this._fetchRacesSchedule();
+		await this._fetchRacers();
+		await this._fetchRacesResults();
+	}
 
 	async _fetchRacesSchedule() {
 		return this._operationManager.runWithProgressAsync(async () => {
-			try {
-				const roundsInfo = await this._service.fetchSeasonRoundsSchedule();
+			const roundsInfo = await this._service.fetchSeasonRoundsSchedule(this.currentSeason);
 
-				runInAction(() => {
-					this.roundsInfo = roundsInfo;
-				});
-			} catch (e) {
-				console.error(e.message);
-			}
+			runInAction(() => {
+				this.currentSeasonRounds = roundsInfo;
+			});
 		});
 	}
 
 	async _fetchRacesResults() {
 		return this._operationManager.runWithProgressAsync(async () => {
-			try {
-				const racesResults = await this._service.fetchRacesResults();
+			const racesResults = await this._service.fetchRacesResults(this.currentSeason);
 
-				runInAction(() => {
-					this.racesResults = racesResults;
-				});
-			} catch (e) {
-				console.error(e.message);
-			}
+			runInAction(() => {
+				this.currentSeasonRacesResults = racesResults;
+			});
 		});
 	}
 
 	async _fetchRacers() {
 		return this._operationManager.runWithProgressAsync(async () => {
-			try {
-				const racers = await this._service.fetchRacers();
+			const racers = await this._service.fetchRacers(this.currentSeason);
 
-				runInAction(() => {
-					this.racers = racers;
-				});
-			} catch (e) {
-				console.error(e.message);
-			}
+			runInAction(() => {
+				this.currentSeasonRacers = racers;
+			});
 		});
 	}
 }

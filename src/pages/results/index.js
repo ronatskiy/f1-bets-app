@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { inject, observer } from "mobx-react";
+import { inject } from "mobx-react";
 import { Col, Container, Row } from "../../vendor";
 
 import PollingResultsTable from "./components/polling-results-table/index";
@@ -10,6 +10,11 @@ import UserStandingsTable from "./components/user-standings-table";
 import UserStanding from "./models/user-standing";
 import User from "../../domain/user";
 
+@inject(stores => ({
+	currentUser: stores.resultsPageStore.authenticatedUser,
+	raceResultsWithBets: stores.resultsPageStore.raceResultsWithBets,
+	userStandings: stores.resultsPageStore.userStandings,
+}))
 class ResultsPage extends React.Component {
 	static propTypes = {
 		currentUser: PropTypes.instanceOf(User),
@@ -54,8 +59,4 @@ class ResultsPage extends React.Component {
 	}
 }
 
-export default inject(stores => ({
-	currentUser: stores.resultsPageStore.authenticatedUser,
-	raceResultsWithBets: stores.resultsPageStore.raceResultsWithBets,
-	userStandings: stores.resultsPageStore.userStandings,
-}))(observer(ResultsPage));
+export default ResultsPage;

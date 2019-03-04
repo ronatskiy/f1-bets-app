@@ -1,14 +1,16 @@
-import Home from "../pages/home";
-import Bets from "../pages/bets";
-import Results from "../pages/results";
-import RacersList from "../pages/racers-list";
-import TeamsList from "../pages/teams";
-import AdminPage from "../pages/admin/admin";
-import LoginPage from "../pages/login/login";
-import CalendarPage from "../pages/calendar/calendar";
-import LogoutPage from "../pages/logout/logout-page";
-import BetsHistory from "../pages/bets-history";
+import React, { Suspense } from "react";
 import generateId from "../services/crypto-service/generate-id";
+
+import Home from "../pages/home";
+import LoginPage from "../pages/login/login";
+import LogoutPage from "../pages/logout/logout-page";
+const Bets = React.lazy(() => import("../pages/bets"));
+const Results = React.lazy(() => import("../pages/results"));
+const TeamsList = React.lazy(() => import("../pages/teams"));
+const AdminPage = React.lazy(() => import("../pages/admin/admin"));
+const RacersList = React.lazy(() => import("../pages/racers-list"));
+const CalendarPage = React.lazy(() => import("../pages/calendar/calendar"));
+const BetsHistory = React.lazy(() => import("../pages/bets-history"));
 
 export { default as Route } from "./smart-route";
 
@@ -33,52 +35,80 @@ const AppRoutesConfig = [
 		id: generateId(),
 	},
 	{
+		path: pathNames.LOGIN,
+		component: LoginPage,
+		id: generateId(),
+	},
+	{
+		path: pathNames.LOGOUT,
+		component: LogoutPage,
+		id: generateId(),
+	},
+	{
 		isPrivate: true,
 		path: pathNames.BETS,
-		component: Bets,
+		component: () => (
+			<Suspense fallback={<div />}>
+				<Bets />
+			</Suspense>
+		),
 		id: generateId(),
 	},
 	{
 		isPrivate: true,
 		path: pathNames.BETS_HISTORY,
-		component: BetsHistory,
+		component: () => (
+			<Suspense fallback={<div />}>
+				<BetsHistory />
+			</Suspense>
+		),
 		id: generateId(),
 	},
 	{
 		path: pathNames.RESULTS,
-		component: Results,
+		component: () => (
+			<Suspense fallback={<div />}>
+				<Results />
+			</Suspense>
+		),
 		id: generateId(),
 	},
 	{
 		path: pathNames.RACERS,
-		component: RacersList,
+		component: () => (
+			<Suspense fallback={<div />}>
+				<RacersList />
+			</Suspense>
+		),
 		id: generateId(),
 	},
 	{
 		path: pathNames.TEAMS,
-		component: TeamsList,
+		component: () => (
+			<Suspense fallback={<div />}>
+				<TeamsList />
+			</Suspense>
+		),
 		id: generateId(),
 	},
 	{
-		path: pathNames.LOGIN,
-		component: LoginPage,
+		path: pathNames.CALENDAR,
+		component: () => (
+			<Suspense fallback={<div />}>
+				<CalendarPage />
+			</Suspense>
+		),
 		id: generateId(),
 	},
 	{
 		isPrivate: true,
 		onlyForAdmins: true,
 		path: pathNames.ADMIN,
-		component: AdminPage,
-		id: generateId(),
-	},
-	{
-		path: pathNames.CALENDAR,
-		component: CalendarPage,
-		id: generateId(),
-	},
-	{
-		path: pathNames.LOGOUT,
-		component: LogoutPage,
+		component: () => (
+			<Suspense fallback={<div />}>
+				<AdminPage />
+			</Suspense>
+		),
 		id: generateId(),
 	},
 ];

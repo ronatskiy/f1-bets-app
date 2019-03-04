@@ -4,13 +4,14 @@ import configProvider from "../../../config/config";
 
 class AdminPageStore {
 	/**
-	 * @param {AppViewModel} viewModel
+	 * @param {AppModel} appModel
 	 */
-	constructor(viewModel) {
+	constructor(appModel) {
 		const RACE_STORE_URL = configProvider.getRaceStoreApiUrl();
 		const USER_STORE_URL = configProvider.getUserStoreApiUrl();
-		this._racesSectionStore = new RacesSectionStore(viewModel, RACE_STORE_URL);
-		this._usersSectionStore = new UsersSectionStore(viewModel, USER_STORE_URL);
+
+		this._racesSectionStore = new RacesSectionStore(appModel, RACE_STORE_URL);
+		this._usersSectionStore = new UsersSectionStore(appModel, USER_STORE_URL);
 	}
 
 	get racesSectionStore() {

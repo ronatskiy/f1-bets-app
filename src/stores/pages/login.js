@@ -5,7 +5,7 @@ import { loginFormSettings, registerNewAccountFormSettings } from "../forms/sett
 
 export default class LoginPageStore {
 	/**
-	 * @param {AppViewModel} viewModel
+	 * @param {AppModel} viewModel
 	 */
 	constructor(viewModel) {
 		this._appViewModel = viewModel;

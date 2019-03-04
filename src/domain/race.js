@@ -1,15 +1,13 @@
 import BetInfo from "./bet-info";
 import UserInfo from "./user-info";
-import { generateRaceId } from "../services/crypto-service/generate-id";
 import words from "lodash.words";
 import capitalize from "lodash.capitalize";
+import FormulaOneRound from "./formula-one-round";
 
-class Race {
-	constructor({ id, title, officialData, season = "2018", bets = [] }) {
-		this.id = id || generateRaceId();
-		this.title = title;
-		this.season = season;
-		this.officialData = officialData;
+class Race extends FormulaOneRound {
+	constructor({ season, raceName, raceUrl, circuit, roundSchedule, bets = [], raceResults = {} }) {
+		super({ season, raceName, raceUrl, circuit, roundSchedule });
+
 		this.bets = bets.map(bet => {
 			const {
 				userInfo: { name, id },
@@ -18,28 +16,21 @@ class Race {
 
 			return new BetInfo({ userInfo: new UserInfo({ name, id }), betsMap });
 		});
+		this.raceResults = raceResults;
 	}
 
 	get raceStartTime() {
-		return this.officialData.race.start;
+		return this.roundSchedule.race;
 	}
 
 	get qualifyingStartTime() {
-		return this.officialData.qualifying.start;
-	}
-
-	get location() {
-		return this.officialData.location;
+		return this.roundSchedule.qualification;
 	}
 
 	get prettyTitle() {
-		return words(this.title)
+		return words(this.raceName)
 			.map(capitalize)
 			.join(" ");
-	}
-
-	static fromJs({ id, title, officialData, season, bets }) {
-		return new Race({ id, title, officialData, season, bets });
 	}
 }
 

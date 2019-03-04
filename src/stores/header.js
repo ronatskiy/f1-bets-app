@@ -1,6 +1,6 @@
 export default class HeaderStore {
 	/**
-	 * @param {AppViewModel} viewModel
+	 * @param {AppModel} viewModel
 	 */
 	constructor(viewModel) {
 		this._appViewModel = viewModel;

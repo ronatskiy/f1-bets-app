@@ -14,17 +14,23 @@ class CalendarPage extends React.Component {
 			races: PropTypes.arrayOf(PropTypes.instanceOf(RaceViewModel)).isRequired,
 			nextRace: PropTypes.instanceOf(RaceViewModel),
 			isRaceWeekend: PropTypes.bool.isRequired,
+			currentSeason: PropTypes.string.isRequired,
 		}).isRequired,
 	};
 
 	render() {
-		const { /** @types {RaceViewModel[]} */ races, nextRace, isRaceWeekend } = this.props.calendarPageStore;
+		const {
+			/** @types {RaceViewModel[]} */ races,
+			nextRace,
+			isRaceWeekend,
+			currentSeason,
+		} = this.props.calendarPageStore;
 
 		return (
 			<Container tag="section" style={{ marginTop: "1rem", marginBottom: "1rem" }}>
 				<Row>
 					<Col>
-						<h1 className="page-title">Календарь гонок сезона 2018 года</h1>
+						<h1 className="page-title">Календарь гонок сезона {currentSeason} года</h1>
 					</Col>
 				</Row>
 

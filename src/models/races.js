@@ -1,13 +1,20 @@
 import { computed, observable, action, runInAction } from "mobx";
 
 import { isAfter } from "../helpers/time-modification";
+import Race from "../domain/race";
 
 class RacesModel {
-	constructor({ operationManager, raceInfoService, timeWatcher }) {
+	/**
+	 * @param {FormulaOneOfficialModel} formulaOneOfficialModel
+	 * @param {OperationManager} operationManager
+	 * @param {RaceInfoService} raceInfoService
+	 * @param timeWatcher
+	 */
+	constructor({ formulaOneOfficialModel, operationManager, raceInfoService, timeWatcher }) {
+		this._formulaOneOfficialModel = formulaOneOfficialModel;
 		this._operationManager = operationManager;
 		this._timeWatcher = timeWatcher;
 		this._raceInfoService = raceInfoService;
-		this.fetchRaces();
 	}
 
 	/**
@@ -29,15 +36,23 @@ class RacesModel {
 	@action
 	async fetchRaces() {
 		return this._operationManager.runWithProgressAsync(async () => {
-			try {
-				const races = await this._raceInfoService.fetchAll();
+			const { currentSeasonRounds } = this._formulaOneOfficialModel;
+			const races = await this._raceInfoService.fetchAll();
 
-				runInAction(() => {
-					this.races = races;
-				});
-			} catch (error) {
-				console.log("Can't load 'races' in 'RacesStore'!!\n", error);
-			}
+			runInAction(() => {
+				// mix local stored bets and results into formulaOneOfficial round info
+				this.races = [
+					...currentSeasonRounds.map(round => {
+						const relativeRace = races.find(race => race.roundId === round.roundId);
+
+						return new Race({
+							...round,
+							bets: relativeRace ? relativeRace.bets : [],
+							raceResults: relativeRace ? relativeRace.raceResults : {},
+						});
+					}),
+				];
+			});
 		});
 	}
 
@@ -45,7 +60,7 @@ class RacesModel {
 	async addNewBet(bet) {
 		return this._operationManager.runWithProgressAsync(async () => {
 			try {
-				await this._raceInfoService.addOrUpdateBet(bet, this.nextRace.id);
+				await this._raceInfoService.addOrUpdateBet(bet, this.nextRace);
 				await this.fetchRaces();
 			} catch (error) {
 				console.error("Can't update Bet in 'RacesStore'", error);

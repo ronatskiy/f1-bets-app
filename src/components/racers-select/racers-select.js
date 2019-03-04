@@ -1,21 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Select from "react-select";
+import Select, { components } from "react-select";
 
 import "./racers-select.css";
 import Racer from "../../domain/racer";
 
-function racerListTransformer(racerList) {
+function getLabel({ firstName, lastName }) {
+	return `${firstName} ${lastName.toUpperCase()}`;
+}
+
+function transformRacers(racerList) {
 	return racerList.map(racer => {
 		return {
-			label: valueRenderer(racer),
+			label: getLabel(racer),
 			value: racer,
 		};
 	});
-}
-
-function valueRenderer({ firstName, lastName }) {
-	return `${firstName} ${lastName.toUpperCase()}`;
 }
 
 class RacersSelect extends React.Component {
@@ -38,9 +38,24 @@ class RacersSelect extends React.Component {
 		onSelect(option ? option.value : null, pos);
 	};
 
+	_renderOption = props => {
+		const { value: racer } = props;
+
+		return (
+			<components.Option {...props} className={"racers-select__option"}>
+				{getLabel(racer)}
+			</components.Option>
+		);
+	};
+
+	_renderSingleValue = props => {
+		const { data: racer } = props;
+		return <components.SingleValue {...props}>{getLabel(racer)}</components.SingleValue>;
+	};
+
 	render() {
 		const { value, racerList, placeholder } = this.props;
-		const options = racerListTransformer(racerList);
+		const options = transformRacers(racerList);
 
 		return (
 			<Select
@@ -49,9 +64,11 @@ class RacersSelect extends React.Component {
 				options={options}
 				placeholder={placeholder}
 				searchable={false}
-				valueRenderer={valueRenderer}
-				optionClassName="racers-select__option"
 				onChange={this.handleSelect}
+				components={{
+					Option: this._renderOption,
+					SingleValue: this._renderSingleValue,
+				}}
 			/>
 		);
 	}

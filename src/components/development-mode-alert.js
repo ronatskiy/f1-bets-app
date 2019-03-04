@@ -25,7 +25,7 @@ const DevelopmentModeAlert = ({ pendingTasksCount, qualificationStartTime, isBet
 };
 
 export default inject(stores => ({
-	pendingTasksCount: stores.appStore._appViewModel._operationManager.pendingTasksCount,
+	pendingTasksCount: stores.appStore._appModel._operationManager.pendingTasksCount,
 	qualificationStartTime: stores.appStore.nextRace && stores.appStore.nextRace.qualifyingStartTime,
 	isBetsAllowed: stores.appStore.isBetsAllowed,
 	currentTime: stores.appStore.currentTime,

@@ -19,22 +19,16 @@ export default class RacerStandingsWidget extends React.Component {
 		const { racers, rowSize } = this.props;
 		const rows = Array(racers.length / rowSize)
 			.fill(0)
-			.map((_, index) => {
-				return racers.slice(index * rowSize, index * rowSize + rowSize); // , [...racers.slice(rowSize, 21)])
-			});
+			.map((_, index) => racers.slice(index * rowSize, index * rowSize + rowSize));
 
 		return rows.map((racers, rowIndex) => (
 			<div key={rowIndex} className="racer-standings-widget__row">
 				{racers.map((/** @type {RacerViewModel} */ racer, index) => (
-					<div className="racer-standings-widget__racer" key={racer.abbreviation}>
+					<div className="racer-standings-widget__racer" key={racer.code}>
 						<div className="racer-standings-widget__racer-pos-number">
 							{index + (rowIndex * rowSize + 1)}
 						</div>
-						<RacerView
-							className="racer-standings-widget__racer-name"
-							code={racer.abbreviation}
-							name={racer.name}
-						/>
+						<RacerView className="racer-standings-widget__racer-name" code={racer.code} name={racer.name} />
 					</div>
 				))}
 			</div>

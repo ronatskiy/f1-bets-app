@@ -5,7 +5,7 @@ import { cryptoService } from "./crypto-service/crypto-service";
 import RacerService from "./racer-service/index";
 import TeamService from "./team-service/index";
 import FormulaOneOfficialDataService from "./formula-one-official-data-service";
-import FormulaOneOfficialDataRepository from "./formula-one-official-data-service/repository";
+import FormulaOneOfficialDataRepository from "./formula-one-official-data-service/storage/repository";
 
 export function createServices(configProvider) {
 	const userStoreApiUrl = configProvider.getUserStoreApiUrl();

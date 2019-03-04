@@ -1,49 +1,50 @@
-import { observable, action, runInAction } from "mobx";
+import { observable, runInAction } from "mobx";
 
 import ErgastApi from "../../../lib/ergast-api";
 import TeamsStanding from "../models/team-standing";
 
 class TeamsStandingsStore {
 	/**
-	 * @param {AppViewModel} viewModel
+	 * @param {AppModel} appModel
 	 */
-	constructor(viewModel) {
-		this._appViewModel = viewModel;
-		this._fetchStandings();
+	constructor(appModel) {
+		this._appModel = appModel;
 	}
 
 	@observable teamsStandingList = [];
 
-	@action
-	async _fetchStandings() {
-		await this._appViewModel.operationManager.runWithProgressAsync(async () => {
-			try {
-				const constructorStandings = await ErgastApi.getConstructorStandings("2018");
+	/**
+	 * @return {string}
+	 */
+	get currentSeason() {
+		return this._appModel.formulaOneOfficial.currentSeason;
+	}
 
-				/**@var {ConstructorStandingsListItem} standingsListItem */
-				const standingsListItem = constructorStandings.standingsLists[0];
-				if (standingsListItem) {
-					runInAction(() => {
-						this.teamsStandingList = standingsListItem.constructorStandings.map(constructorStanding => {
-							/**@var {Constructor} constructor */
-							const constructor = constructorStanding.constructor;
+	fetchStandings = () => {
+		return this._appModel.operationManager.runWithProgressAsync(async () => {
+			const constructorStandings = await ErgastApi.getConstructorStandings(this.currentSeason);
 
-							return new TeamsStanding({
-								pos: constructorStanding.position,
-								name: constructor.name,
-								id: constructor.constructorId,
-								points: constructorStanding.points,
-								url: constructor.url,
-								nationality: constructor.nationality,
-							});
+			/**@var {ConstructorStandingsListItem} standingsListItem */
+			const standingsListItem = constructorStandings.standingsLists[0];
+			if (standingsListItem) {
+				runInAction(() => {
+					this.teamsStandingList = standingsListItem.constructorStandings.map(constructorStanding => {
+						/**@var {Constructor} constructor */
+						const constructor = constructorStanding.constructor;
+
+						return new TeamsStanding({
+							pos: constructorStanding.position,
+							name: constructor.name,
+							id: constructor.constructorId,
+							points: constructorStanding.points,
+							url: constructor.url,
+							nationality: constructor.nationality,
 						});
 					});
-				}
-			} catch (error) {
-				console.error(error);
+				});
 			}
 		});
-	}
+	};
 }
 
 export default TeamsStandingsStore;

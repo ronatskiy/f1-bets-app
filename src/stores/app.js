@@ -1,49 +1,49 @@
 class AppStore {
 	/**
-	 * @param {AppViewModel} viewModel
+	 * @param {AppModel} appModel
 	 */
-	constructor(viewModel) {
-		this._appViewModel = viewModel;
+	constructor(appModel) {
+		this._appModel = appModel;
 	}
 
 	get isProduction() {
-		return this._appViewModel.isProduction;
+		return this._appModel.isProduction;
 	}
 
 	get currentTime() {
-		return this._appViewModel.timeWatcher.currentTime;
+		return this._appModel.timeWatcher.currentTime;
 	}
 
 	get isBetsAllowed() {
-		return this._appViewModel.isBetsAllowed;
+		return this._appModel.isBetsAllowed;
 	}
 
 	get hasPendingTasks() {
-		return this._appViewModel.operationManager.hasPendingTasks;
+		return this._appModel.operationManager.hasPendingTasks;
 	}
 
 	get authenticatedUser() {
-		return this._appViewModel.session.authenticatedUser;
+		return this._appModel.session.authenticatedUser;
 	}
 
 	get isUserAuthenticated() {
-		return this._appViewModel.isUserAuthenticated;
+		return this._appModel.isUserAuthenticated;
 	}
 
 	get isUserAlreadyBet() {
-		return this._appViewModel.isUserAlreadyBet;
+		return this._appModel.isUserAlreadyBet;
 	}
 
 	get isUserAdmin() {
-		return this._appViewModel.isUserAdmin;
+		return this._appModel.isUserAdmin;
 	}
 
 	startTimeWatcher() {
-		this._appViewModel.timeWatcher.start();
+		this._appModel.timeWatcher.start();
 	}
 
 	stopTimeWatcher() {
-		this._appViewModel.timeWatcher.stop();
+		this._appModel.timeWatcher.stop();
 	}
 }
 

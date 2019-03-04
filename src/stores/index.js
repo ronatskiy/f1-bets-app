@@ -1,15 +1,15 @@
 import AppStore from "./app";
-import { createPagesStores } from "./pages";
 import HeaderStore from "./header";
+import { createPagesStores } from "./pages";
 
 /**
- * @param {AppViewModel} appModel
+ * @param {AppModel} appModel
  * @return {{homePageStore, racerStandingsPageStore, teamsStandingsPageStore, adminPageStore, loginPageStore, logoutPageStore, appStore: AppStore}}
  */
 export function createStores(appModel) {
-	const pagesStores = createPagesStores(appModel);
 	const appStore = new AppStore(appModel);
 	const headerStore = new HeaderStore(appModel);
+	const pagesStores = createPagesStores(appModel);
 
 	return {
 		...pagesStores,

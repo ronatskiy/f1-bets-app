@@ -1,39 +1,28 @@
 import { computed, when } from "mobx";
 
 import TimeWatcher from "./time-watcher";
-import OperationManager from "./opearation-manager";
+import OperationManager from "./operation-manager";
 import SessionModel from "./session";
 import { isAfter, isInInterval, subtractTime } from "../helpers/time-modification";
-import RacerListModel from "./racer";
 import RacesModel from "./races";
 import UsersModel from "./user";
 import FormulaOneOfficialModel from "./formula-one-official";
+import configProvider from "../config/config";
 
-const VOTE_CLOSING_TIME = 15; // minutes
+const VOTE_CLOSING_TIME = configProvider.getVoteClosingTime(); // minutes
 
-export default class AppViewModel {
-	constructor(services, configProvider) {
-		const {
-			userService,
-			authenticationService,
-			raceInfoService,
-			racerService,
-			formulaOneOfficialDataService,
-		} = services;
+export default class AppModel {
+	constructor(services) {
+		const { userService, authenticationService, raceInfoService, formulaOneOfficialDataService } = services;
 
-		this._raceInfoService = raceInfoService;
-		this._isProductionMode = configProvider.isProductionMode();
-		const tickInterval = configProvider.getTickInterval();
-		this._timeWatcher = new TimeWatcher(tickInterval);
 		const operationManager = new OperationManager();
+		const tickInterval = configProvider.getTickInterval();
+
+		this._isProductionMode = configProvider.isProductionMode();
+		this._raceInfoService = raceInfoService;
+		this._timeWatcher = new TimeWatcher(tickInterval);
 		this._operationManager = operationManager;
 		this._sessionModel = new SessionModel({ authenticationService, operationManager });
-		this._racerListModel = new RacerListModel({ racerService, operationManager });
-		this._racesModel = new RacesModel({
-			raceInfoService,
-			operationManager,
-			timeWatcher: this._timeWatcher,
-		});
 		this._usersModel = new UsersModel({
 			operationManager,
 			userService,
@@ -42,6 +31,18 @@ export default class AppViewModel {
 		this._formulaOneOfficialModel = new FormulaOneOfficialModel({
 			formulaOneOfficialDataService,
 			operationManager,
+		});
+
+		this._racesModel = new RacesModel({
+			formulaOneOfficialModel: this._formulaOneOfficialModel,
+			raceInfoService,
+			operationManager,
+			timeWatcher: this._timeWatcher,
+		});
+
+		this._operationManager.runWithProgressAsync(async () => {
+			await this._formulaOneOfficialModel.fetchAll();
+			return this._racesModel.fetchRaces();
 		});
 
 		// Load next race info if current race is started.
@@ -79,7 +80,7 @@ export default class AppViewModel {
 	 */
 	@computed
 	get racers() {
-		return this._racerListModel.racers;
+		return this._formulaOneOfficialModel.currentSeasonRacers;
 	}
 
 	/**

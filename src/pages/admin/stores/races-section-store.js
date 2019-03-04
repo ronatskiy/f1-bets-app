@@ -2,16 +2,17 @@ import { observable, action, computed } from "mobx";
 
 class RacesSectionStore {
 	/**
-	 * @param {AppViewModel} viewModel
+	 * @param {AppModel} appModel
 	 * @param {string} RACE_STORE_URL
 	 */
-	constructor(viewModel, RACE_STORE_URL) {
-		this._appViewModel = viewModel;
+	constructor(appModel, RACE_STORE_URL) {
+		this._appModel = appModel;
 		this._storeApiUrl = RACE_STORE_URL;
-		this._raceInfoService = this._appViewModel._raceInfoService;
+		this._raceInfoService = this._appModel._raceInfoService;
 	}
 
 	@observable isRaceResultsPanelVisible = false;
+	/** @type {Race} */
 	@observable selectedRace = null;
 
 	/**
@@ -19,17 +20,17 @@ class RacesSectionStore {
 	 */
 	@computed
 	get users() {
-		return this._appViewModel.usersModel.users;
+		return this._appModel.usersModel.users;
 	}
 
 	@computed
 	get races() {
-		return this._appViewModel.races;
+		return this._appModel.races;
 	}
 
 	@computed
 	get racers() {
-		return this._appViewModel.racers;
+		return this._appModel.racers;
 	}
 
 	// async initRacesCollection() {
@@ -58,14 +59,14 @@ class RacesSectionStore {
 			return;
 		}
 
-		await this._appViewModel.operationManager.runWithProgressAsync(async () => {
-			await this._raceInfoService.addOrUpdateRaceResult(this.selectedRace.id, js);
+		await this._appModel.operationManager.runWithProgressAsync(async () => {
+			await this._raceInfoService.updateRaceResult(this.selectedRace.roundId, js);
 			this.isRaceResultsPanelVisible = false;
 		});
 	}
 
 	addNewBet = bets => {
-		return this._appViewModel.addNewBet(bets);
+		return this._appModel.addNewBet(bets);
 	};
 }
 

@@ -10,6 +10,8 @@ import RaceInfoPanel from "./components/race-info-panel/race-info-panel";
 import BetButton from "./components/bet-button";
 import PrimaryButton from "../../components/common/primary-button";
 
+const ALREADY_BET_MESSAGE = "Сейчас прогнозы на этот этап уже не принимаются. Спасибо за Ваше участие.";
+
 @inject("homePageStore")
 @withRouter
 @observer
@@ -40,7 +42,7 @@ class HomePage extends Component {
 							infoText={
 								isBetsAllowed
 									? "Спешите проголосовать пока прогнозы на этот этап еще принимаются."
-									: "Сейчас прогнозы на этот этап уже не принимаются. Спасибо всем кто принял участие."
+									: ALREADY_BET_MESSAGE
 							}
 						/>
 					)}
@@ -51,12 +53,13 @@ class HomePage extends Component {
 						"colors--very-light-green": index % 2 === 0,
 						"colors--light-gray": index % 2 !== 0,
 					});
+
 					return (
 						<section key={raceInfo.countryName} className={classNames}>
 							<RaceInfoPanel
 								raceInfo={raceInfo}
 								commandButton={this.showMoreButton}
-								infoText="Сейчас прогнозы на этот этап уже не принимаются. Спасибо всем кто принял участие."
+								infoText={ALREADY_BET_MESSAGE}
 							/>
 						</section>
 					);

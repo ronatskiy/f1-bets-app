@@ -6,25 +6,29 @@ import UserStanding from "../models/user-standing";
 
 class ResultsPageStore {
 	/**
-	 * @param {AppViewModel} viewModel
+	 * @param {AppModel} appModel
 	 */
-	constructor(viewModel) {
-		this._appViewModel = viewModel;
+	constructor(appModel) {
+		this._appModel = appModel;
 	}
 
 	@computed
 	get authenticatedUser() {
-		return this._appViewModel.session.authenticatedUser;
+		return this._appModel.session.authenticatedUser;
 	}
 
 	@computed
 	get raceResultsWithBets() {
-		const { racesResults } = this._appViewModel.formulaOneOfficial;
-		return this._appViewModel.races.map(
+		const { currentSeasonRacesResults } = this._appModel.formulaOneOfficial;
+
+		return this._appModel._racesModel.races.map(
 			(race, index) =>
 				new RaceInformation({
 					race,
-					racers: index < racesResults.length ? racesResults[index].racersStandings : undefined,
+					finishedRacers:
+						index < currentSeasonRacesResults.length
+							? currentSeasonRacesResults[index].racersStandings
+							: undefined,
 				}),
 		);
 	}

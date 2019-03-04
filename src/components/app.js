@@ -40,7 +40,7 @@ class App extends Component {
 		const { hasPendingTasks, isUserAuthenticated, isUserAdmin, isProduction } = appStore;
 
 		return (
-			<React.Fragment>
+			<>
 				{hasPendingTasks && <Loader />}
 				<div className="layout">
 					{!isProduction && <DevelopmentModeAlert />}
@@ -57,7 +57,7 @@ class App extends Component {
 					</main>
 					<Footer className="layout__footer" />
 				</div>
-			</React.Fragment>
+			</>
 		);
 	}
 }

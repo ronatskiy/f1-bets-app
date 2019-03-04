@@ -9,7 +9,7 @@ import { shortDate } from "../../../../helpers/prettify-date";
  */
 export default class WeekendInfoModel {
 	/**
-	 * @param {ExtendedRoundInfo} roundInfo
+	 * @param {FormulaOneRound} roundInfo
 	 */
 	constructor(roundInfo) {
 		this._roundInfo = roundInfo;
@@ -73,7 +73,7 @@ export default class WeekendInfoModel {
 	}
 
 	get raceTitle() {
-		return `Formula 1 ${this._roundInfo.season} ${this._roundInfo.raceName}`;
+		return `Formula 1 ${this._roundInfo.raceName} ${this._roundInfo.season}`;
 	}
 
 	get practices() {

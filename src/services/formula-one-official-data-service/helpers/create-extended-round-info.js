@@ -1,9 +1,9 @@
-import ExtendedRoundInfo from "../../../domain/extended-round-info";
+import FormulaOneRound from "../../../domain/formula-one-round";
 
 /**
  * @param {ErgastApi.Race} race
  * @param {RoundSchedule[]} roundSchedules
- * @return {ExtendedRoundInfo}
+ * @return {FormulaOneRound}
  */
 export default function createExtendedRoundInfo(race, roundSchedules) {
 	const options = {
@@ -14,6 +14,7 @@ export default function createExtendedRoundInfo(race, roundSchedules) {
 			url: race.circuit.url,
 			countryName: race.circuit.location.country,
 			circuitName: race.circuit.circuitName,
+			circuitId: race.circuit.circuitId,
 		},
 	};
 	const roundSchedule = roundSchedules.find(({ round }) => round === Number(race.round));
@@ -26,5 +27,5 @@ export default function createExtendedRoundInfo(race, roundSchedules) {
 		};
 	}
 
-	return new ExtendedRoundInfo(options);
+	return new FormulaOneRound(options);
 }

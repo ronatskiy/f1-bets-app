@@ -5,26 +5,26 @@ import RacerViewModel from "../models/racer-view-model";
 
 export default class HomePageStore {
 	/**
-	 * @param {AppViewModel} viewModel
+	 * @param {AppModel} appModel
 	 */
-	constructor(viewModel) {
-		this._appViewModel = viewModel;
+	constructor(appModel) {
+		this._appModel = appModel;
 	}
 
 	get nextRace() {
-		return this._appViewModel.nextRace;
+		return this._appModel.nextRace;
 	}
 
 	get isAuthenticated() {
-		return this._appViewModel.session.isAuthenticated;
+		return this._appModel.session.isAuthenticated;
 	}
 
 	get isUserAlreadyBet() {
-		return this._appViewModel.isUserAlreadyBet;
+		return this._appModel.isUserAlreadyBet;
 	}
 
 	get isBetsAllowed() {
-		return this._appViewModel.isBetsAllowed;
+		return this._appModel.isBetsAllowed;
 	}
 
 	/**
@@ -32,9 +32,9 @@ export default class HomePageStore {
 	 */
 	@computed
 	get nextRaceInfo() {
-		const now = this._appViewModel.timeWatcher.currentTime;
+		const now = this._appModel.timeWatcher.currentTime;
 
-		const [nextRace] = this._appViewModel.formulaOneOfficial.roundsInfo
+		const [nextRace] = this._appModel.formulaOneOfficial.currentSeasonRounds
 			.map(race => new WeekendInfoModel(race))
 			.filter(r => isAfter(r.raceStartTime, now));
 
@@ -46,9 +46,9 @@ export default class HomePageStore {
 	 */
 	@computed
 	get previousRaces() {
-		const now = this._appViewModel.timeWatcher.currentTime;
+		const now = this._appModel.timeWatcher.currentTime;
 
-		return this._appViewModel.formulaOneOfficial.roundsInfo
+		return this._appModel.formulaOneOfficial.currentSeasonRounds
 			.map(race => new WeekendInfoModel(race))
 			.filter(wi => !isAfter(wi.raceStartTime, now))
 			.map((wi, index) => {
@@ -70,6 +70,6 @@ export default class HomePageStore {
 	 */
 	@computed
 	get _raceResults() {
-		return this._appViewModel.formulaOneOfficial.racesResults;
+		return this._appModel.formulaOneOfficial.currentSeasonRacesResults;
 	}
 }

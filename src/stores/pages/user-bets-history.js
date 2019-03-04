@@ -1,6 +1,6 @@
 export default class UserBetsHistoryPageStore {
 	/**
-	 * @param {AppViewModel} viewModel
+	 * @param {AppModel} viewModel
 	 */
 	constructor(viewModel) {
 		this._appViewModel = viewModel;

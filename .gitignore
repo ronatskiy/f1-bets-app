@@ -4,4 +4,3 @@
 /.env.development
 /yarn-error.log
 /dev-storage-server/
-/__.env.development.local

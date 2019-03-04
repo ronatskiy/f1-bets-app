@@ -11,48 +11,41 @@ export default class FormulaOneOfficialDataService {
 	}
 
 	/**
-	 * @return {Promise<ExtendedRoundInfo[]>}
+	 * @param {string} season
+	 * @return {Promise<FormulaOneRound[]>}
 	 */
-	async fetchSeasonRoundsSchedule() {
-		try {
-			const roundSchedules = await this._repository.getF1Calendar();
-			const raceTable = await this._repository.getRaceSchedule();
+	async fetchSeasonRoundsSchedule(season) {
+		const roundSchedules = await this._repository.getF1Calendar(season);
+		const raceTable = await this._repository.getRaceSchedule(season);
 
-			return raceTable.races.map(race => createExtendedRoundInfo(race, roundSchedules));
-		} catch (e) {
-			console.error(e.message);
-		}
+		return raceTable.races.map(race => createExtendedRoundInfo(race, roundSchedules));
 	}
 
 	/**
+	 * @param {string} season
 	 * @return {Promise<RaceResult[]>}
 	 */
-	async fetchRacesResults() {
-		try {
-			const raceTableExtended = await this._repository.getRacesResults();
+	async fetchRacesResults(season) {
+		const raceTableExtended = await this._repository.getRacesResults(season);
 
-			return raceTableExtended.races.map(race => createRaceResult(race));
-		} catch (e) {
-			console.error(e.message);
-		}
+		return raceTableExtended.races.map(race => createRaceResult(race));
 	}
 
 	/**
+	 * @param {string} season
 	 * @return {Promise<Racer[]>}
 	 */
-	async fetchRacers() {
-		try {
-			const driverTable = await this._repository.getDrivers();
+	async fetchRacers(season) {
+		const [driverStandingsList] = await this._repository.getDrivers(season);
 
-			return driverTable.drivers.map(driver =>
-				Racer.create({
-					...driver,
-					firstName: driver.givenName,
-					lastName: driver.familyName,
-				}),
-			);
-		} catch (e) {
-			console.error(e.message);
-		}
+		return driverStandingsList.driverStandings.map(({ driver }) =>
+			Racer.create({
+				...driver,
+				firstName: driver.givenName,
+				lastName: driver.familyName,
+				abbreviation: driver.code,
+				number: driver.permanentNumber,
+			}),
+		);
 	}
 }

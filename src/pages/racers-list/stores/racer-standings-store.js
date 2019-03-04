@@ -1,56 +1,57 @@
-import { observable, action, runInAction } from "mobx";
+import { observable, runInAction } from "mobx";
 
 import ErgastApi from "../../../lib/ergast-api";
 import RacerStanding from "../models/racer-standing";
 
 class RacerStandingsStore {
 	/**
-	 * @param {AppViewModel} viewModel
+	 * @param {AppModel} appModel
 	 */
-	constructor(viewModel) {
-		this._appViewModel = viewModel;
-		this._fetchRacerStandings();
+	constructor(appModel) {
+		this._appModel = appModel;
 	}
 
 	@observable racerStandingList = [];
 
-	@action
-	async _fetchRacerStandings() {
-		return this._appViewModel.operationManager.runWithProgressAsync(async () => {
-			try {
-				const driverStandings = await ErgastApi.getDriverStandings("2018");
+	/**
+	 * @return {string}
+	 */
+	get currentSeason() {
+		return this._appModel.formulaOneOfficial.currentSeason;
+	}
 
-				/**@var {DriverStandingsListItem} standingsListItem */
-				const [standingsListItem] = driverStandings.standingsLists;
+	loadRacerStandings = () => {
+		return this._appModel.operationManager.runWithProgressAsync(async () => {
+			const driverStandings = await ErgastApi.getDriverStandings(this.currentSeason);
 
-				if (standingsListItem) {
-					const racerStandingList = standingsListItem.driverStandings.map(driverStanding => {
-						/**@var {ErgastApi~Driver} driver */
-						const driver = driverStanding.driver;
-						const [constructor] = driverStanding.constructors;
+			/**@var {DriverStandingsListItem} standingsListItem */
+			const [standingsListItem] = driverStandings.standingsLists;
 
-						return new RacerStanding({
-							pos: driverStanding.position,
-							racerFullName: `${driver.givenName} ${driver.familyName}`,
-							racerPoints: driverStanding.points,
-							racerId: driver.code,
-							racerNumber: driver.permanentNumber,
-							racerUrl: driver.url,
-							constructorName: constructor.name,
-							constructorUrl: constructor.url,
-							racerNationality: driver.nationality,
-						});
+			if (standingsListItem) {
+				const racerStandingList = standingsListItem.driverStandings.map(driverStanding => {
+					/**@var {ErgastApi~Driver} driver */
+					const driver = driverStanding.driver;
+					const [constructor] = driverStanding.constructors;
+
+					return new RacerStanding({
+						pos: driverStanding.position,
+						racerFullName: `${driver.givenName} ${driver.familyName}`,
+						racerPoints: driverStanding.points,
+						racerId: driver.code,
+						racerNumber: driver.permanentNumber,
+						racerUrl: driver.url,
+						constructorName: constructor ? constructor.name : "",
+						constructorUrl: constructor ? constructor.url : "",
+						racerNationality: driver.nationality,
 					});
+				});
 
-					runInAction(() => {
-						this.racerStandingList = racerStandingList;
-					});
-				}
-			} catch (error) {
-				console.error(error);
+				runInAction(() => {
+					this.racerStandingList = racerStandingList;
+				});
 			}
 		});
-	}
+	};
 }
 
 export default RacerStandingsStore;

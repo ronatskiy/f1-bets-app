@@ -15,7 +15,7 @@ export default class GridSelectorStore {
 
 		for (let [pos, racer] of this._map) {
 			if (racer) {
-				js[pos] = racer.abbreviation;
+				js[pos] = racer.code;
 			}
 		}
 
@@ -45,10 +45,13 @@ export default class GridSelectorStore {
 
 	@action
 	_initMap(racers, initData, gridPositionsCount) {
+		console.log(racers);
+		console.log(initData);
+
 		Array(gridPositionsCount)
 			.fill(null)
 			.forEach((_, index) => {
-				const racer = racers.find(r => r.abbreviation === initData[index + 1]);
+				const racer = racers.find(r => r.code === initData[index + 1]);
 				this.handleSelect(racer || null, index + 1);
 			});
 	}

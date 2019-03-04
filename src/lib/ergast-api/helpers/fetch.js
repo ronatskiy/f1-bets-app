@@ -5,7 +5,11 @@ import axios from "axios";
  * @return {Promise<*>} MRData
  */
 export async function fetch(url) {
-	return (await axios.get(url)).data.MRData;
+	try {
+		return (await axios.get(url)).data.MRData;
+	} catch (e) {
+		console.error(e.message);
+	}
 }
 
 /**
@@ -13,7 +17,11 @@ export async function fetch(url) {
  * @return {Promise<*>} MRData
  */
 export async function fetchAll(url) {
-	const total = (await fetch(`${url}?limit=0`)).total;
+	try {
+		const total = (await fetch(`${url}?limit=0`)).total;
 
-	return fetch(`${url}?limit=${total}`);
+		return fetch(`${url}?limit=${total}`);
+	} catch (e) {
+		console.error(e.message);
+	}
 }

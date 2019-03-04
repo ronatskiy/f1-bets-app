@@ -22,6 +22,14 @@ const configProvider = {
 	getTickInterval() {
 		return process.env.REACT_APP_TICK_INTERVAL;
 	},
+
+	getCurrentSeason() {
+		return process.env.REACT_APP_CURRENT_SEASON || "2019";
+	},
+
+	getVoteClosingTime() {
+		return parseInt(process.env.REACT_APP_VOTE_CLOSING_TIME, 10);
+	},
 };
 
 export default configProvider;

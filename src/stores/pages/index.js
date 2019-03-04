@@ -5,21 +5,21 @@ import AdminPageStore from "../../pages/admin/stores/admin-page-store";
 import LoginPageStore from "./login";
 import LogoutPageStore from "./logout";
 import ResultsPageStore from "../../pages/results/stores/results-page-store";
-import CalendarPageStore from "../../pages/calendar/stores/calendar";
+import CalendarPageStore from "../../pages/calendar/stores/calendar-page-store";
 import UserBetsHistoryPageStore from "./user-bets-history";
-import BetPageStore from "./bet";
+import BetPageStore from "../../pages/bets/store/bet-page-store";
 
-export function createPagesStores(appViewModel) {
-	const homePageStore = new HomePageStore(appViewModel);
-	const resultsPageStore = new ResultsPageStore(appViewModel);
-	const racerStandingsPageStore = new RacerStandingsStore(appViewModel);
-	const teamsStandingsPageStore = new TeamsStandingsStore(appViewModel);
-	const adminPageStore = new AdminPageStore(appViewModel);
-	const loginPageStore = new LoginPageStore(appViewModel);
-	const logoutPageStore = new LogoutPageStore(appViewModel);
-	const calendarPageStore = new CalendarPageStore(appViewModel);
-	const userBetsHistoryPageStore = new UserBetsHistoryPageStore(appViewModel);
-	const betPageStore = new BetPageStore(appViewModel);
+export function createPagesStores(appModel) {
+	const homePageStore = new HomePageStore(appModel);
+	const resultsPageStore = new ResultsPageStore(appModel);
+	const racerStandingsPageStore = new RacerStandingsStore(appModel);
+	const teamsStandingsPageStore = new TeamsStandingsStore(appModel);
+	const adminPageStore = new AdminPageStore(appModel);
+	const loginPageStore = new LoginPageStore(appModel);
+	const logoutPageStore = new LogoutPageStore(appModel);
+	const calendarPageStore = new CalendarPageStore(appModel);
+	const userBetsHistoryPageStore = new UserBetsHistoryPageStore(appModel);
+	const betPageStore = new BetPageStore(appModel);
 
 	return {
 		homePageStore,
