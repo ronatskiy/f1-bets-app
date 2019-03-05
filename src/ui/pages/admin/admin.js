@@ -1,6 +1,6 @@
 import React from "react";
 import { observer } from "mobx-react";
-import { Container, Row, Col } from "../../../vendor";
+import { Container, Row, Col } from "../../../vendors";
 
 import "./styles.css";
 import SectionTabs from "./components/section-tabs";

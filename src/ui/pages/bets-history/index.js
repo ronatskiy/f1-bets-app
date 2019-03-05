@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { inject, observer } from "mobx-react";
 import { Link } from "react-router-dom";
-import { Col, Container, Row, Table } from "../../../vendor";
+import { Col, Container, Row, Table } from "../../../vendors";
 
 import { URL_ROUTES } from "../../routes/url-routes";
 import "./styles.css";

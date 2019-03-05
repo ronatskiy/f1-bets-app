@@ -1,4 +1,4 @@
-import { ajax } from "../../vendor";
+import { ajax } from "../../vendors";
 import User from "../../domain/user";
 
 /**

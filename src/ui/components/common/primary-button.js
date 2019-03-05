@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "../../../vendor";
+import { Button } from "../../../vendors";
 import "./primary-button.css";
 
 const PrimaryButton = ({ className, onClick, disabled, children, size, ...props }) => (

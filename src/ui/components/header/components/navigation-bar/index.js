@@ -13,7 +13,7 @@ import {
 	DropdownToggle,
 	DropdownMenu,
 	DropdownItem,
-} from "../../../../../vendor";
+} from "../../../../../vendors";
 
 import "./navigation-bar.css";
 import { URL_ROUTES } from "../../../../routes/url-routes";

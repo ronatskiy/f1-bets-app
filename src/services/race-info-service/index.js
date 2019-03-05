@@ -1,4 +1,4 @@
-import { ajax } from "../../vendor";
+import { ajax } from "../../vendors";
 import { RoundAbstract } from "../../domain/round-abstract";
 
 class RaceDto extends RoundAbstract {

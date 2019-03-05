@@ -6,7 +6,7 @@ import { Provider } from "mobx-react";
 import registerServiceWorker from "./registerServiceWorker";
 import configProvider from "./config/config";
 
-import "./vendor/index";
+import "./vendors/index";
 
 import AppComponent from "./ui/components/app";
 import Application from "./application";

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { observer } from "mobx-react";
 import { observable, action } from "mobx";
 import cn from "classnames";
-import { Badge } from "../../../../../vendor";
+import { Badge } from "../../../../../vendors";
 
 import { extractDate, extractTime } from "../../../../../helpers/prettify-date";
 import RaceViewModel from "../../models/race-view-model";

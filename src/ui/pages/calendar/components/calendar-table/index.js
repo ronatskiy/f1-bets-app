@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Table } from "../../../../../vendor";
+import { Table } from "../../../../../vendors";
 
 import CalendarTableRow from "./row";
 import RaceViewModel from "../../models/race-view-model";

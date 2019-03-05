@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col } from "../../../vendor";
+import { Container, Row, Col } from "../../../vendors";
 import { ReactComponent as TelegramIcon } from "../../images/telegram.svg";
 
 import "./styles.css";

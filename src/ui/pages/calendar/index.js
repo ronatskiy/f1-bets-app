@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { inject, observer } from "mobx-react";
-import { Col, Container, Row } from "../../../vendor";
+import { Col, Container, Row } from "../../../vendors";
 
 import CalendarTable from "./components/calendar-table";
 import RaceViewModel from "./models/race-view-model";

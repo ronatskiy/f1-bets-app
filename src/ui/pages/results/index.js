@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { inject } from "mobx-react";
-import { Col, Container, Row } from "../../../vendor";
+import { Col, Container, Row } from "../../../vendors";
 
 import PollingResultsTable from "./components/polling-results-table";
 import RaceInformation from "./models/race-information";

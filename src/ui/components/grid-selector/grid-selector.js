@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { observer, PropTypes as MobxPropTypes } from "mobx-react";
-import { Form, FormGroup, Table } from "../../../vendor";
+import { Form, FormGroup, Table } from "../../../vendors";
 
 import Racer from "../../../domain/racer";
 import RacersSelect from "../racers-select/racers-select";

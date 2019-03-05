@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Col, FormGroup, Input, Label, Row, Form } from "../../../../../vendor";
+import { Col, FormGroup, Input, Label, Row, Form } from "../../../../../vendors";
 
 import User from "../../../../../domain/user";
 

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { observable, action } from "mobx";
 import { observer, inject } from "mobx-react";
-import { Badge, Col, Nav, NavItem, NavLink, Row, TabContent, TabPane } from "../../../../vendor";
+import { Badge, Col, Nav, NavItem, NavLink, Row, TabContent, TabPane } from "../../../../vendors";
 
 import RaceSection from "./race-section/race-section";
 import UsersSection from "./users-section/users-section";

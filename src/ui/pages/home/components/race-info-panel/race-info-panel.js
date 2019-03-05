@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Col, Container, FormText, Row } from "../../../../../vendor";
+import { Col, Container, FormText, Row } from "../../../../../vendors";
 
 import WeekendInfoModel from "../../models/weekend-info-view-model";
 import "./race-info-panel.css";

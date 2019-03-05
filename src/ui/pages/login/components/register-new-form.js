@@ -1,6 +1,6 @@
 import React from "react";
 import { observer } from "mobx-react";
-import { Form, Label, Input, FormGroup, FormText, FormFeedback } from "../../../../vendor";
+import { Form, Label, Input, FormGroup, FormText, FormFeedback } from "../../../../vendors";
 
 import { RegisterNewAccountFormFields } from "../../../stores/forms/settings/login-form";
 import PrimaryButton from "../../../components/common/primary-button";

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "../../../../../vendor";
+import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "../../../../../vendors";
 
 import { URL_ROUTES } from "../../../../routes/url-routes";
 import User from "../../../../../domain/user";

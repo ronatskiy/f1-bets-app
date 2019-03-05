@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import sortBy from "lodash.sortby";
 import { action, observable } from "mobx";
 import { observer } from "mobx-react";
-import { Collapse, Table } from "../../../../../vendor";
+import { Collapse, Table } from "../../../../../vendors";
 
 import PseudoLink from "../../../../components/common/pseudo-link";
 import "./styles.css";

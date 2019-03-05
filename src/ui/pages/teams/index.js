@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { inject, PropTypes as MobxPropTypes } from "mobx-react";
-import { Col, Container, Row } from "../../../vendor";
+import { Col, Container, Row } from "../../../vendors";
 
 import TeamsStanding from "./models/team-standing";
 import TeamStandingTable from "./components/team-standing-table";

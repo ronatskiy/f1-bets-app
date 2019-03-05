@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { observable, action } from "mobx";
 import { observer, inject, PropTypes as MobxPropTypes } from "mobx-react";
 import Select from "react-select";
-import { Modal, ModalHeader, ModalBody, Form, FormGroup, Label } from "../../../../../vendor";
+import { Modal, ModalHeader, ModalBody, Form, FormGroup, Label } from "../../../../../vendors";
 
 import Race from "../../../../../domain/race";
 import PrimaryButton from "../../../../components/common/primary-button";

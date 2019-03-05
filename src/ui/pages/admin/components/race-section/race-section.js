@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
-import { Button, Col, Row, Table } from "../../../../../vendor";
+import { Button, Col, Row, Table } from "../../../../../vendors";
 
 import { prettifyDate } from "../../../../../helpers/prettify-date";
 import GridSelector from "../../../../components/grid-selector/grid-selector";

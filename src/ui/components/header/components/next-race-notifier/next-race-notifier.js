@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Col, Container, Row } from "../../../../../vendor";
+import { Col, Container, Row } from "../../../../../vendors";
 
 import CountdownTimer from "../countdown-timer";
 import Race from "../../../../../domain/race";

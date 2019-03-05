@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Table } from "../../../../vendor";
+import { Table } from "../../../../vendors";
 
 import NationalizedLink from "../../../components/nationalized-link";
 import RacerStanding from "../models/racer-standing";
