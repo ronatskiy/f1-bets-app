@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Redirect, Route } from "react-router-dom";
-import { pathNames } from "./routes";
+import { URL_ROUTES } from "./url-routes";
 
 const SmartRoute = ({
 	component: Component,
@@ -19,7 +19,7 @@ const SmartRoute = ({
 					return (
 						<Redirect
 							to={{
-								pathname: pathNames.HOME,
+								pathname: URL_ROUTES.HOME,
 							}}
 						/>
 					);
@@ -29,7 +29,7 @@ const SmartRoute = ({
 					return (
 						<Redirect
 							to={{
-								pathname: pathNames.LOGIN,
+								pathname: URL_ROUTES.LOGIN,
 								state: { from: props.location },
 							}}
 						/>

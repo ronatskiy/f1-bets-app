@@ -94,6 +94,7 @@ export default class AppModel {
 	get isBetsAllowed() {
 		const raceStartTime = this.nextRace && this.nextRace.raceStartTime;
 		const qualificationStartTime = this.nextRace && this.nextRace.qualifyingStartTime;
+
 		if (qualificationStartTime && raceStartTime) {
 			return (
 				qualificationStartTime &&
@@ -130,18 +131,19 @@ export default class AppModel {
 
 	@computed
 	get authUserBets() {
-		const resultBets = [];
 		if (!this._sessionModel.authenticatedUser) {
-			return resultBets;
+			return [];
 		}
+
+		const resultBets = [];
 		const currentUserId = this._sessionModel.authenticatedUser.id;
 
-		this.races.forEach(({ bets, prettyTitle, id }) => {
+		this.races.forEach(({ bets, prettyTitle, roundId }) => {
 			if (bets.some(bet => bet.userInfo.id === currentUserId)) {
 				const bet = bets[bets.findIndex(bet => bet.userInfo.id === currentUserId)];
 
 				resultBets.push({
-					raceId: id,
+					raceId: roundId,
 					title: prettyTitle,
 					bet: bet.betsMap,
 				});

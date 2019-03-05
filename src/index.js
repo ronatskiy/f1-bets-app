@@ -8,9 +8,9 @@ import configProvider from "./config/config";
 
 import "./vendor/index";
 
-import AppComponent from "./components/app";
+import AppComponent from "./ui/components/app";
 import Application from "./application";
-import ScrollToTop from "./components/common/scroll-to-top";
+import ScrollToTop from "./ui/components/common/scroll-to-top";
 
 configure({ enforceActions: "strict" });
 

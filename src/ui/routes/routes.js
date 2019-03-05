@@ -1,52 +1,41 @@
 import React, { Suspense } from "react";
 import generateId from "../../services/crypto-service/generate-id";
 
-import Home from "../../pages/home";
-import LoginPage from "../../pages/login/login";
-import LogoutPage from "../../pages/logout/logout-page";
-const Bets = React.lazy(() => import("../../pages/bets"));
-const Results = React.lazy(() => import("../../pages/results"));
-const TeamsList = React.lazy(() => import("../../pages/teams"));
-const AdminPage = React.lazy(() => import("../../pages/admin/admin"));
-const RacersList = React.lazy(() => import("../../pages/racers-list"));
-const CalendarPage = React.lazy(() => import("../../pages/calendar/calendar"));
-const BetsHistory = React.lazy(() => import("../../pages/bets-history"));
+import Home from "../pages/home";
+import LoginPage from "../pages/login/login";
+import LogoutPage from "../pages/logout/logout-page";
+import { URL_ROUTES } from "./url-routes";
+
+const Bets = React.lazy(() => import("../pages/bets"));
+const Results = React.lazy(() => import("../pages/results"));
+const TeamsList = React.lazy(() => import("../pages/teams"));
+const AdminPage = React.lazy(() => import("../pages/admin/admin"));
+const RacersList = React.lazy(() => import("../pages/racers-list"));
+const CalendarPage = React.lazy(() => import("../pages/calendar/index"));
+const BetsHistory = React.lazy(() => import("../pages/bets-history"));
 
 export { default as Route } from "./smart-route";
-
-export const pathNames = {
-	HOME: "/",
-	CALENDAR: "/calendar",
-	BETS: "/bet",
-	ADMIN: "/admin",
-	RESULTS: "/results",
-	RACERS: "/racers",
-	TEAMS: "/teams",
-	LOGIN: "/login",
-	LOGOUT: "/logout",
-	BETS_HISTORY: "/bets-history",
-};
 
 const AppRoutesConfig = [
 	{
 		exact: true,
-		path: pathNames.HOME,
+		path: URL_ROUTES.HOME,
 		component: Home,
 		id: generateId(),
 	},
 	{
-		path: pathNames.LOGIN,
+		path: URL_ROUTES.LOGIN,
 		component: LoginPage,
 		id: generateId(),
 	},
 	{
-		path: pathNames.LOGOUT,
+		path: URL_ROUTES.LOGOUT,
 		component: LogoutPage,
 		id: generateId(),
 	},
 	{
 		isPrivate: true,
-		path: pathNames.BETS,
+		path: URL_ROUTES.BETS,
 		component: () => (
 			<Suspense fallback={<div />}>
 				<Bets />
@@ -56,7 +45,7 @@ const AppRoutesConfig = [
 	},
 	{
 		isPrivate: true,
-		path: pathNames.BETS_HISTORY,
+		path: URL_ROUTES.BETS_HISTORY,
 		component: () => (
 			<Suspense fallback={<div />}>
 				<BetsHistory />
@@ -65,7 +54,7 @@ const AppRoutesConfig = [
 		id: generateId(),
 	},
 	{
-		path: pathNames.RESULTS,
+		path: URL_ROUTES.RESULTS,
 		component: () => (
 			<Suspense fallback={<div />}>
 				<Results />
@@ -74,7 +63,7 @@ const AppRoutesConfig = [
 		id: generateId(),
 	},
 	{
-		path: pathNames.RACERS,
+		path: URL_ROUTES.RACERS,
 		component: () => (
 			<Suspense fallback={<div />}>
 				<RacersList />
@@ -83,7 +72,7 @@ const AppRoutesConfig = [
 		id: generateId(),
 	},
 	{
-		path: pathNames.TEAMS,
+		path: URL_ROUTES.TEAMS,
 		component: () => (
 			<Suspense fallback={<div />}>
 				<TeamsList />
@@ -92,7 +81,7 @@ const AppRoutesConfig = [
 		id: generateId(),
 	},
 	{
-		path: pathNames.CALENDAR,
+		path: URL_ROUTES.CALENDAR,
 		component: () => (
 			<Suspense fallback={<div />}>
 				<CalendarPage />
@@ -103,7 +92,7 @@ const AppRoutesConfig = [
 	{
 		isPrivate: true,
 		onlyForAdmins: true,
-		path: pathNames.ADMIN,
+		path: URL_ROUTES.ADMIN,
 		component: () => (
 			<Suspense fallback={<div />}>
 				<AdminPage />

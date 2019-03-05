@@ -1,4 +1,4 @@
-import { createStores } from "./stores/index";
+import { createStores } from "./ui/stores";
 import { createServices } from "./services/index";
 import AppModel from "./models/app-model";
 
