@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "../../../../vendor";
 
-import { pathNames } from "../../../../routes/routes";
+import { pathNames } from "../../../../ui/routes/routes";
 import User from "../../../../domain/user";
 import NavLink from "../../../common/smart-nav-link";
 

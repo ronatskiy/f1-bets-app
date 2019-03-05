@@ -16,11 +16,11 @@ import {
 } from "../../../../vendor";
 
 import "./navigation-bar.css";
-import { pathNames } from "../../../../routes/routes";
+import { pathNames } from "../../../../ui/routes/routes";
 import ProfileDropdown from "./profile-dropdown";
 import User from "../../../../domain/user";
 import NavLink from "../../../common/smart-nav-link";
-import { BET_BUTTON_CHANGE_VOTE_TEXT, BET_BUTTON_VOTE_TEXT } from "../../../../constants/texts";
+import { BET_BUTTON_CHANGE_VOTE_TEXT, BET_BUTTON_VOTE_TEXT } from "../../../../ui/constants/texts";
 
 @inject(stores => ({
 	isAuthenticated: stores.appStore.isUserAuthenticated,

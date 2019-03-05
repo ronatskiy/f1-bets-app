@@ -45,9 +45,6 @@ export default class GridSelectorStore {
 
 	@action
 	_initMap(racers, initData, gridPositionsCount) {
-		console.log(racers);
-		console.log(initData);
-
 		Array(gridPositionsCount)
 			.fill(null)
 			.forEach((_, index) => {

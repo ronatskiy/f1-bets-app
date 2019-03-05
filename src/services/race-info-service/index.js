@@ -34,15 +34,13 @@ export default class RaceInfoService {
 	/**
 	 * @param betInfo
 	 * @param {RaceDto} newRace
-	 * @return {Promise<*|Promise<*|undefined>>}
+	 * @return {Promise}
 	 */
 	async addOrUpdateBet(betInfo, newRace) {
 		const allRaces = await this.fetchAll();
 		let races = [];
 
-		if (allRaces.length <= 0) {
-			races = [...allRaces, new RaceDto({ ...newRace, bets: [betInfo] })];
-		} else {
+		if (allRaces.some(r => r.roundId === newRace.roundId)) {
 			races = allRaces.map(race => {
 				if (race.roundId === newRace.roundId) {
 					const index = race.bets.findIndex(bet => bet.userInfo.id === betInfo.userInfo.id);
@@ -55,6 +53,8 @@ export default class RaceInfoService {
 				}
 				return race;
 			});
+		} else {
+			races = [...allRaces, new RaceDto({ ...newRace, bets: [betInfo] })];
 		}
 
 		return this.saveAll(races);

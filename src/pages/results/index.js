@@ -27,12 +27,13 @@ class ResultsPage extends React.Component {
 
 		return (
 			<Container tag="section" className="results-page">
-				<Row>
-					<Col>
-						<UserStandingsTable usersVotes={userStandings} />
-					</Col>
-				</Row>
-
+				{userStandings.length > 0 && (
+					<Row>
+						<Col>
+							<UserStandingsTable usersVotes={userStandings} />
+						</Col>
+					</Row>
+				)}
 				{raceResultsWithBets.reverse().map(raceInfo => {
 					const { raceId, raceTitle, hasOfficialResults, userBetsResults } = raceInfo;
 

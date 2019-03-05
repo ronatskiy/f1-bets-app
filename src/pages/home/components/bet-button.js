@@ -4,8 +4,8 @@ import { inject, observer } from "mobx-react";
 import { withRouter } from "react-router-dom";
 
 import PrimaryButton from "../../../components/common/primary-button";
-import { pathNames } from "../../../routes/routes";
-import { BET_BUTTON_CHANGE_VOTE_TEXT, BET_BUTTON_VOTE_TEXT } from "../../../constants/texts";
+import { pathNames } from "../../../ui/routes/routes";
+import { BET_BUTTON_CHANGE_VOTE_TEXT, BET_BUTTON_VOTE_TEXT } from "../../../ui/constants/texts";
 
 @withRouter
 @inject(stores => ({

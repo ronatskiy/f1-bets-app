@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { ReactComponent as Chevron } from "../../images/chevron.svg";
+import { ReactComponent as Chevron } from "../../ui/images/chevron.svg";
 import cn from "classnames";
 
 import "./chevron-icon.css";

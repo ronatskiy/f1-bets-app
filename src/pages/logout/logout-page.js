@@ -4,7 +4,7 @@ import { inject, observer } from "mobx-react";
 import { Link } from "react-router-dom";
 import { Col, Container, Row } from "../../vendor";
 
-import { pathNames } from "../../routes/routes";
+import { pathNames } from "../../ui/routes/routes";
 
 @inject("logoutPageStore")
 @observer

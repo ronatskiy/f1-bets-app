@@ -1,16 +1,16 @@
 import React, { Suspense } from "react";
-import generateId from "../services/crypto-service/generate-id";
+import generateId from "../../services/crypto-service/generate-id";
 
-import Home from "../pages/home";
-import LoginPage from "../pages/login/login";
-import LogoutPage from "../pages/logout/logout-page";
-const Bets = React.lazy(() => import("../pages/bets"));
-const Results = React.lazy(() => import("../pages/results"));
-const TeamsList = React.lazy(() => import("../pages/teams"));
-const AdminPage = React.lazy(() => import("../pages/admin/admin"));
-const RacersList = React.lazy(() => import("../pages/racers-list"));
-const CalendarPage = React.lazy(() => import("../pages/calendar/calendar"));
-const BetsHistory = React.lazy(() => import("../pages/bets-history"));
+import Home from "../../pages/home";
+import LoginPage from "../../pages/login/login";
+import LogoutPage from "../../pages/logout/logout-page";
+const Bets = React.lazy(() => import("../../pages/bets"));
+const Results = React.lazy(() => import("../../pages/results"));
+const TeamsList = React.lazy(() => import("../../pages/teams"));
+const AdminPage = React.lazy(() => import("../../pages/admin/admin"));
+const RacersList = React.lazy(() => import("../../pages/racers-list"));
+const CalendarPage = React.lazy(() => import("../../pages/calendar/calendar"));
+const BetsHistory = React.lazy(() => import("../../pages/bets-history"));
 
 export { default as Route } from "./smart-route";
 

@@ -4,7 +4,7 @@ import { inject, observer } from "mobx-react";
 import { withRouter } from "react-router-dom";
 import cn from "classnames";
 
-import { pathNames } from "../../routes/routes";
+import { pathNames } from "../../ui/routes/routes";
 import Race from "../../domain/race";
 import RaceInfoPanel from "./components/race-info-panel/race-info-panel";
 import BetButton from "./components/bet-button";

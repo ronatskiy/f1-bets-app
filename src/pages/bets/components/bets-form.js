@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { PropTypes as MobxPropTypes } from "mobx-react";
 import { withRouter } from "react-router-dom";
 
-import { pathNames } from "../../../routes/routes";
+import { pathNames } from "../../../ui/routes/routes";
 import Racer from "../../../domain/racer";
 import BetInfo from "../../../domain/bet-info";
 import User from "../../../domain/user";

@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "../../vendor";
-import { ReactComponent as TelegramIcon } from "../../images/telegram.svg";
+import { ReactComponent as TelegramIcon } from "../../ui/images/telegram.svg";
 
 import "./styles.css";
 

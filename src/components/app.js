@@ -8,7 +8,7 @@ import "./layout.css";
 
 import Header from "./header";
 import Footer from "./footer";
-import AppRoutesConfig, { Route } from "../routes/routes";
+import AppRoutesConfig, { Route } from "../ui/routes/routes";
 import DevelopmentModeAlert from "./development-mode-alert";
 import Loader from "./loader/loader";
 
