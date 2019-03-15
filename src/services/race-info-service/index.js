@@ -75,7 +75,7 @@ export default class RaceInfoService {
 	}
 
 	static _addBet(race, betInfo) {
-		race.bet.push(betInfo);
+		race.bets.push(betInfo);
 
 		return race;
 	}
