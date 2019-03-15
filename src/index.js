@@ -12,7 +12,7 @@ import AppComponent from "./ui/components/app";
 import Application from "./application";
 import ScrollToTop from "./ui/components/common/scroll-to-top";
 
-configure({ enforceActions: "strict" });
+configure({ enforceActions: "always" });
 
 const app = new Application({ configProvider });
 const stores = app.getStores();
