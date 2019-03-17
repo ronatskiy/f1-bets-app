@@ -8,8 +8,11 @@ export default class BetPageStore {
 		this._appModel = appModel;
 	}
 
+	/**
+	 * @return {Racer[]}
+	 */
 	get racers() {
-		return this._appModel.racers;
+		return this._appModel.currentSeasonHistory.racers;
 	}
 
 	/**
@@ -26,7 +29,7 @@ export default class BetPageStore {
 	}
 
 	@computed
-	get userBet() {
+	get usersBet() {
 		if (!this._appModel.isUserAlreadyBet) {
 			return {};
 		}
@@ -36,11 +39,14 @@ export default class BetPageStore {
 		return betInfo ? betInfo.betsMap : {};
 	}
 
+	/**
+	 * @return {boolean}
+	 */
 	get isBetsAllowed() {
 		return this._appModel.isBetsAllowed;
 	}
 
-	onBetsSubmit = bets => {
-		return this._appModel.addNewBet(bets);
-	};
+	submitBet(bet) {
+		return this._appModel.addNewBet(bet);
+	}
 }

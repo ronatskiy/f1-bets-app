@@ -6,7 +6,7 @@ import LoginPage from "../pages/login/login";
 import LogoutPage from "../pages/logout/logout-page";
 import { URL_ROUTES } from "./url-routes";
 
-const Bets = React.lazy(() => import("../pages/bets"));
+const Bets = React.lazy(() => import("../pages/bets/bet-page"));
 const Results = React.lazy(() => import("../pages/results"));
 const TeamsList = React.lazy(() => import("../pages/teams"));
 const AdminPage = React.lazy(() => import("../pages/admin/admin"));
