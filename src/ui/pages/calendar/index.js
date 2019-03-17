@@ -27,7 +27,7 @@ class CalendarPage extends React.Component {
 		} = this.props.calendarPageStore;
 
 		return (
-			<Container tag="section" style={{ marginTop: "1rem", marginBottom: "1rem" }}>
+			<Container tag="section" className="section">
 				<Row>
 					<Col>
 						<h1 className="page-title">Календарь гонок сезона {currentSeason} года</h1>

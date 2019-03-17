@@ -33,11 +33,14 @@ export default class UserStandingsTable extends React.Component {
 		const sortedVotes = sortBy(usersVotes, uv => -uv.totalPoints);
 
 		return (
-			<React.Fragment>
-				<h2 className="results-page__race-header" onClick={this._toggle}>
+			<>
+				<h2 className="page-title" onClick={this._toggle}>
 					<PseudoLink>
-						Сводная таблица результатов голосования{" "}
-						<ChevronIcon direction={this._isOpen ? "top" : "down"} />
+						Сводная таблица результатов голосования
+						<ChevronIcon
+							className="user-standings-table-header-icon"
+							direction={this._isOpen ? "top" : "down"}
+						/>
 					</PseudoLink>
 				</h2>
 				<Collapse isOpen={this._isOpen}>
@@ -60,7 +63,7 @@ export default class UserStandingsTable extends React.Component {
 						</tbody>
 					</Table>
 				</Collapse>
-			</React.Fragment>
+			</>
 		);
 	}
 }

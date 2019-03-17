@@ -37,12 +37,14 @@ class LoginPage extends React.Component {
 		return isUserAuthenticated ? (
 			<Redirect to={this._redirectPath} />
 		) : (
-			<Container tag="section" className="section">
+			<Container tag="section" className="page">
 				<Row>
 					<Col lg={{ size: 6, offset: 3 }} md={{ size: 8, offset: 2 }}>
 						<Row>
 							<Col>
-								<h1>{!isRegisterNew ? "Вход в F1 Bets App" : "Создать аккаунт"}</h1>
+								<h1 className="page-title">
+									{!isRegisterNew ? "Вход в F1 Bets App" : "Создать аккаунт"}
+								</h1>
 								<div className="text-muted">
 									или
 									<Button color="link" onClick={this.handleRegisterNew}>

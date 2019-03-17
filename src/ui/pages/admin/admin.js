@@ -9,7 +9,7 @@ import SectionTabs from "./components/section-tabs";
 class AdminPage extends React.Component {
 	render() {
 		return (
-			<Container tag="section">
+			<Container tag="section" className="page">
 				<Row>
 					<Col>
 						<h1 className="page-title">Admin Page</h1>

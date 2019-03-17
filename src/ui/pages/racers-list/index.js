@@ -26,10 +26,10 @@ class RacersList extends React.Component {
 		const { racerStandingList, currentSeason } = this.props;
 
 		return (
-			<Container>
+			<Container className="page">
 				<Row>
 					<Col>
-						<h1 className="page-title">Турнирная таблица пилотов сезона {currentSeason}</h1>
+						<h1 className="page-title">Турнирная таблица пилотов сезона {currentSeason} года</h1>
 						<RacerStandingTable racers={racerStandingList.slice()} />
 					</Col>
 				</Row>

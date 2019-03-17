@@ -15,6 +15,10 @@
 	padding-right: 0!important;
 	width: 0.5rem;
 }
+.calendar-table__command-column .chevron-icon {
+	width: 0.7em;
+}
+
 .calendar-table__grand-prix-column {}
 
 .calendar-table__date-column {

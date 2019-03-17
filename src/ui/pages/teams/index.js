@@ -25,10 +25,10 @@ class TeamsList extends React.Component {
 	render() {
 		const { currentSeason } = this.props;
 		return (
-			<Container>
+			<Container className="page">
 				<Row>
 					<Col>
-						<h1 className="page-title">Турнирная таблица команд сезона {currentSeason}</h1>
+						<h1 className="page-title">Турнирная таблица команд сезона {currentSeason} года</h1>
 						<TeamStandingTable teams={this.props.teamsStandingList.slice()} currentSeason={currentSeason} />
 					</Col>
 				</Row>

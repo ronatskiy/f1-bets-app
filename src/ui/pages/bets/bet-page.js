@@ -12,7 +12,7 @@ function BetsPage(props) {
 	const header = isBetsAllowed ? "Делайте Ваши прогнозы!" : "Прогнозы не принимаются.";
 
 	return (
-		<Container>
+		<Container className="page">
 			<Row>
 				<Col>
 					<h1 className="page-title">{header}</h1>

@@ -3,3 +3,7 @@
 	text-align: center;
 	width: 2rem;
 }
+.user-standings-table-header-icon {
+	margin-left: 0.5rem;
+	width: 0.85rem!important;
+}

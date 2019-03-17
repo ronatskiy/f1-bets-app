@@ -24,8 +24,8 @@ class LogoutPage extends React.Component {
 		const { isUserAuthenticated } = this.props.logoutPageStore;
 
 		return (
-			<Container>
-				<Row className="section">
+			<Container className="page">
+				<Row>
 					{isUserAuthenticated ? (
 						<Col>Идет обработка...</Col>
 					) : (
