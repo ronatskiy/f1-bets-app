@@ -4,17 +4,14 @@ import { inject, observer } from "mobx-react";
 
 import NavigationBar from "./components/navigation-bar";
 import NextRaceNotifier from "./components/next-race-notifier/next-race-notifier";
-import Race from "../../../domain/race";
+import HeaderStore from "../../stores/header";
 
 @inject("headerStore")
 @observer
 class Header extends React.Component {
 	static propTypes = {
-		headerStore: PropTypes.shape({
-			nextRace: PropTypes.instanceOf(Race),
-			currentTimeUtcString: PropTypes.string,
-		}).isRequired,
 		className: PropTypes.string,
+		headerStore: PropTypes.instanceOf(HeaderStore),
 	};
 
 	static defaultProps = {
@@ -28,11 +25,15 @@ class Header extends React.Component {
 		return (
 			<header className={className}>
 				<NavigationBar />
-				{nextRace && (
-					<section className="colors--very-light-green">
-						<NextRaceNotifier nextRace={nextRace} currentTimeUtcString={currentTimeUtcString} />
-					</section>
-				)}
+				<section className="alert-info">
+					{nextRace && (
+						<NextRaceNotifier
+							nextRaceTitle={nextRace.prettyTitle}
+							nextRaceStartTime={nextRace.raceStartTime}
+							currentTimeUtcString={currentTimeUtcString}
+						/>
+					)}
+				</section>
 			</header>
 		);
 	}
