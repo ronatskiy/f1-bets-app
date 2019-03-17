@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { observer, PropTypes as MobxPropTypes } from "mobx-react";
+import { observer } from "mobx-react";
 import { Form, FormGroup, Table } from "../../../vendors";
 
 import Racer from "../../../domain/racer";
@@ -11,7 +11,7 @@ import PrimaryButton from "../common/primary-button";
 @observer
 class GridSelector extends React.Component {
 	static propTypes = {
-		racers: MobxPropTypes.observableArrayOf(PropTypes.instanceOf(Racer)).isRequired,
+		racers: PropTypes.arrayOf(PropTypes.instanceOf(Racer)).isRequired,
 		onSave: PropTypes.func.isRequired,
 		placeholder: PropTypes.string,
 		submitButtonText: PropTypes.string,

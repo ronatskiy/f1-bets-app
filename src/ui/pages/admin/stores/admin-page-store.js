@@ -5,12 +5,13 @@ import configProvider from "../../../../config/config";
 class AdminPageStore {
 	/**
 	 * @param {AppModel} appModel
+	 * @param {RacesInfoService} racesInfoService
 	 */
-	constructor(appModel) {
+	constructor(appModel, racesInfoService) {
 		const RACE_STORE_URL = configProvider.getRaceStoreApiUrl();
 		const USER_STORE_URL = configProvider.getUserStoreApiUrl();
 
-		this._racesSectionStore = new RacesSectionStore(appModel, RACE_STORE_URL);
+		this._racesSectionStore = new RacesSectionStore(appModel, RACE_STORE_URL, racesInfoService);
 		this._usersSectionStore = new UsersSectionStore(appModel, USER_STORE_URL);
 	}
 

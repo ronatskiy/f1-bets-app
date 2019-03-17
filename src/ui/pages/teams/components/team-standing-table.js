@@ -26,12 +26,12 @@ class TeamStandingTable extends React.Component {
 					</tr>
 				</thead>
 				<tbody>
-					{teams.map(team => {
-						const { pos, name, url, id, points, nationality } = team;
+					{teams.map((team, index) => {
+						const { name, url, id, points, nationality } = team;
 
 						return (
 							<tr key={id}>
-								<td>{pos}</td>
+								<td>{index + 1}</td>
 								<td className="text-right">
 									<img
 										className="team-car-photo"

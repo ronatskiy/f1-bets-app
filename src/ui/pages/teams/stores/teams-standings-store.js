@@ -17,7 +17,7 @@ class TeamsStandingsStore {
 	 * @return {string}
 	 */
 	get currentSeason() {
-		return this._appModel.formulaOneOfficial.currentSeason;
+		return this._appModel.currentSeason;
 	}
 
 	fetchStandings = () => {

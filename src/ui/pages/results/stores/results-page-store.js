@@ -19,9 +19,9 @@ class ResultsPageStore {
 
 	@computed
 	get raceResultsWithBets() {
-		const { currentSeasonRacesResults } = this._appModel.formulaOneOfficial;
+		const { racesResults: currentSeasonRacesResults, races } = this._appModel.currentSeasonHistory;
 
-		return this._appModel._racesModel.races.map(
+		return races.map(
 			(race, index) =>
 				new RaceInformation({
 					race,
