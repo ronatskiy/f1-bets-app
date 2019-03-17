@@ -1,8 +1,5 @@
 import { computed } from "mobx";
-import kebabCase from "lodash.kebabcase";
-
 import RaceViewModel from "../models/race-view-model";
-import { isAfter } from "../../../../helpers/time-modification";
 
 class CalendarPageStore {
 	/**
@@ -17,8 +14,8 @@ class CalendarPageStore {
 	 */
 	@computed
 	get races() {
-		return this._appModel.formulaOneOfficial.currentSeasonRounds.map(ri => {
-			const { raceName, roundSchedule } = ri;
+		return this._appModel.currentSeasonHistory.rounds.map(round => {
+			const { raceName, roundSchedule, roundId } = round;
 
 			return new RaceViewModel({
 				raceName,
@@ -27,7 +24,7 @@ class CalendarPageStore {
 				practice1Time: roundSchedule.practices[0],
 				practice2Time: roundSchedule.practices[1],
 				practice3Time: roundSchedule.practices[2],
-				id: kebabCase(raceName),
+				id: roundId,
 			});
 		});
 	}
@@ -37,10 +34,13 @@ class CalendarPageStore {
 	 */
 	@computed
 	get nextRace() {
-		const now = this._appModel.timeWatcher.currentTime;
-		const [nextRace] = this.races.filter(r => isAfter(r.raceTime, now));
+		if (!this._appModel.nextRace) {
+			return null;
+		}
 
-		return nextRace;
+		const nextRace = this._appModel.nextRace;
+
+		return this.races.find(r => r.raceId === nextRace.roundId);
 	}
 
 	/**
@@ -52,7 +52,7 @@ class CalendarPageStore {
 	}
 
 	get currentSeason() {
-		return this._appModel.formulaOneOfficial.currentSeason;
+		return this._appModel.currentSeason;
 	}
 }
 
