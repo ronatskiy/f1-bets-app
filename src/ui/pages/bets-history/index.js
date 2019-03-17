@@ -20,7 +20,7 @@ class BetsHistory extends React.Component {
 		const { userBets } = this.props.userBetsHistoryPageStore;
 
 		return (
-			<Container>
+			<Container className="page">
 				<Row>
 					<Col>
 						<h1 className="page-title">История Ваших ставок</h1>

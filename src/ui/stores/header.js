@@ -6,6 +6,9 @@ export default class HeaderStore {
 		this._appModel = appModel;
 	}
 
+	/**
+	 * @return {Race | null}
+	 */
 	get nextRace() {
 		return this._appModel.nextRace;
 	}

@@ -16,6 +16,10 @@ export default class WeekendInfoModel {
 		this.racerStandings = [];
 	}
 
+	get roundId() {
+		return this._roundInfo.roundId;
+	}
+
 	get _firstPracticeStartTime() {
 		if (this._roundInfo.roundSchedule) {
 			return this._roundInfo.roundSchedule.practices[0] || "";

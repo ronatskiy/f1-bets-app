@@ -32,4 +32,11 @@ export default class TimeWatcher {
 	get currentTimeUtcString() {
 		return toUTCStringDate(this._currentTime);
 	}
+
+	/**
+	 * @return {number} current year
+	 */
+	get currentYear() {
+		return new Date().getUTCFullYear();
+	}
 }

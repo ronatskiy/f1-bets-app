@@ -4,11 +4,12 @@ class RacesSectionStore {
 	/**
 	 * @param {AppModel} appModel
 	 * @param {string} RACE_STORE_URL
+	 * @param {RacesInfoService} racesInfoService
 	 */
-	constructor(appModel, RACE_STORE_URL) {
+	constructor(appModel, RACE_STORE_URL, racesInfoService) {
 		this._appModel = appModel;
 		this._storeApiUrl = RACE_STORE_URL;
-		this._raceInfoService = this._appModel._raceInfoService;
+		this._racesInfoService = racesInfoService;
 	}
 
 	@observable isRaceResultsPanelVisible = false;
@@ -25,17 +26,17 @@ class RacesSectionStore {
 
 	@computed
 	get races() {
-		return this._appModel.races;
+		return this._appModel.currentSeasonHistory.races;
 	}
 
 	@computed
 	get racers() {
-		return this._appModel.racers;
+		return this._appModel.currentSeasonHistory.racers;
 	}
 
 	// async initRacesCollection() {
 	// 	await RaceRepository.init();
-	// 	return await this._raceInfoService.fetchAll();
+	// 	return await this._racesInfoService.fetchAll();
 	// }
 
 	get storeApiUrl() {
@@ -60,7 +61,7 @@ class RacesSectionStore {
 		}
 
 		await this._appModel.operationManager.runWithProgressAsync(async () => {
-			await this._raceInfoService.updateRaceResult(this.selectedRace.roundId, js);
+			await this._racesInfoService.updateRaceResult(this.selectedRace.roundId, js);
 			this.isRaceResultsPanelVisible = false;
 		});
 	}

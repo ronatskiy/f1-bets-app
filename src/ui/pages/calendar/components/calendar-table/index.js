@@ -32,7 +32,7 @@ export default class CalendarTable extends React.Component {
 							key={race.raceId}
 							className="calendar-table__row calendar-table__row--expandable"
 							race={race}
-							isNextRace={race.raceId === nextRace.raceId}
+							isNextRace={nextRace && race.raceId === nextRace.raceId}
 							isRaceWeekend={isRaceWeekend}
 						/>
 					))}

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { PropTypes as MobxPropTypes } from "mobx-react";
 import { withRouter } from "react-router-dom";
 
 import { URL_ROUTES } from "../../../routes/url-routes";
@@ -11,13 +10,13 @@ import GridSelector from "../../../components/grid-selector/grid-selector";
 
 class BetsForm extends Component {
 	static propTypes = {
-		racers: MobxPropTypes.observableArrayOf(PropTypes.instanceOf(Racer)).isRequired,
+		racers: PropTypes.arrayOf(PropTypes.instanceOf(Racer)).isRequired,
 		user: PropTypes.instanceOf(User),
 		onBetsSubmit: PropTypes.func.isRequired,
-		userBet: PropTypes.object,
+		usersBet: PropTypes.object,
 	};
 
-	handleSave = async racerGridMap => {
+	_handleSave = async racerGridMap => {
 		const { user, onBetsSubmit } = this.props;
 
 		const betInfo = new BetInfo({
@@ -26,24 +25,26 @@ class BetsForm extends Component {
 		});
 
 		await onBetsSubmit(betInfo);
-		this.goToResultsPage();
+		this._goToResultsPage();
 	};
 
+	_goToResultsPage() {
+		this.props.history.push(URL_ROUTES.RESULTS);
+	}
+
 	render() {
+		const { racers, usersBet } = this.props;
+
 		return (
 			<GridSelector
-				racers={this.props.racers}
-				initData={this.props.userBet}
+				racers={racers}
+				initData={usersBet}
 				placeholder="Укажите Ваш прогноз"
 				submitButtonText="Сохранить прогноз"
 				gridPositionsCount={10}
-				onSave={this.handleSave}
+				onSave={this._handleSave}
 			/>
 		);
-	}
-
-	goToResultsPage() {
-		this.props.history.push(URL_ROUTES.RESULTS);
 	}
 }
 

@@ -1,0 +1,7 @@
+.race-info-wrapper {}
+.race-info-wrapper:nth-child(odd) {
+	background-color: var(--very-light-green);
+}
+.race-info-wrapper:nth-child(even) {
+	background-color: var(--very-light-grey);
+}

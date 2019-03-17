@@ -9,8 +9,8 @@ import "./layout.css";
 import Header from "./header";
 import Footer from "./footer";
 import AppRoutesConfig, { Route } from "../routes/routes";
-import DevelopmentModeAlert from "./development-mode-alert";
 import Loader from "./loader/loader";
+import DevelopmentTools from "./development-tools";
 
 @inject("appStore")
 @withRouter
@@ -43,7 +43,7 @@ class App extends Component {
 			<>
 				{hasPendingTasks && <Loader />}
 				<div className="layout">
-					{!isProduction && <DevelopmentModeAlert />}
+					{!isProduction && <DevelopmentTools />}
 					<Header className="layout__header" />
 					<main className="layout__main colors--very-light-grey">
 						{AppRoutesConfig.map(route => (

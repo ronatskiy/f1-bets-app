@@ -14,7 +14,7 @@ export default class FormulaOneOfficialDataService {
 	 * @param {string} season
 	 * @return {Promise<FormulaOneRound[]>}
 	 */
-	async fetchSeasonRoundsSchedule(season) {
+	async fetchSeasonRounds(season) {
 		const roundSchedules = await this._repository.getF1Calendar(season);
 		const raceTable = await this._repository.getRaceSchedule(season);
 

@@ -21,7 +21,6 @@ body {
 	margin: 0 0 60px;
 }
 
-
 .colors {}
 .colors--very-light-grey {
 	background-color: var(--very-light-grey);
@@ -44,10 +43,14 @@ body {
 	padding: 0.3525rem 0.75rem;
 }
 
+.page {
+	margin: 1rem auto;
+}
+
 .page-title {
 	margin-top: 0.625rem;
 	margin-bottom: 1rem;
-	font-size: 1.5rem;
+	font-size: 1.2rem;
 }
 
 .form-control {
