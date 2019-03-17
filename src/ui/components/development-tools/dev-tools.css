@@ -1,0 +1,38 @@
+.dev-tools {
+	background-color: #fff;
+	border: 1px solid;
+	bottom: 30px;
+	display: flex;
+	min-height: 100px;
+	min-width: 100px;
+	padding: 10px 25px 10px 10px;
+}
+
+.dev-tools__tools {
+	flex-grow: 1;
+}
+
+.dev-tools__close-button {
+	font-size: 0.4rem;
+	flex-basis: 15px;
+	line-height: 0.4rem !important;
+	height: 15px;
+	width: 15px;
+	padding: 2px !important;
+	margin-left: 1rem;
+}
+
+.dev-tools--collapsed-mode {
+	background-color: #999;
+	border: 1px solid;
+	border-radius: 50%;
+	bottom: calc(60px / 2);
+	color: #fff;
+	height: 60px;
+	padding-top: 5px;
+	position: fixed;
+	right: calc(-60px / 2);
+	text-align: center;
+	transform: rotateZ(-90deg);
+	width: 60px;
+}
