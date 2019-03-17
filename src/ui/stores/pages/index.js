@@ -1,6 +1,6 @@
 import HomePageStore from "../../pages/home/stores/home";
 import AdminPageStore from "../../pages/admin/stores/admin-page-store";
-import BetPageStore from "../../pages/bets/store/bet-page-store";
+import BetPageStore from "../../pages/bets/bet-page-store";
 import UserBetsHistoryPageStore from "../../pages/bets-history/stores/user-bets-history";
 import CalendarPageStore from "../../pages/calendar/stores/calendar-page-store";
 import LoginPageStore from "../../pages/login/login-page-store";
@@ -14,7 +14,7 @@ export function createPagesStores(appModel) {
 	const resultsPageStore = new ResultsPageStore(appModel);
 	const racerStandingsPageStore = new RacerStandingsStore(appModel);
 	const teamsStandingsPageStore = new TeamsStandingsStore(appModel);
-	const adminPageStore = new AdminPageStore(appModel);
+	const adminPageStore = new AdminPageStore(appModel, appModel.services.racesInfoService);
 	const loginPageStore = new LoginPageStore(appModel);
 	const logoutPageStore = new LogoutPageStore(appModel);
 	const calendarPageStore = new CalendarPageStore(appModel);

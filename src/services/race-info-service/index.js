@@ -9,7 +9,7 @@ class RaceDto extends RoundAbstract {
 	}
 }
 
-export default class RaceInfoService {
+export default class RacesInfoService {
 	constructor({ raceInfoStoreApiUrl }) {
 		this._apiUrl = raceInfoStoreApiUrl;
 	}
@@ -33,7 +33,7 @@ export default class RaceInfoService {
 
 	/**
 	 * @param betInfo
-	 * @param {RaceDto} newRace
+	 * @param {Race} newRace
 	 * @return {Promise}
 	 */
 	async addOrUpdateBet(betInfo, newRace) {
@@ -46,10 +46,10 @@ export default class RaceInfoService {
 					const index = race.bets.findIndex(bet => bet.userInfo.id === betInfo.userInfo.id);
 
 					if (index > -1) {
-						return RaceInfoService._updateBet(race, betInfo, index);
+						return RacesInfoService._updateBet(race, betInfo, index);
 					}
 
-					return RaceInfoService._addBet(race, betInfo);
+					return RacesInfoService._addBet(race, betInfo);
 				}
 				return race;
 			});
