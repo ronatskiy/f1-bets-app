@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+
+import { computed } from "mobx";
 import { inject, observer } from "mobx-react";
 import { withRouter } from "react-router-dom";
 
@@ -12,6 +14,7 @@ import { BET_BUTTON_CHANGE_VOTE_TEXT, BET_BUTTON_VOTE_TEXT } from "../../../cons
 	isBetsAllowed: stores.homePageStore.isBetsAllowed,
 	isUserAlreadyBet: stores.homePageStore.isUserAlreadyBet,
 	isAuthenticated: stores.homePageStore.isAuthenticated,
+	nextRaceRoundId: stores.homePageStore.nextWeekend.roundId,
 }))
 @observer
 class BetButton extends React.Component {
@@ -19,33 +22,38 @@ class BetButton extends React.Component {
 		isBetsAllowed: PropTypes.bool.isRequired,
 		isUserAlreadyBet: PropTypes.bool.isRequired,
 		isAuthenticated: PropTypes.bool.isRequired,
+		nextRaceRoundId: PropTypes.string.isRequired,
+		roundId: PropTypes.string.isRequired,
 	};
 
-	handleBetButtonClick = () => {
-		const { isBetsAllowed } = this.props;
+	@computed
+	get _canBet() {
+		const { isBetsAllowed, roundId, nextRaceRoundId } = this.props;
 
-		if (isBetsAllowed) {
-			this.props.history.push(URL_ROUTES.BETS);
-		} else {
-			this.props.history.push(URL_ROUTES.RESULTS);
-		}
+		return isBetsAllowed && nextRaceRoundId === roundId;
+	}
+
+	_handleBetButtonClick = () => {
+		this.props.history.push(this._canBet ? URL_ROUTES.BETS : URL_ROUTES.RESULTS);
 	};
 
 	render() {
-		const { isBetsAllowed, isUserAlreadyBet, isAuthenticated } = this.props;
+		const { isBetsAllowed, isUserAlreadyBet, isAuthenticated, roundId, nextRaceRoundId } = this.props;
 		let text = "Таблица прогнозов";
 
-		if (isBetsAllowed) {
-			if (isAuthenticated) {
-				text = !isUserAlreadyBet ? BET_BUTTON_VOTE_TEXT : BET_BUTTON_CHANGE_VOTE_TEXT;
+		if (roundId === nextRaceRoundId) {
+			if (isBetsAllowed) {
+				if (isAuthenticated) {
+					text = !isUserAlreadyBet ? BET_BUTTON_VOTE_TEXT : BET_BUTTON_CHANGE_VOTE_TEXT;
+				} else {
+					text = "Войти для голосования";
+				}
 			} else {
-				text = "Войти для голосования";
+				text = "К списку прогнозов";
 			}
-		} else {
-			text = "К списку прогнозов";
 		}
 
-		return <PrimaryButton onClick={this.handleBetButtonClick}>{text}</PrimaryButton>;
+		return <PrimaryButton onClick={this._handleBetButtonClick}>{text}</PrimaryButton>;
 	}
 }
 

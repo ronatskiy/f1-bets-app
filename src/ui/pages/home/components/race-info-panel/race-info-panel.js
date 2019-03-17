@@ -3,15 +3,16 @@ import PropTypes from "prop-types";
 import { Col, Container, FormText, Row } from "../../../../../vendors";
 
 import WeekendInfoModel from "../../models/weekend-info-view-model";
-import "./race-info-panel.css";
 import TextLink from "../../../../components/common/text-link";
 import CountryInfo from "./country-info";
 import RacerStandingsWidget from "./racer-standings-widget";
+import BetButton from "../bet-button";
+
+import "./race-info-panel.css";
 
 class RaceInfoPanel extends React.Component {
 	static propTypes = {
 		raceInfo: PropTypes.instanceOf(WeekendInfoModel).isRequired,
-		commandButton: PropTypes.any.isRequired,
 		infoText: PropTypes.string,
 	};
 
@@ -20,8 +21,9 @@ class RaceInfoPanel extends React.Component {
 	};
 
 	render() {
-		const { /** @type {?WeekendInfoModel}*/ raceInfo, infoText, commandButton: CommandButton } = this.props;
+		const { /** @type {?WeekendInfoModel}*/ raceInfo, infoText } = this.props;
 		const {
+			roundId,
 			flagUrl,
 			countryName,
 			raceTitle,
@@ -78,7 +80,7 @@ class RaceInfoPanel extends React.Component {
 				{racerStandings.length > 0 && <RacerStandingsWidget racers={racerStandings} />}
 				<Row>
 					<Col>
-						<CommandButton />
+						<BetButton roundId={roundId} />
 					</Col>
 				</Row>
 				<hr className="race-info-panel__underscore" />
