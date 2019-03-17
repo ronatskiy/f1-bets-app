@@ -4,54 +4,67 @@ import TimeWatcher from "./time-watcher";
 import OperationManager from "./operation-manager";
 import SessionModel from "./session";
 import { isAfter, isInInterval, subtractTime } from "../helpers/time-modification";
-import RacesModel from "./races";
 import UsersModel from "./user";
-import FormulaOneOfficialModel from "./formula-one-official";
 import configProvider from "../config/config";
+import FormulaOneHistoryModel from "./formula-one-history-model";
 
 const VOTE_CLOSING_TIME = configProvider.getVoteClosingTime(); // minutes
 
+/**
+ * @property {string} currentSeason
+ */
 export default class AppModel {
 	constructor(services) {
-		const { userService, authenticationService, raceInfoService, formulaOneOfficialDataService } = services;
-
 		const operationManager = new OperationManager();
 		const tickInterval = configProvider.getTickInterval();
-
-		this._isProductionMode = configProvider.isProductionMode();
-		this._raceInfoService = raceInfoService;
+		const { userService, authenticationService } = services;
+		this.services = services;
 		this._timeWatcher = new TimeWatcher(tickInterval);
+		this.currentSeason = this._timeWatcher.currentYear.toString();
 		this._operationManager = operationManager;
 		this._sessionModel = new SessionModel({ authenticationService, operationManager });
 		this._usersModel = new UsersModel({
+			sessionModel: this._sessionModel,
 			operationManager,
 			userService,
-			sessionModel: this._sessionModel,
-		});
-		this._formulaOneOfficialModel = new FormulaOneOfficialModel({
-			formulaOneOfficialDataService,
-			operationManager,
 		});
 
-		this._racesModel = new RacesModel({
-			formulaOneOfficialModel: this._formulaOneOfficialModel,
-			raceInfoService,
-			operationManager,
-			timeWatcher: this._timeWatcher,
-		});
+		this._formulaOneHistoryModel = new FormulaOneHistoryModel(this.currentSeason, services, operationManager);
 
-		this._operationManager.runWithProgressAsync(async () => {
-			await this._formulaOneOfficialModel.fetchAll();
-			return this._racesModel.fetchRaces();
-		});
+		this.loadSeasonData(this.currentSeason);
 
 		// Load next race info if current race is started.
 		when(
 			() => this.nextRace && isAfter(this._timeWatcher.currentTime, this.nextRace.raceStartTime),
-			async () => {
-				await this._racesModel.fetchRaces();
+			() => {
+				this._reloadSeasonData(this.currentSeason);
 			},
 		);
+	}
+
+	/**
+	 * @return {History}
+	 */
+	get currentSeasonHistory() {
+		return this._formulaOneHistoryModel.currentSeasonHistory;
+	}
+
+	/**
+	 * @return {Race | null}
+	 */
+	@computed
+	get nextRace() {
+		const currentTime = this._timeWatcher.currentTime;
+		const [nextRace] = this.currentSeasonHistory.races.filter(race => isAfter(race.raceStartTime, currentTime));
+
+		return nextRace || null;
+	}
+
+	/**
+	 * @return {boolean}
+	 */
+	get isProduction() {
+		return configProvider.isProductionMode();
 	}
 
 	@computed
@@ -68,46 +81,25 @@ export default class AppModel {
 	}
 
 	/**
-	 * @return {Race[]}
-	 */
-	@computed
-	get races() {
-		return this._racesModel.races;
-	}
-
-	/**
-	 * @return {Racer[]}
-	 */
-	@computed
-	get racers() {
-		return this._formulaOneOfficialModel.currentSeasonRacers;
-	}
-
-	/**
 	 * @return {boolean}
 	 */
-	get isProduction() {
-		return this._isProductionMode;
-	}
-
 	@computed
 	get isBetsAllowed() {
-		const raceStartTime = this.nextRace && this.nextRace.raceStartTime;
-		const qualificationStartTime = this.nextRace && this.nextRace.qualifyingStartTime;
-
-		if (qualificationStartTime && raceStartTime) {
-			return (
-				qualificationStartTime &&
-				raceStartTime &&
-				!isInInterval(
-					this.timeWatcher.currentTime,
-					subtractTime(qualificationStartTime, VOTE_CLOSING_TIME),
-					raceStartTime,
-				)
-			);
+		if (!this.nextRace) {
+			return false;
 		}
 
-		return false;
+		const { raceStartTime, qualifyingStartTime: qualificationStartTime } = this.nextRace;
+
+		if (!(qualificationStartTime && raceStartTime)) {
+			return false;
+		}
+
+		return !isInInterval(
+			this.timeWatcher.currentTime,
+			subtractTime(qualificationStartTime, VOTE_CLOSING_TIME),
+			raceStartTime,
+		);
 	}
 
 	get isUserAuthenticated() {
@@ -119,16 +111,9 @@ export default class AppModel {
 	}
 
 	/**
-	 * @return {Race | null}
+	 * Authenticated user's bets list
+	 * @return {Array}
 	 */
-	get nextRace() {
-		return this._racesModel.nextRace;
-	}
-
-	addNewBet(bet) {
-		return this._racesModel.addNewBet(bet);
-	}
-
 	@computed
 	get authUserBets() {
 		if (!this._sessionModel.authenticatedUser) {
@@ -138,7 +123,7 @@ export default class AppModel {
 		const resultBets = [];
 		const currentUserId = this._sessionModel.authenticatedUser.id;
 
-		this.races.forEach(({ bets, prettyTitle, roundId }) => {
+		this.currentSeasonHistory.races.forEach(({ bets, prettyTitle, roundId }) => {
 			if (bets.some(bet => bet.userInfo.id === currentUserId)) {
 				const bet = bets[bets.findIndex(bet => bet.userInfo.id === currentUserId)];
 
@@ -168,6 +153,13 @@ export default class AppModel {
 	}
 
 	/**
+	 * @return {FormulaOneHistoryModel}
+	 */
+	get formulaOneHistory() {
+		return this._formulaOneHistoryModel;
+	}
+
+	/**
 	 * @return {TimeWatcher}
 	 */
 	get timeWatcher() {
@@ -181,10 +173,30 @@ export default class AppModel {
 		return this._operationManager;
 	}
 
+	async addNewBet(bet) {
+		return this._operationManager.runWithProgressAsync(async () => {
+			try {
+				await this.services.racesInfoService.addOrUpdateBet(bet, this.nextRace);
+			} catch (error) {
+				console.error("Can't update Bet", error);
+			}
+
+			await this._reloadSeasonData(this.currentSeason);
+		});
+	}
+
 	/**
-	 * @return {FormulaOneOfficialModel}
+	 * @param {string} season
+	 * @param {boolean} refresh
 	 */
-	get formulaOneOfficial() {
-		return this._formulaOneOfficialModel;
+	loadSeasonData(season, refresh = false) {
+		return this._formulaOneHistoryModel.loadSeasonHistory(season);
+	}
+
+	/**
+	 * @param {string} season
+	 */
+	_reloadSeasonData(season) {
+		this._formulaOneHistoryModel.loadSeasonHistory(season, /* refresh */ true);
 	}
 }
