@@ -62,14 +62,15 @@ export default class HomePageStore {
 	get seasons() {
 		return this._appModel.formulaOneHistory.historiesBySeason.map(({ season, isLoaded, races }) => {
 			const weekends = this._mapRacesToWeekendsModel(
-				season === this.currentSeason
+				(season === this.currentSeason
 					? races.filter(
 							r =>
 								this.nextWeekend &&
 								this.nextWeekend.raceStartTime !== r.raceStartTime &&
 								!isAfter(r.raceStartTime, this.nextWeekend.raceStartTime),
 					  )
-					: races,
+					: races
+				).reverse(),
 				season,
 			);
 
