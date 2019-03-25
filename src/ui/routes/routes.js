@@ -13,6 +13,7 @@ const AdminPage = React.lazy(() => import("../pages/admin/admin"));
 const RacersList = React.lazy(() => import("../pages/racers-list"));
 const CalendarPage = React.lazy(() => import("../pages/calendar/index"));
 const BetsHistory = React.lazy(() => import("../pages/bets-history"));
+const ProfilePage = React.lazy(() => import("../pages/profile/profile-page"));
 
 export { default as Route } from "./smart-route";
 
@@ -96,6 +97,16 @@ const AppRoutesConfig = [
 		component: () => (
 			<Suspense fallback={<div />}>
 				<AdminPage />
+			</Suspense>
+		),
+		id: generateId(),
+	},
+	{
+		isPrivate: true,
+		path: URL_ROUTES.PROFILE,
+		component: () => (
+			<Suspense fallback={<div />}>
+				<ProfilePage />
 			</Suspense>
 		),
 		id: generateId(),

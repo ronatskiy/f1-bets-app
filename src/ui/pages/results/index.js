@@ -11,10 +11,10 @@ import User from "../../../domain/user";
 
 import "./styles.css";
 
-@inject(stores => ({
-	currentUser: stores.resultsPageStore.authenticatedUser,
-	raceResultsWithBets: stores.resultsPageStore.raceResultsWithBets,
-	userStandings: stores.resultsPageStore.userStandings,
+@inject(({ resultsPageStore }) => ({
+	currentUser: resultsPageStore.authenticatedUser,
+	raceResultsWithBets: resultsPageStore.raceResultsWithBets,
+	userStandings: resultsPageStore.userStandings,
 }))
 class ResultsPage extends React.Component {
 	static propTypes = {

@@ -9,4 +9,5 @@ export const URL_ROUTES = {
 	LOGIN: "/login",
 	LOGOUT: "/logout",
 	BETS_HISTORY: "/bets-history",
+	PROFILE: "/profile",
 };

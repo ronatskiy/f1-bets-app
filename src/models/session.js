@@ -57,7 +57,7 @@ export default class SessionModel {
 
 			if (resp instanceof User) {
 				runInAction(() => {
-					this.authenticatedUser = resp;
+					this.authenticatedUserId = resp.id;
 				});
 				return true;
 			}
@@ -70,7 +70,7 @@ export default class SessionModel {
 	logout() {
 		if (this.isAuthenticated) {
 			this._authService.logout();
-			this.authenticatedUser = null;
+			this.authenticatedUserId = null;
 		}
 	}
 
@@ -81,7 +81,7 @@ export default class SessionModel {
 
 			if (resp instanceof User) {
 				runInAction(() => {
-					this.authenticatedUser = resp;
+					this.authenticatedUserId = resp.id;
 				});
 				return true;
 			}

@@ -12,7 +12,6 @@ class ResultsPageStore {
 		this._appModel = appModel;
 	}
 
-	@computed
 	get authenticatedUser() {
 		return this._appModel.session.authenticatedUser;
 	}
