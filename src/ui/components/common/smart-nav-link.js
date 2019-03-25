@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const SmartNavLink = ({ path = "/", className = "", disabled = false, children }) => {
+const SmartNavLink = ({ path = "/", className = "", disabled = false, onClick, children }) => {
 	return !disabled ? (
-		<Link to={path} className={className}>
+		<Link to={path} className={className} onClick={onClick}>
 			{children}
 		</Link>
 	) : (
@@ -16,6 +16,7 @@ SmartNavLink.propTypes = {
 	path: PropTypes.string,
 	className: PropTypes.string,
 	disabled: PropTypes.bool,
+	onClick: PropTypes.func,
 	children: PropTypes.node.isRequired,
 };
 
