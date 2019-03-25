@@ -6270,7 +6270,7 @@ lodash.words@4.2.0:
   resolved "https://registry.yarnpkg.com/lodash.words/-/lodash.words-4.2.0.tgz#5ecfeaf8ecf8acaa8e0c8386295f1993c9cf4036"
   integrity sha1-Xs/q+Oz4rKqODIOGKV8Zk8nPQDY=
 
-"lodash@>=3.5 <5", lodash@^4.14.0, lodash@^4.16.2, lodash@^4.17.4:
+"lodash@>=3.5 <5", lodash@^4.14.0, lodash@^4.17.4:
   version "4.17.10"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
 
@@ -6595,11 +6595,12 @@ mobx-react-devtools@6.1.1:
   resolved "https://registry.yarnpkg.com/mobx-react-devtools/-/mobx-react-devtools-6.1.1.tgz#a462b944085cf11ff96fc937d12bf31dab4c8984"
   integrity sha512-nc5IXLdEUFLn3wZal65KF3/JFEFd+mbH4KTz/IG5BOPyw7jo8z29w/8qm7+wiCyqVfUIgJ1gL4+HVKmcXIOgqA==
 
-mobx-react-form@1.34.0:
-  version "1.34.0"
-  resolved "https://registry.yarnpkg.com/mobx-react-form/-/mobx-react-form-1.34.0.tgz#e9b3bdf15dbbdf33830333ef2e13523d2d2fe5f5"
+mobx-react-form@1.39.1:
+  version "1.39.1"
+  resolved "https://registry.yarnpkg.com/mobx-react-form/-/mobx-react-form-1.39.1.tgz#90476ef6ab6e2499cf34b12f523add55ead5677a"
+  integrity sha512-OKWXUr6+GCmIKgRvUN/GvOp85IYY9nTv6RaTO10dsttpm1YxRzCn32w/O50TEmUlN1OEWjGjg99CY1RVAdCn3Q==
   dependencies:
-    lodash "^4.16.2"
+    lodash "^4.17.11"
 
 mobx-react@5.4.3:
   version "5.4.3"

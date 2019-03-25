@@ -24,7 +24,7 @@
     "lodash.words": "4.2.0",
     "mobx": "4.9.3",
     "mobx-react": "5.4.3",
-    "mobx-react-form": "1.34.0",
+    "mobx-react-form": "1.39.1",
     "moment": "2.24.0",
     "react": "16.8.4",
     "react-dom": "16.8.4",
