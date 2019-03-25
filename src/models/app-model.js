@@ -22,11 +22,14 @@ export default class AppModel {
 		this._timeWatcher = new TimeWatcher(tickInterval);
 		this.currentSeason = this._timeWatcher.currentYear.toString();
 		this._operationManager = operationManager;
-		this._sessionModel = new SessionModel({ authenticationService, operationManager });
 		this._usersModel = new UsersModel({
-			sessionModel: this._sessionModel,
 			operationManager,
 			userService,
+		});
+		this._sessionModel = new SessionModel({
+			authenticationService,
+			operationManager,
+			usersModel: this._usersModel,
 		});
 
 		this._formulaOneHistoryModel = new FormulaOneHistoryModel(this.currentSeason, services, operationManager);

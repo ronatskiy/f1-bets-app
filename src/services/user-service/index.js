@@ -57,7 +57,7 @@ export default class UserService {
 	}
 
 	/**
-	 * @param {User[]} user
+	 * @param {User} user
 	 * @return {Promise<*>}
 	 */
 	async addOrUpdate(user) {
@@ -74,7 +74,7 @@ export default class UserService {
 			users.push(user);
 		}
 
-		return ajax.put(this._apiUrl, users);
+		return await ajax.put(this._apiUrl, users);
 	}
 
 	async delete(id) {

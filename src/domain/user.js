@@ -13,10 +13,9 @@ import generateId from "../services/crypto-service/generate-id";
  */
 export default class User extends UserInfo {
 	constructor({ login, name, password, id, isAdmin = false, isTesting = false }) {
-		super({ name, id });
+		super({ name, id: id || generateId() });
 		this.login = login;
 		this.password = password;
-		this.id = id || generateId();
 		this.isAdmin = isAdmin;
 		this.isTesting = isTesting;
 	}

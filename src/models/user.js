@@ -1,27 +1,19 @@
-import { observable, computed, action, runInAction } from "mobx";
+import { observable, runInAction } from "mobx";
 
 export default class UsersModel {
 	/**
 	 * @param {UserService} userService
-	 * @param {SessionModel} sessionModel
 	 * @param {OperationManager} operationManager
 	 */
-	constructor({ userService, sessionModel, operationManager }) {
+	constructor({ userService, operationManager }) {
 		this._userService = userService;
 		this._operationManager = operationManager;
-		this._session = sessionModel;
 
 		this._operationManager.runWithProgressAsync(() => this.fetchUsers());
 	}
 
 	@observable users = [];
 
-	@computed
-	get currentUser() {
-		return this._session.authenticatedUser;
-	}
-
-	@action
 	fetchUsers() {
 		try {
 			return this._operationManager.runWithProgressAsync(async () => {
@@ -41,14 +33,14 @@ export default class UsersModel {
 		await this.fetchUsers();
 	}
 
-	@action
 	async addOrUpdate(user) {
 		if (!user) {
 			return;
 		}
 
 		return this._operationManager.runWithProgressAsync(async () => {
-			return await this._userService.addOrUpdate(user);
+			await this._userService.addOrUpdate(user);
+			return await this.fetchUsers();
 		});
 	}
 }
