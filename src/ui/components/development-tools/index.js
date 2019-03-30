@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { action, observable } from "mobx";
-import { observer } from "mobx-react";
+import { inject, observer } from "mobx-react";
 import MobXDevTools from "mobx-react-devtools";
+import { Button, Col, Container, Row } from "../../../vendors";
 import DevelopmentModeAlert from "./development-mode-alert";
-import { Button } from "../../../vendors";
 
 import "./dev-tools.css";
 
@@ -23,6 +23,13 @@ class DevelopmentTools extends Component {
 					<div className="dev-tools">
 						<div className="dev-tools__tools">
 							<DevelopmentModeAlert />
+							<Container>
+								<Row>
+									<Col>
+										<UserEditor />
+									</Col>
+								</Row>
+							</Container>
 						</div>
 						<Button color="danger" size="sm" className="dev-tools__close-button" onClick={this.toggle}>
 							x
@@ -36,6 +43,24 @@ class DevelopmentTools extends Component {
 				<MobXDevTools />
 			</>
 		);
+	}
+}
+
+@inject("devToolsStore")
+@observer
+class UserEditor extends Component {
+	handleMakeAdmin = () => {
+		this.props.devToolsStore.makeUserAdmin();
+	};
+
+	render() {
+		const { currentUser: user } = this.props.devToolsStore;
+
+		return user ? (
+			<div>
+				{user.name}: {user.isAdmin ? "Admin" : <button onClick={this.handleMakeAdmin}>Сделать админом</button>}
+			</div>
+		) : null;
 	}
 }
 

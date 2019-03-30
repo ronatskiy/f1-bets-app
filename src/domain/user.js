@@ -24,7 +24,7 @@ export default class User extends UserInfo {
 		return new UserInfo(this);
 	}
 
-	static fromJs({ login, name, password, id, isAdmin = false }) {
-		return new User({ login, name, password, id, isAdmin });
+	static fromJs({ login, name, password, id, isAdmin = false, isTesting = false }) {
+		return new User({ login, name, password, id, isAdmin, isTesting });
 	}
 }
