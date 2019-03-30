@@ -1,6 +1,7 @@
 import MobxReactForm from "mobx-react-form";
 import dvr from "mobx-react-form/lib/validators/DVR";
 import validatorjs from "validatorjs";
+import { USER_LOGIN_RULE, USER_NAME_RULE } from "../../../constants/validations-rules";
 
 export const ProfileEditFormFields = {
 	LOGIN: "login",
@@ -45,14 +46,14 @@ class ProfileEditFormStore extends MobxReactForm {
 				name: ProfileEditFormFields.NAME,
 				label: "Имя",
 				placeholder: "Например, John Doe",
-				rules: "required|string|between:3,25",
+				rules: USER_NAME_RULE,
 				value: name,
 			},
 			{
 				name: ProfileEditFormFields.LOGIN,
 				label: "Логин",
 				placeholder: "Например, superman",
-				rules: "required|string|alpha_num|between:2,15",
+				rules: USER_LOGIN_RULE,
 				value: login,
 			},
 		];
