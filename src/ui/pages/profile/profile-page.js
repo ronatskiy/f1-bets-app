@@ -11,7 +11,7 @@ import ProfileEditFormStore from "./stores/profile-edit-form-store";
 }))
 class ProfilePage extends React.Component {
 	static propTypes = {
-		profileEditForm: PropTypes.instanceOf(ProfileEditFormStore).isRequired,
+		profileEditForm: PropTypes.instanceOf(ProfileEditFormStore),
 		initForm: PropTypes.func.isRequired,
 	};
 
