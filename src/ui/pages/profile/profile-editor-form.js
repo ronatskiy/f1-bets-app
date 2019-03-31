@@ -13,18 +13,28 @@ function ProfileEditorForm({ form }) {
 	const loginError = loginField.error;
 	const loginHasError = Boolean(loginError);
 	const canSubmit = !form.isPristine && (!form.isEmpty || form.isValid);
-	console.log("render ProfileEditorForm");
+
 	return (
 		<Form>
 			<FormGroup>
 				<Label htmlFor={nameField.id}>{nameField.label}</Label>
-				<Input {...nameField.bind()} invalid={nameHasError} valid={nameField.isDirty && !nameHasError} />
+				<Input
+					{...nameField.bind()}
+					autocomplete={"off"}
+					invalid={nameHasError}
+					valid={nameField.isDirty && !nameHasError}
+				/>
 				<FormFeedback valid={!nameHasError}>{nameError}</FormFeedback>
 			</FormGroup>
 
 			<FormGroup>
 				<Label htmlFor={loginField.id}>{loginField.label}</Label>
-				<Input {...loginField.bind()} invalid={loginHasError} valid={loginField.isDirty && !loginHasError} />
+				<Input
+					{...loginField.bind()}
+					autocomplete={"off"}
+					invalid={loginHasError}
+					valid={loginField.isDirty && !loginHasError}
+				/>
 				<FormFeedback valid={!loginHasError}>{loginError}</FormFeedback>
 			</FormGroup>
 			<Button color="primary" type="submit" onClick={form.onSubmit} disabled={!canSubmit}>

@@ -1,5 +1,5 @@
 import HomePageStore from "../../pages/home/stores/home";
-import AdminPageStore from "../../pages/admin/stores/admin-page-store";
+import AdminPageStore from "../../pages/admin/admin-page-store";
 import BetPageStore from "../../pages/bets/bet-page-store";
 import UserBetsHistoryPageStore from "../../pages/bets-history/stores/user-bets-history";
 import CalendarPageStore from "../../pages/calendar/stores/calendar-page-store";

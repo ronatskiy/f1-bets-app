@@ -4,7 +4,7 @@ import TimeWatcher from "./time-watcher";
 import OperationManager from "./operation-manager";
 import SessionModel from "./session";
 import { isAfter, isInInterval, subtractTime } from "../helpers/time-modification";
-import UsersModel from "./user";
+import UsersModel from "./users-model";
 import configProvider from "../config/config";
 import FormulaOneHistoryModel from "./formula-one-history-model";
 
@@ -17,7 +17,7 @@ export default class AppModel {
 	constructor(services) {
 		const operationManager = new OperationManager();
 		const tickInterval = configProvider.getTickInterval();
-		const { userService, authenticationService } = services;
+		const { userService, authenticationService, cryptoService } = services;
 		this.services = services;
 		this._timeWatcher = new TimeWatcher(tickInterval);
 		this.currentSeason = this._timeWatcher.currentYear.toString();
@@ -25,6 +25,7 @@ export default class AppModel {
 		this._usersModel = new UsersModel({
 			operationManager,
 			userService,
+			cryptoService,
 		});
 		this._sessionModel = new SessionModel({
 			authenticationService,
@@ -176,10 +177,12 @@ export default class AppModel {
 		return this._operationManager;
 	}
 
-	async addNewBet(bet) {
+	async addNewBet(bet, race = null) {
+		race = race !== null ? race : this.nextRace;
+
 		return this._operationManager.runWithProgressAsync(async () => {
 			try {
-				await this.services.racesInfoService.addOrUpdateBet(bet, this.nextRace);
+				await this.services.racesInfoService.addOrUpdateBet(bet, race);
 			} catch (error) {
 				console.error("Can't update Bet", error);
 			}

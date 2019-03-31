@@ -1,6 +1,6 @@
-import RacesSectionStore from "./races-section-store";
-import UsersSectionStore from "./users-section-store";
-import configProvider from "../../../../config/config";
+import { RacesSectionStore } from "./races-section";
+import UsersSectionStore from "./users-section/stores/users-section-store";
+import configProvider from "../../../config/config";
 
 class AdminPageStore {
 	/**

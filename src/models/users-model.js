@@ -4,14 +4,19 @@ export default class UsersModel {
 	/**
 	 * @param {UserService} userService
 	 * @param {OperationManager} operationManager
+	 * @param cryptoService
 	 */
-	constructor({ userService, operationManager }) {
+	constructor({ userService, operationManager, cryptoService }) {
 		this._userService = userService;
 		this._operationManager = operationManager;
+		this._cryptoService = cryptoService;
 
 		this._operationManager.runWithProgressAsync(() => this.fetchUsers());
 	}
 
+	/**
+	 * @type {User[]}
+	 */
 	@observable users = [];
 
 	fetchUsers() {
@@ -33,6 +38,10 @@ export default class UsersModel {
 		await this.fetchUsers();
 	}
 
+	/**
+	 * @param {User} user
+	 * @return {Promise<*|undefined>}
+	 */
 	async addOrUpdate(user) {
 		if (!user) {
 			return;
@@ -42,5 +51,18 @@ export default class UsersModel {
 			await this._userService.addOrUpdate(user);
 			return await this.fetchUsers();
 		});
+	}
+
+	async resetPassword(id, newPassword) {
+		await this.fetchUsers();
+
+		const user = this.users.find(u => u.id === id);
+
+		if (!user) {
+			return;
+		}
+
+		user.password = this._cryptoService.encodePassword(newPassword);
+		await this.addOrUpdate(user);
 	}
 }
