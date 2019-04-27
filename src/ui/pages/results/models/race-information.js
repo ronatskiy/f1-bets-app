@@ -15,8 +15,9 @@ class RaceInformation {
 	/**
 	 * @param {Race} race
 	 * @param {Racer[]} finishedRacers
+	 * @param {function} getUserName
 	 */
-	constructor({ race, finishedRacers = [] }) {
+	constructor({ race, finishedRacers = [], getUserName = () => "" }) {
 		this.raceId = race.roundId;
 		this.raceTitle = race.prettyTitle + " " + race.season;
 
@@ -25,17 +26,19 @@ class RaceInformation {
 			this._officialResults = UserBetsResult.createOfficialResults(this._officialResultsBetMap);
 		}
 
-		this._userVotes = race.bets.map(
-			betInfo =>
-				new UserBetsResult(
-					{
-						userName: betInfo.userInfo.name,
-						userId: betInfo.userInfo.id,
-						userBetsMap: betInfo.betsMap,
-					},
-					this._officialResultsBetMap,
-				),
-		);
+		this._userVotes = race.bets.map(betInfo => {
+			const userId = betInfo.userInfo.id;
+			const userName = getUserName(userId);
+
+			return new UserBetsResult(
+				{
+					userId,
+					userName,
+					userBetsMap: betInfo.betsMap,
+				},
+				this._officialResultsBetMap,
+			);
+		});
 	}
 
 	get hasOfficialResults() {

@@ -56,7 +56,7 @@ export default class UsersModel {
 	async resetPassword(id, newPassword) {
 		await this.fetchUsers();
 
-		const user = this.users.find(u => u.id === id);
+		const user = this._findUserById(id);
 
 		if (!user) {
 			return;
@@ -64,5 +64,23 @@ export default class UsersModel {
 
 		user.password = this._cryptoService.encodePassword(newPassword);
 		await this.addOrUpdate(user);
+	}
+
+	/**
+	 * @param userId
+	 * @return {string}
+	 */
+	getUserNameById(userId) {
+		const user = this._findUserById(userId);
+
+		return user ? user.name : "<DELETED USER>";
+	}
+
+	/**
+	 * @param userId
+	 * @return {User|null}
+	 */
+	_findUserById(userId) {
+		return this.users.find(u => u.id === userId) || null;
 	}
 }

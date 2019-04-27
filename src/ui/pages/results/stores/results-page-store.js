@@ -28,6 +28,7 @@ class ResultsPageStore {
 						index < currentSeasonRacesResults.length
 							? currentSeasonRacesResults[index].racersStandings
 							: undefined,
+					getUserName: userId => this._appModel.usersModel.getUserNameById(userId),
 				}),
 		);
 	}
