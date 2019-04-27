@@ -1,4 +1,4 @@
-For more info wisit [http://f1bets.tk](http://f1bets.tk) 
+For more info wisit [http://f1bet.in.ua](http://f1bet.in.ua) 
 
 [![Travis][build-badge]][build]
 
