@@ -20,18 +20,18 @@ function ProfileEditorForm({ form }) {
 				<Label htmlFor={nameField.id}>{nameField.label}</Label>
 				<Input
 					{...nameField.bind()}
-					autocomplete={"off"}
+					autoComplete="off"
 					invalid={nameHasError}
 					valid={nameField.isDirty && !nameHasError}
 				/>
 				<FormFeedback valid={!nameHasError}>{nameError}</FormFeedback>
 			</FormGroup>
-
 			<FormGroup>
 				<Label htmlFor={loginField.id}>{loginField.label}</Label>
 				<Input
 					{...loginField.bind()}
-					autocomplete={"off"}
+					readOnly
+					autoComplete="off"
 					invalid={loginHasError}
 					valid={loginField.isDirty && !loginHasError}
 				/>

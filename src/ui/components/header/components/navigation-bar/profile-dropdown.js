@@ -7,7 +7,7 @@ import User from "../../../../../domain/user";
 import NavLink from "../../../common/smart-nav-link";
 
 const ProfileDropdown = ({ user, onClose }) => {
-	const { isAdmin, name } = user;
+	const { name } = user;
 
 	return (
 		<UncontrolledDropdown nav inNavbar>
@@ -16,13 +16,6 @@ const ProfileDropdown = ({ user, onClose }) => {
 			</DropdownToggle>
 			<DropdownMenu className="nav-bar-drop-down-menu" right>
 				<DropdownItem header>{name}</DropdownItem>
-				{isAdmin && (
-					<DropdownItem>
-						<NavLink path={URL_ROUTES.ADMIN} className="nav-bar-drop-down-menu__link" onClick={onClose}>
-							Админка
-						</NavLink>
-					</DropdownItem>
-				)}
 				<DropdownItem>
 					<NavLink path={URL_ROUTES.PROFILE} className="nav-bar-drop-down-menu__link" onClick={onClose}>
 						Редактировать профиль

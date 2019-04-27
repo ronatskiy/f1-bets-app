@@ -22,11 +22,11 @@ import User from "../../../../../domain/user";
 import NavLink from "../../../common/smart-nav-link";
 import { BET_BUTTON_CHANGE_VOTE_TEXT, BET_BUTTON_VOTE_TEXT } from "../../../../constants/texts";
 
-@inject(stores => ({
-	isAuthenticated: stores.appStore.isUserAuthenticated,
-	authenticatedUser: stores.appStore.authenticatedUser,
-	isBetsAllowed: stores.appStore.isBetsAllowed,
-	isUserAlreadyBet: stores.appStore.isUserAlreadyBet,
+@inject(({ appStore }) => ({
+	isAuthenticated: appStore.isUserAuthenticated,
+	authenticatedUser: appStore.authenticatedUser,
+	isBetsAllowed: appStore.isBetsAllowed,
+	isUserAlreadyBet: appStore.isUserAlreadyBet,
 }))
 @observer
 class NavigationBar extends React.Component {
@@ -141,11 +141,24 @@ class NavigationBar extends React.Component {
 								</NavItem>
 							) : (
 								authenticatedUser && (
-									<ProfileDropdown
-										user={authenticatedUser}
-										isBetsAllowed={isBetsAllowed}
-										onClose={this.closeMenu}
-									/>
+									<>
+										{authenticatedUser.isAdmin && (
+											<NavItem>
+												<NavLink
+													path={URL_ROUTES.ADMIN}
+													className="nav-link"
+													onClick={this.closeMenu}
+												>
+													Админка
+												</NavLink>
+											</NavItem>
+										)}
+										<ProfileDropdown
+											user={authenticatedUser}
+											isBetsAllowed={isBetsAllowed}
+											onClose={this.closeMenu}
+										/>
+									</>
 								)
 							)}
 						</Nav>
