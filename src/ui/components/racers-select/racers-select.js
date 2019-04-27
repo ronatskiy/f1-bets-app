@@ -63,7 +63,7 @@ class RacersSelect extends React.Component {
 				value={value}
 				options={options}
 				placeholder={placeholder}
-				isClearable={true}
+				isClearable
 				onChange={this.handleSelect}
 				components={{
 					Option: this._renderOption,

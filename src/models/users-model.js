@@ -1,27 +1,24 @@
-import { observable, computed, action, runInAction } from "mobx";
+import { observable, runInAction } from "mobx";
 
 export default class UsersModel {
 	/**
 	 * @param {UserService} userService
-	 * @param {SessionModel} sessionModel
 	 * @param {OperationManager} operationManager
+	 * @param cryptoService
 	 */
-	constructor({ userService, sessionModel, operationManager }) {
+	constructor({ userService, operationManager, cryptoService }) {
 		this._userService = userService;
 		this._operationManager = operationManager;
-		this._session = sessionModel;
+		this._cryptoService = cryptoService;
 
 		this._operationManager.runWithProgressAsync(() => this.fetchUsers());
 	}
 
+	/**
+	 * @type {User[]}
+	 */
 	@observable users = [];
 
-	@computed
-	get currentUser() {
-		return this._session.authenticatedUser;
-	}
-
-	@action
 	fetchUsers() {
 		try {
 			return this._operationManager.runWithProgressAsync(async () => {
@@ -41,14 +38,31 @@ export default class UsersModel {
 		await this.fetchUsers();
 	}
 
-	@action
+	/**
+	 * @param {User} user
+	 * @return {Promise<*|undefined>}
+	 */
 	async addOrUpdate(user) {
 		if (!user) {
 			return;
 		}
 
 		return this._operationManager.runWithProgressAsync(async () => {
-			return await this._userService.addOrUpdate(user);
+			await this._userService.addOrUpdate(user);
+			return await this.fetchUsers();
 		});
+	}
+
+	async resetPassword(id, newPassword) {
+		await this.fetchUsers();
+
+		const user = this.users.find(u => u.id === id);
+
+		if (!user) {
+			return;
+		}
+
+		user.password = this._cryptoService.encodePassword(newPassword);
+		await this.addOrUpdate(user);
 	}
 }

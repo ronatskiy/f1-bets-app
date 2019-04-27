@@ -9,17 +9,19 @@ export default class SessionModel {
 	/**
 	 * @param {AuthenticationService} authenticationService
 	 * @param {OperationManager} operationManager
+	 * @param {UsersModel} usersModel
 	 */
-	constructor({ authenticationService, operationManager }) {
+	constructor({ authenticationService, operationManager, usersModel }) {
 		this._authService = authenticationService;
 		this._operationManager = operationManager;
+		this._usersModel = usersModel;
 
 		this._operationManager.runWithProgressAsync(async () => {
 			const user = await authenticationService.authenticate();
 
 			if (user instanceof User) {
 				runInAction(() => {
-					this.authenticatedUser = user;
+					this.authenticatedUserId = user.id;
 				});
 			}
 
@@ -27,7 +29,16 @@ export default class SessionModel {
 		});
 	}
 
-	@observable authenticatedUser = null;
+	@observable authenticatedUserId = null;
+
+	@computed
+	get authenticatedUser() {
+		if (!this.authenticatedUserId) {
+			return null;
+		}
+
+		return this._usersModel.users.find(user => user.id === this.authenticatedUserId) || null;
+	}
 
 	@computed
 	get isAuthenticated() {
@@ -46,7 +57,7 @@ export default class SessionModel {
 
 			if (resp instanceof User) {
 				runInAction(() => {
-					this.authenticatedUser = resp;
+					this.authenticatedUserId = resp.id;
 				});
 				return true;
 			}
@@ -59,7 +70,7 @@ export default class SessionModel {
 	logout() {
 		if (this.isAuthenticated) {
 			this._authService.logout();
-			this.authenticatedUser = null;
+			this.authenticatedUserId = null;
 		}
 	}
 
@@ -70,7 +81,7 @@ export default class SessionModel {
 
 			if (resp instanceof User) {
 				runInAction(() => {
-					this.authenticatedUser = resp;
+					this.authenticatedUserId = resp.id;
 				});
 				return true;
 			}

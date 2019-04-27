@@ -1,3 +1,5 @@
+import { USER_LOGIN_RULE, USER_NAME_RULE, USER_PASSWORD_RULE } from "../../../constants/validations-rules";
+
 export const LoginFormFields = {
 	LOGIN: "login",
 	PASSWORD: "password",
@@ -13,13 +15,14 @@ export const loginFormSettings = {
 		name: LoginFormFields.LOGIN,
 		label: "Логин",
 		placeholder: "Например, superman",
-		rules: "required|string|alpha_num|between:2,15",
+		rules: USER_LOGIN_RULE,
 	},
 	[LoginFormFields.PASSWORD]: {
 		name: LoginFormFields.PASSWORD,
 		label: "Пароль",
 		placeholder: "Например, ******",
-		rules: "required|string|alpha_num|between:5,15",
+		type: "password",
+		rules: USER_PASSWORD_RULE,
 	},
 };
 
@@ -29,6 +32,6 @@ export const registerNewAccountFormSettings = {
 		name: RegisterNewAccountFormFields.NAME,
 		label: "Ваше имя",
 		placeholder: "Например, John Doe",
-		rules: "required|string|between:3,25",
+		rules: USER_NAME_RULE,
 	},
 };

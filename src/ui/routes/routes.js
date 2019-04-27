@@ -9,10 +9,11 @@ import { URL_ROUTES } from "./url-routes";
 const Bets = React.lazy(() => import("../pages/bets/bet-page"));
 const Results = React.lazy(() => import("../pages/results"));
 const TeamsList = React.lazy(() => import("../pages/teams"));
-const AdminPage = React.lazy(() => import("../pages/admin/admin"));
+const AdminPage = React.lazy(() => import("../pages/admin/admin-page"));
 const RacersList = React.lazy(() => import("../pages/racers-list"));
 const CalendarPage = React.lazy(() => import("../pages/calendar/index"));
 const BetsHistory = React.lazy(() => import("../pages/bets-history"));
+const ProfilePage = React.lazy(() => import("../pages/profile/profile-page"));
 
 export { default as Route } from "./smart-route";
 
@@ -96,6 +97,16 @@ const AppRoutesConfig = [
 		component: () => (
 			<Suspense fallback={<div />}>
 				<AdminPage />
+			</Suspense>
+		),
+		id: generateId(),
+	},
+	{
+		isPrivate: true,
+		path: URL_ROUTES.PROFILE,
+		component: () => (
+			<Suspense fallback={<div />}>
+				<ProfilePage />
 			</Suspense>
 		),
 		id: generateId(),

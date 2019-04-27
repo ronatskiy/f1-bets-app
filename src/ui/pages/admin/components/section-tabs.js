@@ -3,8 +3,8 @@ import { observable, action } from "mobx";
 import { observer, inject } from "mobx-react";
 import { Badge, Col, Nav, NavItem, NavLink, Row, TabContent, TabPane } from "../../../../vendors";
 
-import RaceSection from "./race-section/race-section";
-import UsersSection from "./users-section/users-section";
+import RaceSection from "../races-section";
+import UsersSection from "../users-section";
 
 @inject(stores => ({
 	usersCount: stores.adminPageStore.usersSectionStore.users.length,
@@ -28,19 +28,9 @@ class SectionTabs extends Component {
 				<Nav tabs>
 					<NavItem>
 						<NavLink
-							className={`${this.activeTab === "1" ? "active" : ""}`}
+							className={this.activeTab === "1" ? "active" : ""}
 							onClick={() => {
 								this.toggle("1");
-							}}
-						>
-							Races
-						</NavLink>
-					</NavItem>
-					<NavItem>
-						<NavLink
-							className={`${this.activeTab === "2" ? "active" : ""}`}
-							onClick={() => {
-								this.toggle("2");
 							}}
 						>
 							Users{" "}
@@ -49,21 +39,29 @@ class SectionTabs extends Component {
 							</Badge>
 						</NavLink>
 					</NavItem>
+					<NavItem>
+						<NavLink
+							className={this.activeTab === "2" ? "active" : ""}
+							onClick={() => {
+								this.toggle("2");
+							}}
+						>
+							Races
+						</NavLink>
+					</NavItem>
 				</Nav>
 				<TabContent activeTab={this.activeTab}>
 					<TabPane tabId="1">
-						<Row style={{ marginTop: "1rem" }}>
+						<Row>
 							<Col sm="12">
-								<h4>Races details</h4>
-								<RaceSection />
+								<UsersSection />
 							</Col>
 						</Row>
 					</TabPane>
 					<TabPane tabId="2">
-						<Row style={{ marginTop: "1rem" }}>
+						<Row>
 							<Col sm="12">
-								<h4>Users Details</h4>
-								<UsersSection />
+								<RaceSection />
 							</Col>
 						</Row>
 					</TabPane>

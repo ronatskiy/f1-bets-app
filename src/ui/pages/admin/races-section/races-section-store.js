@@ -1,4 +1,4 @@
-import { observable, action, computed } from "mobx";
+import { observable, action, computed, runInAction } from "mobx";
 
 class RacesSectionStore {
 	/**
@@ -12,7 +12,6 @@ class RacesSectionStore {
 		this._racesInfoService = racesInfoService;
 	}
 
-	@observable isRaceResultsPanelVisible = false;
 	/** @type {Race} */
 	@observable selectedRace = null;
 
@@ -34,40 +33,38 @@ class RacesSectionStore {
 		return this._appModel.currentSeasonHistory.racers;
 	}
 
-	// async initRacesCollection() {
-	// 	await RaceRepository.init();
-	// 	return await this._racesInfoService.fetchAll();
-	// }
-
 	get storeApiUrl() {
 		return this._storeApiUrl;
 	}
 
 	@action
-	showRaceResultsPanel() {
+	showRaceResultsPanel(race) {
+		this.selectedRace = race;
 		this.isRaceResultsPanelVisible = true;
 	}
 
-	@action
 	async addOrUpdateRaceResults(js) {
 		if (!this.selectedRace) {
 			window.alert("Выберите гонку!");
 			return;
 		}
 
-		if (Object.values(js).filter(racer => Boolean(racer)).length < 10) {
-			window.alert("Не все гоншики выбраны!");
+		if (Object.values(js).filter(racer => Boolean(racer)).length < 20) {
+			window.alert("Выбраны не все гоншики !");
 			return;
 		}
 
 		await this._appModel.operationManager.runWithProgressAsync(async () => {
 			await this._racesInfoService.updateRaceResult(this.selectedRace.roundId, js);
-			this.isRaceResultsPanelVisible = false;
+
+			runInAction(() => {
+				this.selectedRace = null;
+			});
 		});
 	}
 
-	addNewBet = bets => {
-		return this._appModel.addNewBet(bets);
+	addNewBet = (bets, race) => {
+		return this._appModel.addNewBet(bets, race);
 	};
 }
 
