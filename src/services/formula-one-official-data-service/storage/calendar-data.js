@@ -230,8 +230,8 @@ const calendar = new Map([
 				practice_1: "20190607T150000Z",
 				practice_2: "20190607T190000Z",
 				practice_3: "20190608T160000Z",
-				qualification: "20190608T190000Z",
-				race: "20190609T191000Z",
+				qualification: "20190608T180000Z",
+				race: "20190609T181000Z",
 			}),
 			new RoundSchedule({
 				round: 8,
