@@ -17,7 +17,8 @@ export default class RacerStandingsWidget extends React.Component {
 
 	render() {
 		const { racers, rowSize } = this.props;
-		const rows = Array(racers.length / rowSize)
+		const sliceCount = racers.length / rowSize > 1 ? racers.length / rowSize : 1;
+		const rows = Array(sliceCount)
 			.fill(0)
 			.map((_, index) => racers.slice(index * rowSize, index * rowSize + rowSize));
 
