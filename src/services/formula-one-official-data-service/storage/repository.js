@@ -29,6 +29,14 @@ export default class FormulaOneOfficialDataRepository {
 
 	/**
 	 * @param {string} season
+	 * @return {Promise<RaceTableExtended>}
+	 */
+	async getQualifyingResults(season) {
+		return await ErgastApi.getQualifyingResults(season);
+	}
+
+	/**
+	 * @param {string} season
 	 * @return {Promise<DriverStandingsListItem[]>}
 	 */
 	async getDrivers(season) {

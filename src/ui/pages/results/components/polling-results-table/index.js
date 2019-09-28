@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Table } from "../../../../../vendors";
 
-import UserBetsResult, { OFFICIAL_RESULTS_USER_ID } from "../../models/user-bets-result";
+import UserBetsResult, { OFFICIAL_RESULTS_USER_ID, QUALIFICATION_RESULTS_USER_ID } from "../../models/user-bets-result";
 import User from "../../../../../domain/user";
 import TableHeader from "./header";
 import TableRow from "./row";
@@ -32,7 +32,10 @@ class PollingResultsTable extends React.Component {
 							<TableRow
 								userPollData={userBetsResult}
 								key={userBetsResult.id}
-								isOfficialResultsRow={userBetsResult.id === OFFICIAL_RESULTS_USER_ID}
+								isOfficialResultsRow={
+									userBetsResult.id === OFFICIAL_RESULTS_USER_ID ||
+									userBetsResult.id === QUALIFICATION_RESULTS_USER_ID
+								}
 								isCurrentUserRow={currentUser && currentUser.id === userBetsResult.id}
 								hasRaceResults={hasRaceResults}
 							/>

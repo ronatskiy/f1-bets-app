@@ -1,4 +1,4 @@
-import Race from "../race-with-results";
+import RaceWithResults from "../race-with-results";
 import RaceTable from "./race-table";
 
 /**
@@ -15,6 +15,6 @@ export default class RaceTableExtended extends RaceTable {
 	 */
 	constructor(options) {
 		super(options);
-		this.races = options.Races.map(r => new Race(r));
+		this.races = options.Races.map(r => new RaceWithResults(r));
 	}
 }

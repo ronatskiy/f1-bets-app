@@ -30,6 +30,16 @@ export default class FormulaOneDataProviderModel {
 
 	/**
 	 * @param {string} season
+	 * @return {Promise<RaceResult[]>}
+	 */
+	fetchQualifyingResults(season) {
+		return this._operationManager.runWithProgressAsync(() => {
+			return this._service.fetchQualifyingResults(season);
+		});
+	}
+
+	/**
+	 * @param {string} season
 	 * @return {Promise<Racer[]>}
 	 */
 	fetchRacers(season) {

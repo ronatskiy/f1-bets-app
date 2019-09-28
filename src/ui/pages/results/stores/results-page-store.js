@@ -18,7 +18,11 @@ class ResultsPageStore {
 
 	@computed
 	get raceResultsWithBets() {
-		const { racesResults: currentSeasonRacesResults, races } = this._appModel.currentSeasonHistory;
+		const {
+			races,
+			racesResults: currentSeasonRacesResults,
+			qualifyingsResults,
+		} = this._appModel.currentSeasonHistory;
 
 		return races.map(
 			(race, index) =>
@@ -29,6 +33,9 @@ class ResultsPageStore {
 							? currentSeasonRacesResults[index].racersStandings
 							: undefined,
 					getUserName: userId => this._appModel.usersModel.getUserNameById(userId),
+					qualifyingResultsStandings: qualifyingsResults[index]
+						? qualifyingsResults[index].racersStandings
+						: undefined,
 				}),
 		);
 	}

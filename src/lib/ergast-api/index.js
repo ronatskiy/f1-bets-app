@@ -63,7 +63,6 @@ class ErgastApi {
 
 		return new RaceTableExtended(mrData.RaceTable);
 	}
-
 	/**
 	 * @static
 	 * @param {string} season
@@ -86,6 +85,18 @@ class ErgastApi {
 		const mrData = await fetch(ErgastApi._createJsonUrl(season, "drivers"));
 
 		return new DriverTable(mrData.DriverTable);
+	}
+
+	/**
+	 * @static
+	 * @param {string} season
+	 * @return {Promise<RaceTableExtended>}
+	 */
+	static async getQualifyingResults(season = "2018") {
+		// http://ergast.com/api/f1/{season}/qualifying
+		const mrData = await fetchAll(ErgastApi._createJsonUrl(season, "qualifying"));
+
+		return new RaceTable(mrData.RaceTable);
 	}
 }
 

@@ -1,5 +1,5 @@
 import createExtendedRoundInfo from "./helpers/create-extended-round-info";
-import { createRaceResult } from "../data-transforms/race-with-results-transform";
+import { createQualifyingResult, createRaceResult } from "../data-transforms/race-with-results-transform";
 import Racer from "../../domain/racer";
 
 export default class FormulaOneOfficialDataService {
@@ -29,6 +29,16 @@ export default class FormulaOneOfficialDataService {
 		const raceTableExtended = await this._repository.getRacesResults(season);
 
 		return raceTableExtended.races.map(race => createRaceResult(race));
+	}
+
+	/**
+	 * @param {string} season
+	 * @return {Promise<RaceResult[]>}
+	 */
+	async fetchQualifyingResults(season) {
+		const raceTableExtended = await this._repository.getQualifyingResults(season);
+
+		return raceTableExtended.races.map(race => createQualifyingResult(race));
 	}
 
 	/**

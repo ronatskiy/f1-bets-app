@@ -1,5 +1,6 @@
 import Circuit from "./circuit";
 import SeasonInfo from "./season-info";
+import { QualifyingResult } from "./qualifying-result";
 
 /**
  * @name Race
@@ -24,6 +25,9 @@ export default class Race extends SeasonInfo {
 		this.date = options.date;
 		this.time = options.time;
 		this.circuit = new Circuit(options.Circuit);
+		this.qualifyingResults = (options.QualifyingResults || []).map(
+			qualifyingResults => new QualifyingResult(qualifyingResults),
+		);
 	}
 }
 
@@ -36,4 +40,5 @@ export default class Race extends SeasonInfo {
  * @property {string} date
  * @property {string} time
  * @property {ErgastApi~CircuitRawData} Circuit
+ * @property {ErgastApi~QualifyingResult[]} QualifyingResults
  */
