@@ -32,7 +32,7 @@
     "react-scripts": "2.1.8",
     "react-select": "2.4.4",
     "reactstrap": "7.1.0",
-    "uniqid": "5.0.3",
+    "uniqid": "5.2.0",
     "validatorjs": "3.15.1"
   },
   "devDependencies": {
