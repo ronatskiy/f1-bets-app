@@ -6622,10 +6622,10 @@ mobx-react@5.4.4:
     hoist-non-react-statics "^3.0.0"
     react-lifecycles-compat "^3.0.2"
 
-mobx@4.13.0:
-  version "4.13.0"
-  resolved "https://registry.yarnpkg.com/mobx/-/mobx-4.13.0.tgz#af4be9aac596c622a2bba4bfdaa67a5adb2ed90f"
-  integrity sha512-+hJTBIBRz4sWKpBTj2t2YbjJVlFJIGYiVoHnNUl03krsiFzXGNtqLjFvTPE1+fnN6Mq6LGfvgRKiGsBtZvZBwg==
+mobx@4.15.4:
+  version "4.15.4"
+  resolved "https://registry.yarnpkg.com/mobx/-/mobx-4.15.4.tgz#644eac80bdd15793855194e764c475041101b406"
+  integrity sha512-nyuHPqmKnVOnbvkjR8OrijBtovxAHYC+JU8/qBqvBw4Dez/n+zzxqNHbZNFy7/07+wwc/Qz7JS9WSfy1LcYISA==
 
 moment@2.24.0:
   version "2.24.0"
