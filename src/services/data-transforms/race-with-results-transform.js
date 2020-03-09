@@ -16,3 +16,19 @@ export function createRaceResult(raceWithResults) {
 		),
 	});
 }
+
+/**
+ * @param {ErgastApi.Race} race
+ * @return {RaceResult}
+ */
+export function createQualifyingResult(race) {
+	const { season, round, qualifyingResults } = race;
+
+	return new RaceResult({
+		season,
+		round,
+		racersStandings: qualifyingResults.map(
+			/** @type {ErgastApi.QualifyingResult} */ qualifyingResult => driverTransform(qualifyingResult.driver, "0"),
+		),
+	});
+}

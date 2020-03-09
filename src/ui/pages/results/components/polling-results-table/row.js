@@ -24,7 +24,6 @@ class TableRow extends React.Component {
 		const classNames = cn({
 			"table-info": isCurrentUserRow,
 			"table-success": isOfficialResultsRow,
-			"font-weight-bold": isOfficialResultsRow,
 		});
 
 		return (

@@ -6,8 +6,8 @@
   "repository": "github:ronatskiy/f1-bets-app",
   "scripts": {
     "analyze": "source-map-explorer build/static/js/main.*",
-    "start": "react-app-rewired start",
-    "predeploy": "npm run build",
+    "start": "yarn && react-app-rewired start",
+    "predeploy": "yarn && yarn build",
     "deploy": "gh-pages -d build",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom"

@@ -10,13 +10,22 @@ import Race from "../domain/race";
  * @property {Race[]} races
  */
 class History {
-	constructor({ season = "", isLoaded = false, rounds = [], racesResults = [], racers = [], races = [] } = {}) {
+	constructor({
+		season = "",
+		isLoaded = false,
+		rounds = [],
+		racesResults = [],
+		racers = [],
+		races = [],
+		qualifyingsResults = [],
+	} = {}) {
 		this.season = season;
 		this.isLoaded = isLoaded;
 		this.rounds = rounds;
 		this.racesResults = racesResults;
 		this.racers = racers;
 		this.races = races;
+		this.qualifyingsResults = qualifyingsResults;
 	}
 }
 
@@ -99,11 +108,12 @@ export default class FormulaOneHistoryModel {
 			return;
 		}
 
-		const [rounds, racesResults, racers, races] = await Promise.all([
+		const [rounds, racesResults, racers, races, qualifyingsResults] = await Promise.all([
 			this._formulaOneOfficialModel.fetchRounds(season),
 			this._formulaOneOfficialModel.fetchRacesResults(season),
 			this._formulaOneOfficialModel.fetchRacers(season),
 			this._racesModel.fetchSeasonRaces(season),
+			this._formulaOneOfficialModel.fetchQualifyingResults(season),
 		]);
 
 		runInAction(() => {
@@ -124,6 +134,7 @@ export default class FormulaOneHistoryModel {
 							raceResults: relativeRace ? relativeRace.raceResults : {},
 						});
 					}),
+					qualifyingsResults,
 				}),
 			);
 		});
