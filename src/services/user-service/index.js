@@ -83,6 +83,9 @@ export default class UserService {
 		}
 		const users = await this.fetchAll();
 
-		return ajax.put(this._apiUrl, users.filter(user => user.id !== id));
+		return ajax.put(
+			this._apiUrl,
+			users.filter(user => user.id !== id),
+		);
 	}
 }
