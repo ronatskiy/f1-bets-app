@@ -11,7 +11,9 @@
     "deploy": "gh-pages -d build",
     "build": "react-app-rewired build",
     "fix-404": "cpy build/index.html build --rename=404.html",
-    "test": "react-app-rewired test --env=jsdom"
+    "test": "react-app-rewired test --env=jsdom",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "axios": "0.19.2",
@@ -34,7 +36,8 @@
     "react-select": "2.4.4",
     "reactstrap": "8.4.1",
     "uniqid": "5.2.0",
-    "validatorjs": "3.18.1"
+    "validatorjs": "3.18.1",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "7.8.3",
@@ -54,5 +57,6 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "snyk": true
 }
