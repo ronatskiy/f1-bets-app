@@ -43,7 +43,7 @@ export default class FormulaOneHistoryModel {
 			operationManager,
 			formulaOneOfficialDataService,
 		});
-		this.availableSeasons = ["2019", "2018"];
+		this.availableSeasons = ["2020", "2019", "2018"];
 		this._initSeasonsHistory();
 	}
 
