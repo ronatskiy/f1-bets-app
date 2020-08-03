@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/static/css/main.217b4266.chunk.css",
-    "main.js": "/static/js/main.375d9da4.chunk.js",
-    "runtime-main.js": "/static/js/runtime-main.5c476e3a.js",
+    "main.js": "/static/js/main.30dfd071.chunk.js",
+    "runtime-main.js": "/static/js/runtime-main.d927e181.js",
     "static/css/2.ff7b14f4.chunk.css": "/static/css/2.ff7b14f4.chunk.css",
-    "static/js/2.6dbf5d67.chunk.js": "/static/js/2.6dbf5d67.chunk.js",
+    "static/js/2.7f8cd7ab.chunk.js": "/static/js/2.7f8cd7ab.chunk.js",
     "static/css/3.5faa796c.chunk.css": "/static/css/3.5faa796c.chunk.css",
-    "static/js/3.809d0bf0.chunk.js": "/static/js/3.809d0bf0.chunk.js",
+    "static/js/3.983de116.chunk.js": "/static/js/3.983de116.chunk.js",
     "static/css/4.a381f99a.chunk.css": "/static/css/4.a381f99a.chunk.css",
     "static/js/4.9c4d16ca.chunk.js": "/static/js/4.9c4d16ca.chunk.js",
     "static/css/5.f4544e85.chunk.css": "/static/css/5.f4544e85.chunk.css",
@@ -14,25 +14,25 @@
     "static/css/6.96e3e382.chunk.css": "/static/css/6.96e3e382.chunk.css",
     "static/js/6.6457eb2e.chunk.js": "/static/js/6.6457eb2e.chunk.js",
     "static/css/7.bc56b1d6.chunk.css": "/static/css/7.bc56b1d6.chunk.css",
-    "static/js/7.3d42dc33.chunk.js": "/static/js/7.3d42dc33.chunk.js",
+    "static/js/7.630d68b5.chunk.js": "/static/js/7.630d68b5.chunk.js",
     "static/css/8.baf3b02b.chunk.css": "/static/css/8.baf3b02b.chunk.css",
     "static/js/8.cbbff01c.chunk.js": "/static/js/8.cbbff01c.chunk.js",
     "static/js/9.742b8d53.chunk.js": "/static/js/9.742b8d53.chunk.js",
     "static/js/10.1e5e9554.chunk.js": "/static/js/10.1e5e9554.chunk.js",
     "static/js/11.30b358d4.chunk.js": "/static/js/11.30b358d4.chunk.js",
     "index.html": "/index.html",
-    "precache-manifest.18592f0dd062cd0f620fe5fa008e0a75.js": "/precache-manifest.18592f0dd062cd0f620fe5fa008e0a75.js",
+    "precache-manifest.4f779ecdcb924c3942183d82380d2b6b.js": "/precache-manifest.4f779ecdcb924c3942183d82380d2b6b.js",
     "service-worker.js": "/service-worker.js",
     "static/js/11.30b358d4.chunk.js.LICENSE.txt": "/static/js/11.30b358d4.chunk.js.LICENSE.txt",
-    "static/js/2.6dbf5d67.chunk.js.LICENSE.txt": "/static/js/2.6dbf5d67.chunk.js.LICENSE.txt",
+    "static/js/2.7f8cd7ab.chunk.js.LICENSE.txt": "/static/js/2.7f8cd7ab.chunk.js.LICENSE.txt",
     "static/media/chevron.6f43a39e.svg": "/static/media/chevron.6f43a39e.svg",
     "static/media/telegram.8a14cb4c.svg": "/static/media/telegram.8a14cb4c.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.5c476e3a.js",
+    "static/js/runtime-main.d927e181.js",
     "static/css/2.ff7b14f4.chunk.css",
-    "static/js/2.6dbf5d67.chunk.js",
+    "static/js/2.7f8cd7ab.chunk.js",
     "static/css/main.217b4266.chunk.css",
-    "static/js/main.375d9da4.chunk.js"
+    "static/js/main.30dfd071.chunk.js"
   ]
 }
