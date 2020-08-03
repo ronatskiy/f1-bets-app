@@ -3138,10 +3138,10 @@ cosmiconfig@^6.0.0:
     path-type "^4.0.0"
     yaml "^1.7.2"
 
-country-flags-svg@0.2.12:
-  version "0.2.12"
-  resolved "https://registry.yarnpkg.com/country-flags-svg/-/country-flags-svg-0.2.12.tgz#a2ed3183f2773bfc788f142c362f5e6462f0e661"
-  integrity sha512-zgJWXwsuCSXapi/Kq4ihfgMGTa1PdOUswWrdtLKptYWxbM/Xr4065idEIWMgUK8IrNBdCA6mEwyIC0xEYHS42A==
+country-flags-svg@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/country-flags-svg/-/country-flags-svg-1.0.0.tgz#5256b306d39285c9ace8edddb2b5b5719d3db650"
+  integrity sha512-VajJfzij2RJ6NVxjGgzNMF/9hCRksl6FJVyxPnxmW9rQkGyKrOho90Yz4BcB/xfk24rRV0PQb2K8em5UIieFhQ==
 
 cp-file@^7.0.0:
   version "7.0.0"

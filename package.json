@@ -18,7 +18,7 @@
     "bcryptjs": "2.4.3",
     "bootstrap": "4.4.1",
     "classnames": "2.2.6",
-    "country-flags-svg": "0.2.12",
+    "country-flags-svg": "1.0.0",
     "lodash.capitalize": "4.2.1",
     "lodash.kebabcase": "4.1.1",
     "lodash.sortby": "4.7.0",
